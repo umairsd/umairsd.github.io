@@ -4,7 +4,7 @@
   <title><![CDATA[Umair's blog]]></title>
   <link href="http://umairsd.github.io/atom.xml" rel="self"/>
   <link href="http://umairsd.github.io/"/>
-  <updated>2015-01-30T15:22:39-08:00</updated>
+  <updated>2015-01-31T06:59:27-08:00</updated>
   <id>http://umairsd.github.io/</id>
   <author>
     <name><![CDATA[Umair Saeed]]></name>
@@ -12,5 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A Reboot]]></title>
+    <link href="http://umairsd.github.io/blog/2015/01/31/a-reboot/"/>
+    <updated>2015-01-31T06:54:18-08:00</updated>
+    <id>http://umairsd.github.io/blog/2015/01/31/a-reboot</id>
+    <content type="html"><![CDATA[<p>I started blogging occassionally a few years ago, and my first blog was on <a href="http://umairsd.wordpress.com">Wordpress.com</a>. However, for various reasons (life changes, scheduling, focus on work etc.) I pretty much stopped blogging. The oldest post on my Wordpress blog is from July 2012. Wow! Even I am surprised at how long it has been since I added anything new.</p>
+
+<p>Back to 2015. I&rsquo;ve been thinking about rebooting my blog for several weeks, and finally decided to take the first step. I hope to blog more frequently than I&rsquo;ve done in the past few years.</p>
+
+<p>For setup, I decided to generate my blog via <a href="http://http://octopress.org/">Octopress</a> and host it on <a href="https://pages.github.com/">GitHub Pages</a>. I really like Octopress&rsquo;s simplicity, look and feel, and control over various aspects of blog generation and hosting. Another advantage is that I do most of my writing in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> format, which is the default for Octopress. Lastly, Octopress generates my blog as static HTML.</p>
+
+<p>My next steps are to figure out what to do about my old Wordpress posts. I needed to decide whether I am going to import them here, link to them instead of importing, or simply ignore.</p>
+]]></content>
+  </entry>
   
 </feed>
