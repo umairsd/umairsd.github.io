@@ -6,20 +6,35 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>http://umairsd.github.io/blog/2012/07/18/a-quine-in-objective-c/</loc>
+    <lastmod>2012-07-18T06:46:06-07:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://umairsd.github.io/blog/2011/06/23/finding-the-start-of-a-loop-in-a-circular-linked-list/</loc>
+    <lastmod>2011-06-23T06:54:07-07:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://umairsd.github.io/blog/2011/01/24/manual-memory-management-in-objective-c/</loc>
+    <lastmod>2011-01-24T11:10:40-08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>http://umairsd.github.io/blog/archives/</loc>
-    <lastmod>2015-02-01T11:17:05-08:00</lastmod>
+    <lastmod>2015-02-01T13:24:08-08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://umairsd.github.io/</loc>
-    <lastmod>2015-02-01T11:17:05-08:00</lastmod>
+    <lastmod>2015-02-01T13:24:08-08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://umairsd.github.io/about/</loc>
-    <lastmod>2015-02-01T11:17:05-08:00</lastmod>
+    <lastmod>2015-02-01T13:24:08-08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

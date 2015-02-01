@@ -102,6 +102,121 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/18/a-quine-in-objective-c/">A Quine in Objective-C</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-07-18T06:46:06-07:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>6:46 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A quine is a program that takes no input and outputs its own source code. It has been a while since I last wrote a quine, so I figured I&rsquo;ll write one in Objective-C. In general, quines follow a fairly simple formula. The program contains a string that includes all the code before the string and all the code after the string. Depending on the programming language, the string might also contain format string (for languages that use format-strings to print to stdout)</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/07/18/a-quine-in-objective-c/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/23/finding-the-start-of-a-loop-in-a-circular-linked-list/">Finding the Start of a Loop in a Circular Linked List</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-06-23T06:54:07-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2011</span></span> <span class='time'>6:54 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A lot of people are familiar with the problem of detecting a loop in a linked list. The problem goes as follows: “Given a linked list, what is the algorithm to determine if it has any cycles (loops)?”</p>
+
+<p>The algorithm is pretty straightforward:</p>
+
+<ol>
+<li>We start at the beginning of the linked list with two pointers.</li>
+<li>The first pointer is incremented through each node of the list. The second pointer moves twice as fast, and skips every other node.</li>
+<li>If the linked list contains a loop, these two pointers will eventually meet at the same node, thus indicating that the linked list contains a loop.</li>
+</ol>
+
+
+<p>The algorithm is straightforward and it is relatively easy to create a mental model and get an intuitive sense of why it works.</p>
+
+<p>Now, a slight twist to the same question asks: “Given a circular linked list, what is the algorithm to find the first node of the loop.”</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2011/06/23/finding-the-start-of-a-loop-in-a-circular-linked-list/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/24/manual-memory-management-in-objective-c/">Manual Memory Management in Objective-C</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-01-24T11:10:40-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>11:10 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Objective-C on iOS has no garbage collector, so it is up to the programmer to make sure that memory is properly freed once an object is no longer needed. On the other hand, Objective-C on the Mac does have a garbage collector (in Objective C 2.0). This blog post focuses on how to manage memory in the absence of a garbage collector.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2011/01/24/manual-memory-management-in-objective-c/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
   <div class="pagination">
     
     <a href="/blog/archives">Blog Archives</a>
@@ -116,6 +231,18 @@
     
       <li class="post">
         <a href="/blog/2015/01/31/a-reboot/">A Reboot</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/a-quine-in-objective-c/">A Quine in Objective-C</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/06/23/finding-the-start-of-a-loop-in-a-circular-linked-list/">Finding the Start of a Loop in a Circular Linked List</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/24/manual-memory-management-in-objective-c/">Manual Memory Management in Objective-C</a>
       </li>
     
   </ul>

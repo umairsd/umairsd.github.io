@@ -4,7 +4,7 @@
   <title><![CDATA[Umair's blog]]></title>
   <link href="http://umairsd.github.io/atom.xml" rel="self"/>
   <link href="http://umairsd.github.io/"/>
-  <updated>2015-02-01T11:17:05-08:00</updated>
+  <updated>2015-02-01T13:24:08-08:00</updated>
   <id>http://umairsd.github.io/</id>
   <author>
     <name><![CDATA[Umair Saeed]]></name>
@@ -25,6 +25,566 @@
 <p>For setup, I decided to generate my blog via <a href="http://octopress.org/">Octopress</a> and host it on <a href="https://pages.github.com/">GitHub Pages</a>. I really like Octopress&rsquo;s simplicity, look and feel, and control over various aspects of blog generation and hosting. Another advantage is that I do most of my writing in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> format, which is the default for Octopress. Lastly, Octopress generates my blog as static HTML.</p>
 
 <p>My next steps are to figure out what to do about my old Wordpress posts. I needed to decide whether I am going to import them here, link to them instead of importing, or simply ignore.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Quine in Objective-C]]></title>
+    <link href="http://umairsd.github.io/blog/2012/07/18/a-quine-in-objective-c/"/>
+    <updated>2012-07-18T06:46:06-07:00</updated>
+    <id>http://umairsd.github.io/blog/2012/07/18/a-quine-in-objective-c</id>
+    <content type="html"><![CDATA[<p>A quine is a program that takes no input and outputs its own source code. It has been a while since I last wrote a quine, so I figured I&rsquo;ll write one in Objective-C. In general, quines follow a fairly simple formula. The program contains a string that includes all the code before the string and all the code after the string. Depending on the programming language, the string might also contain format string (for languages that use format-strings to print to stdout)</p>
+
+<!-- More -->
+
+
+<p>Here is the code for the quine. I&rsquo;ve broken the code below into segments to make it simpler to understand:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &lt;Foundation/Foundation.h&gt;  </span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">@autoreleasepool</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="bp">NSString</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="s">@&quot; \</span>
+</span><span class='line'><span class="s">            #import &lt;Foundation/Foundation.h&gt; %c \</span>
+</span><span class='line'><span class="s">            int main (int argc, const char * argv[]) { @autoreleasepool { NSString *str= \</span>
+</span><span class='line'><span class="s">            %c%c%@%c; \</span>
+</span><span class='line'><span class="s">            NSLog(str, 10, 64, 34, str, 34);} return 0;}&quot;</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="n">str</span><span class="p">,</span> <span class="mi">34</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Before I go on, 10, 64 and 34 are the ASCII character codes for <code>newline</code>, <code>@</code>and <code>"</code>respectively. To make it clearer, I&rsquo;ve broken the string into four lines. The first two lines contain the source code before the string. The 3rd line is the format string and the last line is the source code after the string. Here&rsquo;s the code with all lines collapsed:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &lt;Foundation/Foundation.h&gt;  </span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">@autoreleasepool</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="bp">NSString</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="s">@&quot;#import &lt;Foundation/Foundation.h&gt; %c int main (int argc, const char * argv[]) { @autoreleasepool { NSString *str=%c%c%@%c; NSLog(str, 10, 64, 34, str, 34);} return 0;}&quot;</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="n">str</span><span class="p">,</span> <span class="mi">34</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally, here&rsquo;s the output when you execute this program. As you can tell, this is the same as the original program (minus the whitespace)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &lt;Foundation/Foundation.h&gt; </span>
+</span><span class='line'> <span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span> <span class="k">@autoreleasepool</span> <span class="p">{</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="s">@&quot;#import &lt;Foundation/Foundation.h&gt; %c int main (int argc, const char * argv[]) { @autoreleasepool { NSString *str=%c%c%@%c; NSLog(str, 10, 64, 34, str, 34);} return 0;}&quot;</span><span class="p">;</span> <span class="n">NSLog</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="n">str</span><span class="p">,</span> <span class="mi">34</span><span class="p">);}</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Finding the Start of a Loop in a Circular Linked List]]></title>
+    <link href="http://umairsd.github.io/blog/2011/06/23/finding-the-start-of-a-loop-in-a-circular-linked-list/"/>
+    <updated>2011-06-23T06:54:07-07:00</updated>
+    <id>http://umairsd.github.io/blog/2011/06/23/finding-the-start-of-a-loop-in-a-circular-linked-list</id>
+    <content type="html"><![CDATA[<p>A lot of people are familiar with the problem of detecting a loop in a linked list. The problem goes as follows: “Given a linked list, what is the algorithm to determine if it has any cycles (loops)?”</p>
+
+<p>The algorithm is pretty straightforward:</p>
+
+<ol>
+<li>We start at the beginning of the linked list with two pointers.</li>
+<li>The first pointer is incremented through each node of the list. The second pointer moves twice as fast, and skips every other node.</li>
+<li>If the linked list contains a loop, these two pointers will eventually meet at the same node, thus indicating that the linked list contains a loop.</li>
+</ol>
+
+
+<p>The algorithm is straightforward and it is relatively easy to create a mental model and get an intuitive sense of why it works.</p>
+
+<p>Now, a slight twist to the same question asks: “Given a circular linked list, what is the algorithm to find the first node of the loop.”</p>
+
+<!-- more -->
+
+
+<p>For instance, in the circular list <code>A-&gt;B-&gt;C-&gt;D-&gt;E-&gt;C</code>, the first node of the loop is node C. The first part of the algorithm is identical to the algorithm for finding if there is a loop (above). Once a loop has been found, the following additional steps will give us the starting node of the loop:</p>
+
+<ol>
+<li>Once a loop as been detected (step-3 above), move one of the pointers to the beginning (head) of the linked list. The second pointer remains where it was at the end of step-3.</li>
+<li>Increment both pointers one node at a time. The node at which the two pointers meet will be the starting node of the loop!</li>
+</ol>
+
+
+<p>This algorithm isn’t too difficult compared to the algorithm for detecting a loop. However, the mental model seems a bit trickier. Why and how does it always find the start of the loop?</p>
+
+<h3>How does the Algorithm work? An intuitive explanation:</h3>
+
+<p>Here’s some explanation which would hopefully help you intuitively understand why the algorithm works, without going into a lot of mathematical detail.</p>
+
+<h4>First, meeting point of two pointers in a loop</h4>
+
+<p>Consider two pointers: a slow pointer <code>S</code> that increments by one node at each step, and a fast pointer <code>F</code> that increments by two nodes at each step (i.e. it is twice as fast as <code>S</code>). Both pointers start at the same time from the beginning of an n-node loop. In the time <code>S</code> covers n nodes. <code>F</code> will have covered <code>2n</code> nodes and they will both meet at the start of the loop.</p>
+
+<p>Now, let us say that the slow pointer <code>S</code> starts at the beginning of the loop, and the fast pointer <code>F</code> starts at node k (where k &lt; n) of the loop. As these two pointers move along the loop, they will meet at node (n-x).</p>
+
+<p>What we really need to do is figure out x, as it will give us the node at which the two pointers meet inside the loop.</p>
+
+<ol>
+<li>When <code>S</code> takes <code>n/2</code> steps, it will be at node <code>n/2</code>. During the same time, <code>F</code> will have taken <code>2(n/2) = n</code> steps, and it will be at node <code>(k+n)</code>. Since the we are inside a loop, <code>F</code> will be effectively back at node <code>k</code>.</li>
+<li>In order for the two pointers to meet at node <code>(n-x)</code>, <code>S</code> needs to take a further <code>(n-x-n/2)=(n/2-x)</code> steps and it will end up at node <code>n-x</code>. During the same time, <code>F</code> will have taken 2*(n/2-x)=(n-2x) steps and will be at node <code>k+(n-2x)</code>. Given our assumption that both S and <code>F</code> meet at the same node:</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>     n-x = k+n-2x
+</span><span class='line'>  =&gt;    x = k</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This means that if S starts from the start of the loop, and F starts k nodes into the loop, both of them will meet at node (n-k), i.e k nodes from the end of the loop. This is a key insight.</p>
+
+<h4>Circular Linked List</h4>
+
+<p>Now, coming back to the linked list that contains a loop. Suppose the start of the loop is <code>m</code> (e.g. <code>m</code>=3) nodes from the start of the linked list. Both <code>S</code> and <code>F</code> start at the beginning of the linked list [Figure-1].</p>
+
+<p><img class="center" src="http://umairsd.github.io/images/circular-loop-figure-1.jpg" title="Figure-1" ></p>
+
+<p style="text-align:center;"> <em>Figure-1: Circular linked list with S and F pointers at the start</em></p>
+
+<p>By the time <code>S</code> gets to node <code>m</code> (i.e. start of loop), <code>F</code> will be at node <code>2m</code> [Figure-2]. This means that <code>S</code> will be at the start of the loop and <code>F</code> will be <code>m</code> nodes <em>into the loop</em>.</p>
+
+<p><img class="center" src="http://umairsd.github.io/images/circular-loop-figure-2.jpg" title="Figure-2" ></p>
+
+<p style="text-align:center;"> <em>Figure-2: Circular linked list, with S at the start of loop and F m nodes into the loop</em></p>
+
+<p>Based on the discussion above, we already know that if <code>S</code> begins from the start of the loop and <code>F</code> starts from node <code>m</code>, they will meet <code>m</code> nodes from the end of the loop (i.e. the orange-node in [Figure-3]).</p>
+
+<p><img class="center" src="http://umairsd.github.io/images/circular-loop-figure-3.jpg" title="Figure-3" ></p>
+
+<p style="text-align:center;"> <em>Figure-3: Both F and S meet m nodes from the end of the loop</em></p>
+
+<p>At this point, keep the pointer <code>F</code> at the orange-node where the two pointers met (i.e. <code>m</code>-nodes from the start of the loop), and move the pointer <code>S</code> to the beginning of the linked list [Figure-4]. Now, if we increment both <code>S</code> and <code>F</code> <em>one node at a time</em>, it is obvious that they will meet at &lsquo;Node-m&rsquo; (red-node) of the list, which is the start of the loop.</p>
+
+<p><img class="center" src="http://umairsd.github.io/images/circular-loop-figure-4.jpg" title="Figure-4" ></p>
+
+<p style="text-align:center;"> <em>Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on</em></p>
+
+<p>For the curious, here’s the Java code snippets for detecting a loop in a linked list and finding the starting node. The complete source code for my linked list project is at my Github page (<a href="https://github.com/umairsd/LinkedList-Java">https://github.com/umairsd/LinkedList-Java</a>):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Checks if the given linked list is a circular linked list (i.e. it</span>
+</span><span class='line'><span class="cm"> * contains a loop). This means a list in which a node&#39;s next pointer points</span>
+</span><span class='line'><span class="cm"> * to an earlier node, so as to make a loop in the linked list. For</span>
+</span><span class='line'><span class="cm"> * instance:</span>
+</span><span class='line'><span class="cm"> *           A -&gt; B -&gt; C -&gt; D -&gt; E -&gt; C</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> * @param linkedList</span>
+</span><span class='line'><span class="cm"> *            the linked list to be tested</span>
+</span><span class='line'><span class="cm"> * @return true if there is a loop, false if there isn&#39;t</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasLoop</span><span class="o">(</span><span class="n">LinkedList</span> <span class="n">linkedList</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">(</span><span class="n">linkedList</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">linkedList</span><span class="o">.</span><span class="na">getHead</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">IntegerNode</span> <span class="n">slow</span> <span class="o">=</span> <span class="n">linkedList</span><span class="o">.</span><span class="na">getHead</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">IntegerNode</span> <span class="n">fast</span> <span class="o">=</span> <span class="n">linkedList</span><span class="o">.</span><span class="na">getHead</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">.</span><span class="na">getNext</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">fast</span><span class="o">.</span><span class="na">getNext</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">.</span><span class="na">getNext</span><span class="o">().</span><span class="na">getNext</span><span class="o">();</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">slow</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">fast</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">slow</span> <span class="o">==</span> <span class="n">fast</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Returns the node at the start of a loop in the given circular linked</span>
+</span><span class='line'><span class="cm"> * list. A circular list is one in which a node&#39;s next pointer points</span>
+</span><span class='line'><span class="cm"> * to an earlier node, so as to make a loop in the linked list. For</span>
+</span><span class='line'><span class="cm"> * instance:</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> * input: A -&gt; B -&gt; C -&gt; D -&gt; E -&gt; C [the same C as earlier]</span>
+</span><span class='line'><span class="cm"> * output: C</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> * (CCI_0205)</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> * @param linkedList</span>
+</span><span class='line'><span class="cm"> *            list to be tested</span>
+</span><span class='line'><span class="cm"> * @return the node at the start of the loop if there is a loop, null</span>
+</span><span class='line'><span class="cm"> * otherwise</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="n">IntegerNode</span> <span class="nf">findLoopStart</span><span class="o">(</span><span class="n">LinkedList</span> <span class="n">linkedList</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">(</span><span class="n">linkedList</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">linkedList</span><span class="o">.</span><span class="na">getHead</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">IntegerNode</span> <span class="n">loopStartNode</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">IntegerNode</span> <span class="n">slow</span> <span class="o">=</span> <span class="n">linkedList</span><span class="o">.</span><span class="na">getHead</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">IntegerNode</span> <span class="n">fast</span> <span class="o">=</span> <span class="n">linkedList</span><span class="o">.</span><span class="na">getHead</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">while</span> <span class="o">(</span><span class="n">slow</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">fast</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">.</span><span class="na">getNext</span><span class="o">();</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">fast</span><span class="o">.</span><span class="na">getNext</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">loopStartNode</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>          <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">.</span><span class="na">getNext</span><span class="o">().</span><span class="na">getNext</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// If slow and fast point to the same node, it means that the</span>
+</span><span class='line'>      <span class="c1">// linkedList contains a loop.</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">slow</span> <span class="o">==</span> <span class="n">fast</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="n">slow</span> <span class="o">=</span> <span class="n">linkedList</span><span class="o">.</span><span class="na">getHead</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="k">while</span> <span class="o">(</span><span class="n">slow</span> <span class="o">!=</span> <span class="n">fast</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>              <span class="c1">// Keep incrementing the two pointers until they both</span>
+</span><span class='line'>              <span class="c1">// meet again. When this happens, both the pointers will</span>
+</span><span class='line'>              <span class="c1">// point to the beginning of the loop</span>
+</span><span class='line'>              <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">.</span><span class="na">getNext</span><span class="o">();</span> <span class="c1">// Can&#39;t be null, as we have a loop</span>
+</span><span class='line'>              <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">.</span><span class="na">getNext</span><span class="o">();</span> <span class="c1">// Can&#39;t be null, as we have a loop</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="n">loopStartNode</span> <span class="o">=</span> <span class="n">slow</span><span class="o">;</span>
+</span><span class='line'>          <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="n">loopStartNode</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Manual Memory Management in Objective-C]]></title>
+    <link href="http://umairsd.github.io/blog/2011/01/24/manual-memory-management-in-objective-c/"/>
+    <updated>2011-01-24T11:10:40-08:00</updated>
+    <id>http://umairsd.github.io/blog/2011/01/24/manual-memory-management-in-objective-c</id>
+    <content type="html"><![CDATA[<p>Objective-C on iOS has no garbage collector, so it is up to the programmer to make sure that memory is properly freed once an object is no longer needed. On the other hand, Objective-C on the Mac does have a garbage collector (in Objective C 2.0). This blog post focuses on how to manage memory in the absence of a garbage collector.</p>
+
+<!-- More -->
+
+
+<p>When managing memory manually, two major issues to watch out for are premature deallocation and memory leaks.</p>
+
+<p>Cocoa Touch framework uses manual <a href="http://en.wikipedia.org/wiki/Reference_counting">reference counting</a> to manage memory on the iOS devices. Reference counting works on the principle that once created, every object has an owner. During its existence, its owner may change and it may even have more than one owners. When the number of owners for an object drops to zero, it deallocates itself to free up the memory being used.</p>
+
+<h4>retain &amp; release</h4>
+
+<p>Owners are tracked via retain counts. When an object is created it always has a retain count of 1. To own an object its retain count is incremented via the <code>retain</code> message. On the other hand, when the object is no longer needed its ownership is relinquished by decrementing the retain count via the <code>release</code> message. When the count reaches zero, the object sends itself the <code>dealloc</code> message and returns all the memory back to the heap.</p>
+
+<h4>autorelease</h4>
+
+<p><code>autorelease</code> marks an object for future release (delayed release). When an object is sent the autorelease message, it is added to an instance of <code>NSAutoreleasePool</code>. The Autorelease pool keeps track of all the objects that have been sent the <code>autorelease</code> message. This pool is drained periodically, at which time all the objects within it are sent the release message.</p>
+
+<p><code>autorelease</code> is really handy when the creator of an object (e.g. a factory) simply creates the object and returns it to the caller. At this point, the creator has nothing to do with the object anymore, so it is up to the caller to retain the returned object in order to continue using it.</p>
+
+<h4>An Example - A Ticket class</h4>
+
+<p>Let us work through an example to see manual memory management in action. Suppose I am writing a ticketing framework, and I have a Ticket entity. The header file for Ticket looks as:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">@interface</span> <span class="nc">Ticket</span> : <span class="bp">NSObject</span> <span class="p">{</span>
+</span><span class='line'>  <span class="bp">NSString</span> <span class="o">*</span><span class="n">ticketId</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="nf">ticketId</span><span class="p">;</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setTicketId:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="nv">tid</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">initWithId:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="nv">tid</span><span class="p">;</span>
+</span><span class='line'><span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">ticketWithId:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="nv">tid</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And the implementation file for Ticket looks as follows:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &quot;Ticket.h&quot;</span>
+</span><span class='line'><span class="k">@implementation</span> <span class="nc">Ticket</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">dealloc</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">ticketId</span> <span class="k">release</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">[</span><span class="nb">super</span> <span class="n">dealloc</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="nf">ticketId</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">ticketId</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setTicketId:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">tid</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">tid</span> <span class="k">retain</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">ticketId</span> <span class="k">release</span><span class="p">];</span>
+</span><span class='line'>  <span class="n">ticketId</span> <span class="o">=</span> <span class="n">tid</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">initWithId:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="nv">tid</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nb">self</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="n">init</span><span class="p">])</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="p">[</span><span class="nb">self</span> <span class="nl">setTicketId</span><span class="p">:</span><span class="n">tid</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">ticketWithId:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">tid</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">Ticket</span> <span class="o">*</span><span class="n">newTkt</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Ticket</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithId</span><span class="p">:</span><span class="n">tid</span><span class="p">];</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">[</span><span class="n">newTkt</span> <span class="n">autorelease</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There are three memory management points to note here:</p>
+
+<ol>
+<li><p>Inside <code>dealloc</code>, an object must release all its instance variables first. Then it should go up its class hierarchy and release any instance variables of its superclass. We should never directly send the <code>dealloc</code> message to instance variables, as some other objects might still have references to those variables.</p></li>
+<li><p>A setter must retain the value passed in before it releases the old value, as <code>tid</code> and <code>ticketId</code> could be pointers to the same object.</p></li>
+<li><p>The <code>ticketWithId:</code> method creates a ticket and simply returns it to the caller. It has no use for the <code>newTkt</code>, but it owns <code>newTkt</code> by virtue of creating it. At this point, if <code>newTkt</code> were released before method exit, then the caller would get a pointer to unallocated heap. To avoid this, we put the <code>newTkt</code> on the autorelease pool. Periodically, the autorelease pool is drained and all the objects it it are sent the <code>release</code> message thus decrementing the retain count.</p></li>
+</ol>
+
+
+<p>Essentially, the <code>ticketWithId:</code> method is saying that it does not want to be the owner for <code>newTkt</code> and puts that responsibility on the caller. If the caller wants to hold on to <code>newTkt</code> once it is returned, it must send it the <code>retain</code> message.</p>
+
+<h4>Using the Ticket class:</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// EXAMPLE-1</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">processTicketWithId:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">ticketId</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">Ticket</span><span class="o">*</span> <span class="n">tkt</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Ticket</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithId</span><span class="p">:</span><span class="n">ticketId</span><span class="p">];</span>
+</span><span class='line'>  <span class="c1">// Do something with tkt</span>
+</span><span class='line'>  <span class="c1">// ...</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">tkt</span> <span class="k">release</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>At this point, the retain count for <code>tkt</code> is 1. Moreover, since the <code>processTicketWithId:</code> method created the <code>tkt</code> object, it is now the owner and thus is responsible for cleaning it up before this method exits. Clean up is done by sending it the <code>release</code> message
+Let&rsquo;s see another example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// EXAMPLE-2</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">processTicketWithId:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">ticketId</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">Ticket</span><span class="o">*</span> <span class="n">tkt</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ticket</span> <span class="nl">ticketWithId</span><span class="p">:</span><span class="n">ticketId</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">tkt</span> <span class="k">retain</span><span class="p">];</span>
+</span><span class='line'>  <span class="c1">// Do something with tkt</span>
+</span><span class='line'>  <span class="c1">// ..</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">tkt</span> <span class="k">release</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this example, the memory for <code>tkt</code> wasn&rsquo;t allocated by <code>processTicketWithId</code> method, so it doesn&rsquo;t own the <code>tkt</code> object. However, as we&rsquo;ve seen in the implementation of the Ticket class, the <code>ticketWithId:</code> method created the Ticket object and added it to the autorelease pool. In order to continue using <code>tkt</code>, we must retain it so that even if it is drained from the autorelease pool, we can still continue to use the <code>tkt</code> object. Once done, we need to clean up and send the release message.</p>
+
+<h4>Summary of Memory Management Rules for Objective-C:</h4>
+
+<p>Rule-1: If you get/create the object from <code>new</code>, <code>alloc</code> or <code>copy</code>, you must <code>release</code> it when done.</p>
+
+<p>Rule-2: If you get the object any other way, assume that it has been autoreleased. If you want to hold on to this object, send it the <code>retain</code> message.</p>
+
+<p>Rule-3: If you <code>retain</code> an object, you must balance every <code>retain</code> with a <code>release</code>.</p>
+
+<p>Rule-4: Never send the <code>dealloc</code> message to an object directly. Others might be holding references to this object, and if deallocated, they&rsquo;ll be left with pointers to unallocated memory.</p>
 ]]></content>
   </entry>
   
