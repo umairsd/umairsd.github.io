@@ -4,7 +4,7 @@
   <title><![CDATA[Umair's blog]]></title>
   <link href="http://umairsd.github.io/atom.xml" rel="self"/>
   <link href="http://umairsd.github.io/"/>
-  <updated>2015-02-01T13:24:08-08:00</updated>
+  <updated>2015-02-01T13:43:00-08:00</updated>
   <id>http://umairsd.github.io/</id>
   <author>
     <name><![CDATA[Umair Saeed]]></name>
@@ -378,6 +378,265 @@
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">return</span> <span class="n">loopStartNode</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Stern-Brocot Tree]]></title>
+    <link href="http://umairsd.github.io/blog/2011/01/27/stern-brocot-tree/"/>
+    <updated>2011-01-27T05:56:15-08:00</updated>
+    <id>http://umairsd.github.io/blog/2011/01/27/stern-brocot-tree</id>
+    <content type="html"><![CDATA[<p>Stern-Brocot tree is a tree data structure whose vertices correspond to the set of non-negative rational numbers. Thus, this tree provides a very elegant way for constructing the set of fractions <code>m/n</code>, where <code>m</code> and <code>n</code> are relatively prime. To construct the tree, the basic idea is to start with two fractions (<code>0/1</code>, <code>1/0</code>) and then repeat the following operation:</p>
+
+<p><strong>Insert (m+m&#8217;)/(n+n&#8217;) between two adjacent fractions m/n and m&#8217;/n&#8217;</strong></p>
+
+<!-- More -->
+
+
+<p>The first step gives us the entry <code>1/1</code> between <code>0/1</code> and <code>1/0</code>. Similarly, the 2nd step gives us two more: <code>0/1</code>, <code>1/2</code>, <code>1/1</code>, <code>2/1</code>, <code>1/0</code>.</p>
+
+<p>Continuing on like this results in an infinite binary search tree which preserves the usual ordering of rational numbers.</p>
+
+<p>The figure below shows the 1st 4 levels of the Stern-Brocot tree.</p>
+
+<p><img class="center" src="http://umairsd.github.io/images/stern-brocot.png" title="Stern-brocot" ></p>
+
+<p style="text-align:center;"> <em>The first 4 levels of Stern-Brocot Tree</em></p>
+
+<h3>Finding the Path to k in Stern-Brocot Tree</h3>
+
+<p>The path from the root of the tree to a number <code>k</code> in the Stern-Brocot tree can be found using binary search. At each node, <code>k</code> will either be in the left half of the tree, or the right half. We continue down the left or right subtree until we finally find <code>k</code>.</p>
+
+<ul>
+<li>Initialize the left fraction <code>L</code> to <code>0/1</code> and right fraction <code>R</code> to <code>1/0</code></li>
+<li>Repeat the following until <code>k</code> is found:
+
+<ul>
+<li>Compute the mediant <code>M</code> (which is <code>(m+m')/(n+n')</code> )</li>
+<li>If <code>(k&gt;M)</code>, then <code>k</code> is in the right half of the tree. <code>L:=M</code> and continue.</li>
+<li>Else If <code>(M&gt;k)</code>, then <code>k</code> is in the left half of the tree. <code>R:=M</code> and continue.</li>
+<li>Else <code>k=M</code>, terminate search.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>Implementation</h3>
+
+<p>There&rsquo;s a couple of things to tackle in our implementation. First, I need an easy way to represent fractions, so I create my own <code>SternBrocotFraction</code> class. I deliberately chose to make it very specific to this algorithm because I needed a special way to handle the fraction 1/0 (which by definition is greater than all other rationals).</p>
+
+<p>Secondly, I needed a good way to represent the path from the root of the tree to k. I do this by using a <code>StringBuilder</code>, and at each step I append either the letter <code>L</code> or <code>R</code> depending on which sub-tree we take. When the search is finished, this gives us a string representation of the path from the root of the tree to the number <code>k</code>. This approach is similar to the approach advocated by ACM Programming Competitions for <a href="http://acm.uva.es/p/v100/10077.html">the &ldquo;Stern-Brocot Number System&rdquo; problem</a>.</p>
+
+<p>Here&rsquo;s the code to find path to a number k:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">umairsaeed</span><span class="o">.</span><span class="na">algorithm</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SternBrocotPath</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">LEFT_SUB</span> <span class="o">=</span> <span class="sc">&#39;L&#39;</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">RIGHT_SUB</span> <span class="o">=</span> <span class="sc">&#39;R&#39;</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">findPathTo</span><span class="o">(</span><span class="n">SternBrocotFraction</span> <span class="n">f</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">SternBrocotFraction</span> <span class="n">L</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SternBrocotFraction</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">SternBrocotFraction</span> <span class="n">R</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SternBrocotFraction</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">StringBuilder</span> <span class="n">results</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StringBuilder</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">SternBrocotPath</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">f</span><span class="o">,</span> <span class="n">L</span><span class="o">,</span> <span class="n">R</span><span class="o">,</span> <span class="n">results</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">results</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">find</span><span class="o">(</span><span class="n">SternBrocotFraction</span> <span class="n">f</span><span class="o">,</span>
+</span><span class='line'>          <span class="n">SternBrocotFraction</span> <span class="n">L</span><span class="o">,</span>
+</span><span class='line'>          <span class="n">SternBrocotFraction</span> <span class="n">R</span><span class="o">,</span>
+</span><span class='line'>          <span class="n">StringBuilder</span> <span class="n">results</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>      <span class="n">SternBrocotFraction</span> <span class="n">M</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">R</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">M</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">f</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">L</span> <span class="o">=</span> <span class="n">M</span><span class="o">;</span>
+</span><span class='line'>          <span class="n">results</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">RIGHT_SUB</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">SternBrocotPath</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">f</span><span class="o">,</span> <span class="n">L</span><span class="o">,</span> <span class="n">R</span><span class="o">,</span> <span class="n">results</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">M</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">f</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">R</span> <span class="o">=</span> <span class="n">M</span><span class="o">;</span>
+</span><span class='line'>          <span class="n">results</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">LEFT_SUB</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">SternBrocotPath</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">f</span><span class="o">,</span> <span class="n">L</span><span class="o">,</span> <span class="n">R</span><span class="o">,</span> <span class="n">results</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="k">return</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The special <code>SternBrocotFraction</code> class is:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">umairsaeed</span><span class="o">.</span><span class="na">algorithm</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SternBrocotFraction</span> <span class="kd">implements</span>
+</span><span class='line'>              <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">SternBrocotFraction</span><span class="o">&gt;</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kt">int</span> <span class="n">numerator</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kt">int</span> <span class="n">denominator</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">SternBrocotFraction</span><span class="o">(</span><span class="kt">int</span> <span class="n">numerator</span><span class="o">,</span> <span class="kt">int</span> <span class="n">denominator</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">denominator</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">numerator</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>          <span class="n">denominator</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">numerator</span> <span class="o">=</span> <span class="n">numerator</span><span class="o">;</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">denominator</span> <span class="o">=</span> <span class="n">denominator</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">double</span> <span class="nf">doubleValue</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">denominator</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="n">Double</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="o">(</span><span class="kt">double</span><span class="o">)</span> <span class="k">this</span><span class="o">.</span><span class="na">numerator</span> <span class="o">/</span>
+</span><span class='line'>                      <span class="o">(</span><span class="kt">double</span><span class="o">)</span> <span class="k">this</span><span class="o">.</span><span class="na">denominator</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">SternBrocotFraction</span> <span class="nf">add</span><span class="o">(</span><span class="n">SternBrocotFraction</span> <span class="n">other</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="k">new</span> <span class="nf">SternBrocotFraction</span><span class="o">(</span>
+</span><span class='line'>              <span class="k">this</span><span class="o">.</span><span class="na">numerator</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="na">numerator</span><span class="o">,</span>
+</span><span class='line'>              <span class="k">this</span><span class="o">.</span><span class="na">denominator</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="na">denominator</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">SternBrocotFraction</span> <span class="n">other</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">doubleValue</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="na">doubleValue</span><span class="o">())</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">doubleValue</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">other</span><span class="o">.</span><span class="na">doubleValue</span><span class="o">())</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally, some test code to exercise my class:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">umairsaeed</span><span class="o">.</span><span class="na">algorithm</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SternBrocotTester</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">testSternBrocotPath</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testSternBrocotPath</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">SternBrocotPath</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SternBrocotPath</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">SternBrocotFraction</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SternBrocotFraction</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">findPathTo</span><span class="o">(</span><span class="n">f</span><span class="o">));</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SternBrocotFraction</span><span class="o">(</span><span class="mi">19</span><span class="o">,</span> <span class="mi">101</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">findPathTo</span><span class="o">(</span><span class="n">f</span><span class="o">));</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SternBrocotFraction</span><span class="o">(</span><span class="mi">977</span><span class="o">,</span> <span class="mi">331</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">findPathTo</span><span class="o">(</span><span class="n">f</span><span class="o">));</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SternBrocotFraction</span><span class="o">(</span><span class="mi">1049</span><span class="o">,</span> <span class="mi">7901</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">findPathTo</span><span class="o">(</span><span class="n">f</span><span class="o">));</span>
+</span><span class='line'>  <span class="o">}</span>
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
