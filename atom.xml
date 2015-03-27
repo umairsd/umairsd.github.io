@@ -4,7 +4,7 @@
   <title><![CDATA[Umair's blog]]></title>
   <link href="http://umairsd.github.io/atom.xml" rel="self"/>
   <link href="http://umairsd.github.io/"/>
-  <updated>2015-03-26T11:47:49-07:00</updated>
+  <updated>2015-03-27T13:00:26-07:00</updated>
   <id>http://umairsd.github.io/</id>
   <author>
     <name><![CDATA[Umair Saeed]]></name>
@@ -14,8 +14,27 @@
 
   
   <entry>
+    
+    <title type="html"><![CDATA[&rarr; Why Racket? Why Lisp?]]></title><!-- &rarr; is the glyph -->
+    <link href="http://practicaltypography.com/why-racket-why-lisp.html"/>
+    
+    <updated>2015-03-27T10:30:53-07:00</updated>
+    <id>http://umairsd.github.io/blog/2015/03/27/why-racket-why-lisp</id>
+    <content type="html"><![CDATA[<p>A slightly older (from Aug 2014), but nonetheless great post by Matthew Butterick where he enumerates the benefits of learning to program in Lisp (or one of its dialects). Several very smart folks have written about the awesomeness of Lisp, but this is the first post I have read that provides a list of concrete examples of said benefits:</p>
+
+<blockquote><p>I was hope­ful when I opened Pe­ter Seibel’s Prac­ti­cal Com­mon Lisp and saw that the in­tro­duc­tion was sub­ti­tled “Why Lisp?” Yes, tell me! Seibel echoes Gra­ham’s claim: “You’ll get more done, faster, us­ing [Lisp] than you would us­ing pretty much any other lan­guage.” OK, but how? Seibel won­ders whether “I like Lisp be­cause of some quirk in the way my brain is wired. It could even be ge­netic, since my dad has it too.” That’s not en­cour­ag­ing to those of us out­side your fam­ily. Ul­ti­mately, he sums up the ap­peal of Lisp by de­scrib­ing it as “the pro­gram­ma­ble pro­gram­ming lan­guage.” But I’ve never used a pro­gram­ma­ble pro­gram­ming lan­guage. Why should I start?</p>
+
+<p>And by the way, when do I get the speed and power you keep promising?</p>
+
+<p>In short—what’s in it for me, now?</p></blockquote>
+]]></content>
+  </entry>  
+  
+  <entry>
+    
     <title type="html"><![CDATA[Book - Hackers &amp; Painters]]></title>
     <link href="http://umairsd.github.io/blog/2015/03/26/book-hackers-and-painters/"/>
+    
     <updated>2015-03-26T10:00:12-07:00</updated>
     <id>http://umairsd.github.io/blog/2015/03/26/book-hackers-and-painters</id>
     <content type="html"><![CDATA[<p>A couple of days ago, I finished reading Paul Graham&rsquo;s book of essays <a href="http://www.amazon.com/Hackers-Painters-Big-Ideas-Computer/dp/1449389554">Hackers and Painters: Big Ideas from the Computer Age</a>, and thoroughly enjoyed the book. I had already read a few of these essays on his <a href="http://www.paulgraham.com/articles.html">website</a>, yet I still enjoyed re-reading them. This book is tremendously intelligent, insightful and inspiring, and several of these essays (and many passages) are worth re-reading periodically.</p>
@@ -47,11 +66,13 @@ I had not read this essay before, and had not given any serious thought to the d
 </ul>
 
 ]]></content>
-  </entry>
+  </entry>  
   
   <entry>
-    <title type="html"><![CDATA[A Reboot]]></title>
+    
+    <title type="html"><![CDATA[A reboot]]></title>
     <link href="http://umairsd.github.io/blog/2015/01/31/a-reboot/"/>
+    
     <updated>2015-01-31T06:54:18-08:00</updated>
     <id>http://umairsd.github.io/blog/2015/01/31/a-reboot</id>
     <content type="html"><![CDATA[<p>I started blogging occassionally a few years ago, and my first blog was on <a href="http://umairsd.wordpress.com">Wordpress.com</a>. However, for various reasons (life changes, scheduling, focus on work etc.) I pretty much stopped blogging. The oldest post on my Wordpress blog is from July 2012. Wow! Even I am surprised at how long it has been since I added anything new.</p>
@@ -62,11 +83,13 @@ I had not read this essay before, and had not given any serious thought to the d
 
 <p>My next steps are to figure out what to do about my old Wordpress posts. I needed to decide whether I am going to import them here, link to them instead of importing, or simply ignore.</p>
 ]]></content>
-  </entry>
+  </entry>  
   
   <entry>
+    
     <title type="html"><![CDATA[A Quine in Objective-C]]></title>
     <link href="http://umairsd.github.io/blog/2012/07/18/a-quine-in-objective-c/"/>
+    
     <updated>2012-07-18T06:46:06-07:00</updated>
     <id>http://umairsd.github.io/blog/2012/07/18/a-quine-in-objective-c</id>
     <content type="html"><![CDATA[<p>A quine is a program that takes no input and outputs its own source code. It has been a while since I last wrote a quine, so I figured I&rsquo;ll write one in Objective-C. In general, quines follow a fairly simple formula. The program contains a string that includes all the code before the string and all the code after the string. Depending on the programming language, the string might also contain format string (for languages that use format-strings to print to stdout)</p>
@@ -139,11 +162,13 @@ I had not read this essay before, and had not given any serious thought to the d
 
 
 ]]></content>
-  </entry>
+  </entry>  
   
   <entry>
+    
     <title type="html"><![CDATA[Finding the Start of a Loop in a Circular Linked List]]></title>
     <link href="http://umairsd.github.io/blog/2011/06/23/finding-the-start-of-a-loop-in-a-circular-linked-list/"/>
+    
     <updated>2011-06-23T06:54:07-07:00</updated>
     <id>http://umairsd.github.io/blog/2011/06/23/finding-the-start-of-a-loop-in-a-circular-linked-list</id>
     <content type="html"><![CDATA[<p>A lot of people are familiar with the problem of detecting a loop in a linked list. The problem goes as follows: “Given a linked list, what is the algorithm to determine if it has any cycles (loops)?”</p>
@@ -418,11 +443,13 @@ I had not read this essay before, and had not given any serious thought to the d
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
-  </entry>
+  </entry>  
   
   <entry>
+    
     <title type="html"><![CDATA[Stern-Brocot Tree]]></title>
     <link href="http://umairsd.github.io/blog/2011/01/27/stern-brocot-tree/"/>
+    
     <updated>2011-01-27T05:56:15-08:00</updated>
     <id>http://umairsd.github.io/blog/2011/01/27/stern-brocot-tree</id>
     <content type="html"><![CDATA[<p>Stern-Brocot tree is a tree data structure whose vertices correspond to the set of non-negative rational numbers. Thus, this tree provides a very elegant way for constructing the set of fractions <code>m/n</code>, where <code>m</code> and <code>n</code> are relatively prime. To construct the tree, the basic idea is to start with two fractions (<code>0/1</code>, <code>1/0</code>) and then repeat the following operation:</p>
@@ -677,11 +704,13 @@ I had not read this essay before, and had not given any serious thought to the d
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
-  </entry>
+  </entry>  
   
   <entry>
+    
     <title type="html"><![CDATA[Manual Memory Management in Objective-C]]></title>
     <link href="http://umairsd.github.io/blog/2011/01/24/manual-memory-management-in-objective-c/"/>
+    
     <updated>2011-01-24T11:10:40-08:00</updated>
     <id>http://umairsd.github.io/blog/2011/01/24/manual-memory-management-in-objective-c</id>
     <content type="html"><![CDATA[<p>Objective-C on iOS has no garbage collector, so it is up to the programmer to make sure that memory is properly freed once an object is no longer needed. On the other hand, Objective-C on the Mac does have a garbage collector (in Objective C 2.0). This blog post focuses on how to manage memory in the absence of a garbage collector.</p>
@@ -881,6 +910,6 @@ Let&rsquo;s see another example:</p>
 
 <p>Rule-4: Never send the <code>dealloc</code> message to an object directly. Others might be holding references to this object, and if deallocated, they&rsquo;ll be left with pointers to unallocated memory.</p>
 ]]></content>
-  </entry>
+  </entry>  
   
 </feed>
