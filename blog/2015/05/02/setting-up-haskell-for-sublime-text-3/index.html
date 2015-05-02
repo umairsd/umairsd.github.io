@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Setting Up Haskell for Sublime Text 3 - Umair&#8217;s blog</title>
+  <meta name="author" content="Umair Saeed">
+
+  
+  <meta name="description" content="There are several excellent posts about setting up the Haskell development environment. One of the best ones is Tony Lawrence&rsquo;s Configuring You &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://umairsd.github.io/blog/2015/05/02/setting-up-haskell-for-sublime-text-3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Umair's blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-59228002-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Umair&#8217;s blog</a></h1>
+  
+    <h2>Thoughts about programming and technology</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="umairsd.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    <!-- Pages with external-url -->
+      <!-- Normal pages -->
+        <h1 class="entry-title">Setting Up Haskell for Sublime Text 3</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-05-02T13:23:02-07:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>1:23 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>There are several excellent posts about setting up the Haskell development environment. One of the best ones is Tony Lawrence&rsquo;s <a href="http://tonylawrence.com/blog/2014/01/01/configuring-your-haskell-environment/" title="Configuring Your Haskell Environment">Configuring You Haskell Environment</a>. I encourage you to take a look at his post first.</p>
+
+<p>Tony&rsquo;s post is more than a year old though, and it looks like a couple of things have changed since he wrote his post, especially with the latest version of Haskell and <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">SublimeHaskell</a>. I wasted a good chunk of time trying to get around those problems, so now writing this post in case others run into similar issues when setting up the SublimeHaskell plugin.</p>
+
+<!-- more -->
+
+
+<p>Here&rsquo;s a summary of the steps to setup the Haskell dev environment (from <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">Tony&rsquo;s blog</a>).</p>
+
+<ul>
+<li>Install the Haskell platform.</li>
+<li>Issue <code>cabal update</code> to update the list of available packages for Haskell.</li>
+<li>Install the requisite packages by issuing <code>cabal install aeson haskell-src-exts haddock hdevtools</code>.</li>
+<li>Install Sublime Text 3.</li>
+<li>Install Package Control for Sublime Text 3.</li>
+<li>Install SublimeHaskell via Package Control.</li>
+</ul>
+
+
+<p>This last step doesn&rsquo;t work seamlessly. When I installed SublimeHaskell, I ran into the following error message in Sublime Text:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SublimeHaskell: Failed to compile ModuleInspector
+</span><span class='line'>
+</span><span class='line'>/Users/umair/Library/Application Support/Sublime Text 3/Packages/SublimeHaskell/ModuleInspector.hs:141:12:
+</span><span class='line'>    Not in scope: data constructor ‘H.PNeg’
+</span><span class='line'>    Perhaps you meant ‘H.PRec’ (imported from Language.Haskell.Exts)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The problem is described in more detail in <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a> on <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">SublimeHaskell&rsquo;s GitHub page</a>. The summary is that the master branch of SublimeHaskell is too slow to accomodate the removal of <code>PNeg</code> from <code>haskell-src-exts</code>. The solution is to use the <code>hsdev</code> branch of SublimeHaskell. This is done as follows (recommended by <a href="https://github.com/MoreAxes" title="GitHub user MoreAxes">MoreAxes</a> on comment thread for <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a>):</p>
+
+<ul>
+<li>In Sublime Text, launch Package Control (<code>cmd-shift-p</code>), and use the &lsquo;Add Repository&rsquo; command to add <code>https://github.com/SublimeHaskell/SublimeHaskell/tree/hsdev</code>.</li>
+<li>Install SublimeHaskell with Package Control normally. Package Control looks in user-defined repositories first, so it is able to get SublimeHaskell from the <code>hsdev</code> branch.</li>
+<li>Restart Sublime Text.</li>
+</ul>
+
+
+<p>You can now enter and build Haskell code from Sublime Text. To verify your setup, enter the following code in Sublime Text, and then hit <code>cmd-B</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span><span class="nb">()</span>
+</span><span class='line'><span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
+</span><span class='line'>    <span class="n">print</span> <span class="s">&quot;Hello World&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You will see the following printed:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="s">&quot;Hello World&quot;</span>
+</span><span class='line'><span class="p">[</span><span class="kt">Finished</span> <span class="kr">in</span> <span class="mf">0.2</span><span class="n">s</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here&rsquo;s a screenshot of my test file, with the output of the program:</p>
+
+<p><img class="center" src="/images/sublime-text-haskell-test.png"></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Umair Saeed</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-05-02T13:23:02-07:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>1:23 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/haskell/'>haskell</a>, <a class='category' href='/blog/categories/tools/'>tools</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://umairsd.github.io/blog/2015/05/02/setting-up-haskell-for-sublime-text-3/" data-via="umairsd" data-counturl="http://umairsd.github.io/blog/2015/05/02/setting-up-haskell-for-sublime-text-3/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/03/27/why-racket-why-lisp/" title="Previous Post: Why Racket? Why Lisp?">&laquo; Why Racket? Why Lisp?</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/05/02/setting-up-haskell-for-sublime-text-3/">Setting Up Haskell for Sublime Text 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/27/why-racket-why-lisp/">Why Racket? Why Lisp?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/26/book-hackers-and-painters/">Book - Hackers &amp; Painters</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/31/a-reboot/">A Reboot</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/a-quine-in-objective-c/">A Quine in Objective-C</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/umairsd">@umairsd</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'umairsd',
+            count: 2,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Umair Saeed -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
