@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Haskell | Umair's blog]]></title>
   <link href="http://umairsd.github.io/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://umairsd.github.io/"/>
-  <updated>2015-05-04T18:00:20-07:00</updated>
+  <updated>2015-05-17T07:49:36-07:00</updated>
   <id>http://umairsd.github.io/</id>
   <author>
     <name><![CDATA[Umair Saeed]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Index Based List Operations Using Folds in Haskell]]></title>
+    <link href="http://umairsd.github.io/blog/2015/05/16/index-based-list-operations-using-folds-in-haskell/"/>
+    <updated>2015-05-16T08:53:31-07:00</updated>
+    <id>http://umairsd.github.io/blog/2015/05/16/index-based-list-operations-using-folds-in-haskell</id>
+    <content type="html"><![CDATA[<p>Whenever working with lists in Haskell, occasionally there&rsquo;s a need to perform index based operations, such as adding an element at a particular index. Going by my experience, using <code>foldl</code> or <code>foldr</code> is not the first idea that comes to mind for index based operations. However, there is a general pattern that can be applied when using folds for index-based list operations. For example, consider the case where we need to add an element at a particular index:</p>
+
+<!-- more -->
+
+
+<pre><code class="haskell">-- inserting at an index, using foldr
+insertAt :: a -&gt; [a] -&gt; Int -&gt; [a]
+insertAt x ys n = foldr insertHelper [] $ zip [0..] ys
+    where 
+        insertHelper (i,y) acc = if i == n
+            then x : y : acc
+            else y : acc
+</code></pre>
+
+<p>The basic idea is simple: We simply zip <code>[0..]</code> with the input list (<code>ys</code>) to get at a list of tuples. The first element of each tuple is the index of the element in the list <code>ys</code> (input list). This allows us to perform index based tests in the helper function, as shown in <code>insertHelper</code> above.</p>
+
+<p>Both left and right folds can be used for index based list operations. Here&rsquo;s the same example using <code>foldl</code>.</p>
+
+<pre><code class="haskell">-- inserting at an index, using foldl
+insertAtL :: a -&gt; [a] -&gt; Int -&gt; [a]
+insertAtL x ys n = foldl insertLHelper [] $ zip [0..] ys
+    where 
+        insertLHelper acc (i,y) = if i == n
+            then acc ++ [x] ++ [y]
+            else acc ++ [y]
+</code></pre>
+
+<p>Both left and right fold produce the same result. Adding an element to the head of the list (via <code>:</code>) is more efficient than concatenating lists (via <code>++</code>), so generally I prefer using the 1st version, i.e. one that uses <code>foldr</code></p>
+
+<p><a href="https://gist.github.com/umairsd/cdcb397941762fe02d05">Here&rsquo;s a gist</a> with examples of  <code>insertAt</code>, <code>updateAt</code>, and <code>deleteAt</code> functions, all implemented using folds.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sublime Text &amp; Haskell]]></title>
