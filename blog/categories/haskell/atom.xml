@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Haskell | Umair's blog]]></title>
   <link href="http://umairsd.github.io/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://umairsd.github.io/"/>
-  <updated>2015-05-17T07:49:36-07:00</updated>
+  <updated>2015-07-09T07:35:54-07:00</updated>
   <id>http://umairsd.github.io/</id>
   <author>
     <name><![CDATA[Umair Saeed]]></name>
@@ -14,11 +14,117 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Pascal's Triangle]]></title>
+    <link href="http://umairsd.github.io/blog/2015/07/08/pascals-triangle/"/>
+    <updated>2015-07-08T06:51:27-07:00</updated>
+    <id>http://umairsd.github.io/blog/2015/07/08/pascals-triangle</id>
+    <content type="html"><![CDATA[<p>One of the exercises in <a href="https://mitpress.mit.edu/sicp/">Structure and Implementation of Computer Programs</a> deals with generating elements of the <a href="https://en.wikipedia.org/wiki/Pascal's_triangle">Pascal&rsquo;s Triangle</a>. The following pattern of numbers is called <em>Pascal&rsquo;s Triangle</em></p>
+
+<pre><code>
+    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1
+...
+</code></pre>
+
+<p>The numbers at the edge of the triangle are 1, and each number inside is the sum of two numbers above it. The exercise asks us to <em>find the elements of Pascal&rsquo;s triangle by means of a recursive process</em>.</p>
+
+<!-- More -->
+
+
+<p>I find it helpful to <em>de-skew</em> the triangle so that the rows and columns line up visually. Here&rsquo;s the modified triangle:</p>
+
+<pre><code>
+1
+1 1
+1 2 1
+1 3 3 1
+1 4 6 4 1
+...
+</code></pre>
+
+<p>I decided to write the solution in Haskell, and here it is:</p>
+
+<pre><code class="haskell">-- A: Function that finds the element of Pascal's Triangle for a given row &amp; column
+pascal :: Int -&gt; Int -&gt; Int
+pascal 0 _ = 1
+pascal _ 0 = 1
+pascal row col
+    | row == col = 1
+    | col &gt; row  = error "Column can't be greater than row"
+    | otherwise  = (pascal (row-1) (col-1)) + (pascal (row-1) col)
+</code></pre>
+
+<p>This code is great for generating the element at a given row and column (e.g. <code>pascal 3 2</code> produces <code>3</code>), but not so great if we wanted to generate the entire triangle up to <code>n</code> rows, as we would recursively generate the elements at row <code>n-1</code> multiple times.</p>
+
+<p>In order to generate the entire triangle, it is better to do it via an iterative process as follows: generate the first row, and from that generate the second row, and so on. I other words, we are generating the next row of the triangle, by adding each pair in the current row. My solution is as follows:</p>
+
+<pre><code class="haskell">-- Takes an array of integers, and adds pairs of numbers to create a new 
+-- array. For example, [1,2,3,4] changes to [(1+2), (2+3), (3+4)], resulting
+-- in [3,5,7]
+sumOfPairs :: [Integer] -&gt; [Integer]
+sumOfPairs [] = []
+sumOfPairs (x:[]) = []
+sumOfPairs (x:y:ys) = (x+y) : sumOfPairs (y:ys)
+
+
+-- Given a row of Pascal's triangle, returns the next row
+next :: [Integer] -&gt; [Integer]
+next xs = 1 :  (sumOfPairs xs) ++ [1]
+
+
+-- Generates the Pascal's triangle. This function generates an
+-- infinite triangle, so its usage needs to be coupled with the 
+-- take command. For example: take 5 pascalTriangle
+pascalTriangle :: [[Integer]]
+pascalTriangle = pascalHelper [1]
+    where pascalHelper xs = xs : pascalHelper (next xs)
+</code></pre>
+
+<p>Here are a couple of examples of generating the triangle:</p>
+
+<pre><code class="haskell">*Main&gt; take 4 pascalTriangle 
+[[1],[1,1],[1,2,1],[1,3,3,1]]
+
+-- Using mapM_ with print to 'pretty-print' the triangle
+*Main&gt; mapM_ print $ take 8 pascalTriangle
+[1]
+[1,1]
+[1,2,1]
+[1,3,3,1]
+[1,4,6,4,1]
+[1,5,10,10,5,1]
+[1,6,15,20,15,6,1]
+[1,7,21,35,35,21,7,1]
+</code></pre>
+
+<p>The function <code>pascalTriangle</code> can be made more concise by using the built-in <code>iterate</code> instead of my <code>pascalHelper</code>:</p>
+
+<pre><code class="haskell">pascalTriangle :: [[Integer]]
+pascalTriangle = iterate next [1]
+</code></pre>
+
+<p>By this point, I was reasonably satisfied with the code. However, being relatively new to Haskell, I decided to explore and see if there were other (and possibly better and more idiomatic) ways to solve this problem. My favorite was by <a href="http://neilmitchell.blogspot.com/2012/01/pascals-triangle-in-haskell.html">Neil Mitchell</a>, who solved the problem in two lines! I encourage you to go read <a href="http://neilmitchell.blogspot.com/2012/01/pascals-triangle-in-haskell.html">Neil&rsquo;s entire post</a>. Here&rsquo;s the two-line version of Haskell&rsquo;s triangle:</p>
+
+<pre><code class="haskell">-- By: Neil Mitchell 
+-- (http://neilmitchell.blogspot.com/2012/01/pascals-triangle-in-haskell.html)
+
+next xs = zipWith (+) ([0] ++ xs) (xs ++ [0])
+pascal = iterate next [1]
+</code></pre>
+
+<p>In my view, this code is very elegant and beautiful and does a great job of highlighting the power of Haskell.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Index Based List Operations Using Folds in Haskell]]></title>
     <link href="http://umairsd.github.io/blog/2015/05/16/index-based-list-operations-using-folds-in-haskell/"/>
     <updated>2015-05-16T08:53:31-07:00</updated>
     <id>http://umairsd.github.io/blog/2015/05/16/index-based-list-operations-using-folds-in-haskell</id>
-    <content type="html"><![CDATA[<p>Whenever working with lists in Haskell, occasionally there&rsquo;s a need to perform index based operations, such as adding an element at a particular index. Going by my experience, using <code>foldl</code> or <code>foldr</code> is not the first idea that comes to mind for index based operations. However, there is a general pattern that can be applied when using folds for index-based list operations. For example, consider the case where we need to add an element at a particular index:</p>
+    <content type="html"><![CDATA[<p>When working with lists in Haskell, occasionally there&rsquo;s a need to perform index based operations, such as adding an element at a particular index. Going by my experience, using <code>foldl</code> or <code>foldr</code> is not the first idea that comes to mind when indices are involved. However, there is a general pattern that can be applied when using folds for index-based list operations. For example, consider the case where we need to add an element at a particular index:</p>
 
 <!-- more -->
 
@@ -32,7 +138,7 @@ insertAt x ys n = foldr insertHelper [] $ zip [0..] ys
             else y : acc
 </code></pre>
 
-<p>The basic idea is simple: We simply zip <code>[0..]</code> with the input list (<code>ys</code>) to get at a list of tuples. The first element of each tuple is the index of the element in the list <code>ys</code> (input list). This allows us to perform index based tests in the helper function, as shown in <code>insertHelper</code> above.</p>
+<p>The basic idea is simple: We simply zip <code>[0..]</code> with the input list (<code>ys</code>) to get a list of tuples. The first element of each tuple is the index of the element in the list <code>ys</code> (input list). This allows us to perform index based tests in the helper function, as shown in <code>insertHelper</code> above.</p>
 
 <p>Both left and right folds can be used for index based list operations. Here&rsquo;s the same example using <code>foldl</code>.</p>
 

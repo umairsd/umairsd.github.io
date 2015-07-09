@@ -9,7 +9,7 @@
   <meta name="author" content="Umair Saeed">
 
   
-  <meta name="description" content="Whenever working with lists in Haskell, occasionally there&rsquo;s a need to perform index based operations, such as adding an element at a &hellip;">
+  <meta name="description" content="When working with lists in Haskell, occasionally there&rsquo;s a need to perform index based operations, such as adding an element at a particular &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,7 +99,7 @@
   </header>
 
 
-<div class="entry-content"><p>Whenever working with lists in Haskell, occasionally there&rsquo;s a need to perform index based operations, such as adding an element at a particular index. Going by my experience, using <code>foldl</code> or <code>foldr</code> is not the first idea that comes to mind for index based operations. However, there is a general pattern that can be applied when using folds for index-based list operations. For example, consider the case where we need to add an element at a particular index:</p>
+<div class="entry-content"><p>When working with lists in Haskell, occasionally there&rsquo;s a need to perform index based operations, such as adding an element at a particular index. Going by my experience, using <code>foldl</code> or <code>foldr</code> is not the first idea that comes to mind when indices are involved. However, there is a general pattern that can be applied when using folds for index-based list operations. For example, consider the case where we need to add an element at a particular index:</p>
 
 <!-- more -->
 
@@ -123,7 +123,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>The basic idea is simple: We simply zip <code>[0..]</code> with the input list (<code>ys</code>) to get at a list of tuples. The first element of each tuple is the index of the element in the list <code>ys</code> (input list). This allows us to perform index based tests in the helper function, as shown in <code>insertHelper</code> above.</p>
+<p>The basic idea is simple: We simply zip <code>[0..]</code> with the input list (<code>ys</code>) to get a list of tuples. The first element of each tuple is the index of the element in the list <code>ys</code> (input list). This allows us to perform index based tests in the helper function, as shown in <code>insertHelper</code> above.</p>
 
 <p>Both left and right folds can be used for index based list operations. Here&rsquo;s the same example using <code>foldl</code>.</p>
 
@@ -188,6 +188,8 @@
         <a class="basic-alignment left" href="/blog/2015/05/04/talking-about-money/" title="Previous Post: Talking About Money">&laquo; Talking About Money</a>
       
       
+        <a class="basic-alignment right" href="/blog/2015/07/08/pascals-triangle/" title="Next Post: Pascal's Triangle">Pascal&#8217;s Triangle &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -199,6 +201,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/07/08/pascals-triangle/">Pascal&#8217;s Triangle</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/05/16/index-based-list-operations-using-folds-in-haskell/">Index Based List Operations Using Folds in Haskell</a>
@@ -214,10 +220,6 @@
     
       <li class="post">
         <a href="/blog/2015/03/27/why-racket-why-lisp/">Why Racket? Why Lisp?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/03/26/book-hackers-and-painters/">Book - Hackers &amp; Painters</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="Umair Saeed">
 
   
-  <meta name="description" content="Whenever working with lists in Haskell, occasionally there&rsquo;s a need to perform index based operations, such as adding an element at a &hellip;">
+  <meta name="description" content="One of the exercises in Structure and Implementation of Computer Programs deals with generating elements of the Pascal&rsquo;s Triangle. The &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,6 +85,61 @@
   <header>
     
       <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2015/07/08/pascals-triangle/">Pascal&#8217;s Triangle</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-07-08T06:51:27-07:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:51 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One of the exercises in <a href="https://mitpress.mit.edu/sicp/">Structure and Implementation of Computer Programs</a> deals with generating elements of the <a href="https://en.wikipedia.org/wiki/Pascal's_triangle">Pascal&rsquo;s Triangle</a>. The following pattern of numbers is called <em>Pascal&rsquo;s Triangle</em></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>    1
+</span><span class='line'>   1 1
+</span><span class='line'>  1 2 1
+</span><span class='line'> 1 3 3 1
+</span><span class='line'>1 4 6 4 1
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The numbers at the edge of the triangle are 1, and each number inside is the sum of two numbers above it. The exercise asks us to <em>find the elements of Pascal&rsquo;s triangle by means of a recursive process</em>.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/07/08/pascals-triangle/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
         <h1 class="entry-title"><a href="/blog/2015/05/16/index-based-list-operations-using-folds-in-haskell/">Index Based List Operations Using Folds in Haskell</a></h1>
       
     
@@ -102,7 +157,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Whenever working with lists in Haskell, occasionally there&rsquo;s a need to perform index based operations, such as adding an element at a particular index. Going by my experience, using <code>foldl</code> or <code>foldr</code> is not the first idea that comes to mind for index based operations. However, there is a general pattern that can be applied when using folds for index-based list operations. For example, consider the case where we need to add an element at a particular index:</p>
+  <div class="entry-content"><p>When working with lists in Haskell, occasionally there&rsquo;s a need to perform index based operations, such as adding an element at a particular index. Going by my experience, using <code>foldl</code> or <code>foldr</code> is not the first idea that comes to mind when indices are involved. However, there is a general pattern that can be applied when using folds for index-based list operations. For example, consider the case where we need to add an element at a particular index:</p>
 
 </div>
   
@@ -425,43 +480,9 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2011/01/24/manual-memory-management-in-objective-c/">Manual Memory Management in Objective-C</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-01-24T11:10:40-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>11:10 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Objective-C on iOS has no garbage collector, so it is up to the programmer to make sure that memory is properly freed once an object is no longer needed. On the other hand, Objective-C on the Mac does have a garbage collector (in Objective C 2.0). This blog post focuses on how to manage memory in the absence of a garbage collector.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2011/01/24/manual-memory-management-in-objective-c/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/2">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -472,6 +493,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/07/08/pascals-triangle/">Pascal&#8217;s Triangle</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/05/16/index-based-list-operations-using-folds-in-haskell/">Index Based List Operations Using Folds in Haskell</a>
@@ -487,10 +512,6 @@
     
       <li class="post">
         <a href="/blog/2015/03/27/why-racket-why-lisp/">Why Racket? Why Lisp?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/03/26/book-hackers-and-painters/">Book - Hackers &amp; Painters</a>
       </li>
     
   </ul>
