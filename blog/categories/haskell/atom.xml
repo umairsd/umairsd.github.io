@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Haskell | Umair's blog]]></title>
   <link href="http://umairsd.github.io/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://umairsd.github.io/"/>
-  <updated>2015-07-09T07:35:54-07:00</updated>
+  <updated>2015-08-21T10:40:51-07:00</updated>
   <id>http://umairsd.github.io/</id>
   <author>
     <name><![CDATA[Umair Saeed]]></name>
@@ -12,6 +12,104 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Maybe as an Applicative Functor]]></title>
+    <link href="http://umairsd.github.io/blog/2015/08/21/maybe-as-an-applicative-functor/"/>
+    <updated>2015-08-21T09:53:20-07:00</updated>
+    <id>http://umairsd.github.io/blog/2015/08/21/maybe-as-an-applicative-functor</id>
+    <content type="html"><![CDATA[<p><code>Maybe</code> type is made an instance of the <code>Applicative</code> type class as follows (<a href="http://learnyouahaskell.com/functors-applicative-functors-and-monoids#applicative-functors" title="Learn You a Haskell for Great Good, Applicative Functors">link</a>):</p>
+
+<pre><code class="haskell">instance Applicative Maybe where
+    pure = Just
+    Nothing &lt;*&gt; _ = Nothing
+    (Just f) &lt;*&gt; something = fmap f something
+</code></pre>
+
+<p>It took me a several attempts before I could parse this definition. I was particularly puzzled by the line <code>(Just f) &lt;*&gt; something = fmap f something</code>. To help me understand this better, I decided to build this definition back up from the very basics.</p>
+
+<!-- more -->
+
+
+<p>First, let&rsquo;s look at the <code>Functor</code> type class definition:</p>
+
+<pre><code class="haskell">class Functor f where
+    fmap :: (a -&gt; b) -&gt; f a -&gt; f b
+</code></pre>
+
+<p>This means that for a given functor type <code>f</code> (i.e. type that is an instance of the <code>Functor</code> type class), <code>fmap</code> takes a function from <code>a -&gt; b</code> and a functor (box) that contains <code>a</code> and returns a functor (box) that contains <code>b</code>. An intuitive way to think about this is that <code>fmap</code> opens the box containing <code>a</code> and applies the function <code>a -&gt; b</code> to it, which results in <code>b</code>.</p>
+
+<p>Now let&rsquo;s see how <code>Maybe</code> is an instance of the <code>Functor</code> type class:</p>
+
+<pre><code class="haskell">instance Functor Maybe where
+    fmap func Nothing -&gt; Nothing
+    fmap func (Just x) -&gt; Just (func x)
+</code></pre>
+
+<ul>
+<li>Line 2: Applying a function to <code>Nothing</code> results in <code>Nothing</code>.</li>
+<li>Line 3: From the definition of the <code>Functor</code> type, we know that the type of <code>func</code> is <code>a -&gt; b</code> and <code>Just x</code> corresponds to <code>f a</code>. Applying the function to <code>x</code> inside the box results in a value of type <code>b</code> in the functor box.</li>
+</ul>
+
+
+<p>Now, let&rsquo;s look at the definition of the <code>Applicative</code> type class:</p>
+
+<pre><code class="haskell">class (Functor f) =&gt; Applicative f where  -- 1
+    pure :: a -&gt; f a                      -- 2
+    (&lt;*&gt;) :: f (a -&gt; b) -&gt; f a -&gt; f b     -- 3
+</code></pre>
+
+<p>For a type <code>f</code> that is an instance of the <code>Applicative</code> type class, here is what each line means:</p>
+
+<ol>
+<li><code>f</code> must also be a functor (i.e. be an instance of the <code>Functor</code> type class).</li>
+<li>The <code>pure</code> function takes an arbitrary type <code>a</code> and brings it into the functor. i.e. <code>pure</code> puts <code>a</code> in a box of type <code>f</code>.</li>
+<li><code>&lt;*&gt;</code> takes a functor (box) of type <code>f</code> that contains a function of type <code>a -&gt; b</code>, and a functor (box) of type <code>f</code> that contains type <code>a</code>. It results in a functor (box) of type <code>f</code> that contains <code>b</code>.</li>
+</ol>
+
+
+<p>With the preamble out of the way, let&rsquo;s make <code>Maybe</code>  an instance of the <code>Applicative</code> type class. To do that, I need to implement the <code>pure</code> and <code>&lt;*&gt;</code> methods for the <code>Maybe</code> type. Below is a line-by-line implementation:</p>
+
+<pre><code class="haskell">instance Applicative Maybe where
+    pure x = Just x
+</code></pre>
+
+<p>For the <code>Maybe</code> type, <code>pure</code> simply wraps an arbitrary type in <code>Just</code>, thus making it a <code>Maybe</code> value. E.g. writing <code>pure 4 :: Maybe Int</code> in GHCi results in <code>Just 4</code>.</p>
+
+<pre><code class="haskell">    (&lt;*&gt;) Nothing _ = Nothing
+</code></pre>
+
+<p>Here, <code>Nothing</code> maps to <code>f (a -&gt; b)</code> from the <code>Applicative</code> class definition. We cannot extract a function out of <code>Nothing</code>, so the result will be <code>Nothing</code> regardless of the second argument.</p>
+
+<pre><code class="haskell">    (&lt;*&gt;) (Just func) Nothing = Nothing
+</code></pre>
+
+<p>In the line above, <code>(Just func)</code> maps to <code>f (a -&gt; b)</code>, and <code>Nothing</code> maps to <code>f a</code> from the class definition. <code>&lt;*&gt;</code> extracts <code>func</code> out of <code>Just func</code>, and applies it to <code>Nothing</code>. Applying a function to <code>Nothing</code> results in <code>Nothing</code> (or, using the box analogy, applying a function to an empty box results in an empty box)</p>
+
+<pre><code class="haskell">    (&lt;*&gt;) (Just func) (Just x) = Just (func x) 
+</code></pre>
+
+<p><code>(Just func)</code> maps to <code>f (a -&gt; b)</code>, and <code>Just x</code> maps to <code>f a</code> from the <code>Applicative</code> class definition. <code>&lt;*&gt;</code> extracts the function from <code>Just func</code>, and applies it to <code>x</code> inside the <code>Just x</code> box. The result is <code>Just (func x)</code>.</p>
+
+<p>Now, let&rsquo;s put the definition of <code>&lt;*&gt;</code> for <code>Maybe</code> type next to the definition of the <code>fmap</code> function:</p>
+
+<pre><code class="haskell">    (&lt;*&gt;) (Just func) Nothing = Nothing
+    (&lt;*&gt;) (Just func) (Just x) = Just (func x) 
+
+    fmap func Nothing -&gt; Nothing
+    fmap func (Just x) -&gt; Just (func x)
+</code></pre>
+
+<p>This makes it obvious that in the definition of <code>&lt;*&gt;</code>, once we extract <code>func</code> out of <code>Just func</code>, we simply map that function over the second argument of <code>&lt;*&gt;</code> (which will be of <code>Maybe</code> type as well). This means that the <code>&lt;*&gt;</code> implementation for <code>Maybe</code> can be re-written as:</p>
+
+<pre><code class="haskell">    &lt;*&gt; (Just func) something = fmap (func something)
+</code></pre>
+
+<p>This is exactly how the <code>&lt;*&gt;</code> function is implemented at the beginning of this blog post.</p>
+
+<p>Finally, <a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html" title="Functors, Applicatives, And Monads in Pictures">Functors, Applicatives, And Monads In Pictures</a> by <a href="https://twitter.com/_egonschiele" title="Aditya Bhargava's Twitter Page">Aditya Bhargava</a> is one of the best posts I&rsquo;ve read on functors &amp; applicatives. I highly recommend it.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Pascal's Triangle]]></title>

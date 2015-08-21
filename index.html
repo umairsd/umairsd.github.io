@@ -9,7 +9,11 @@
   <meta name="author" content="Umair Saeed">
 
   
-  <meta name="description" content="One of the exercises in Structure and Implementation of Computer Programs deals with generating elements of the Pascal&rsquo;s Triangle. The &hellip;">
+  <meta name="description" content="Maybe type is made an instance of the Applicative type class as follows (link): 1
+2
+3
+4
+instance Applicative Maybe where pure = Just Nothing &lt;*&gt &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +82,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2015/08/21/maybe-as-an-applicative-functor/">Maybe as an Applicative Functor</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-21T09:53:20-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>9:53 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Maybe</code> type is made an instance of the <code>Applicative</code> type class as follows (<a href="http://learnyouahaskell.com/functors-applicative-functors-and-monoids#applicative-functors" title="Learn You a Haskell for Great Good, Applicative Functors">link</a>):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">instance</span> <span class="kt">Applicative</span> <span class="kt">Maybe</span> <span class="kr">where</span>
+</span><span class='line'>    <span class="n">pure</span> <span class="ow">=</span> <span class="kt">Just</span>
+</span><span class='line'>    <span class="kt">Nothing</span> <span class="o">&lt;*&gt;</span> <span class="kr">_</span> <span class="ow">=</span> <span class="kt">Nothing</span>
+</span><span class='line'>    <span class="p">(</span><span class="kt">Just</span> <span class="n">f</span><span class="p">)</span> <span class="o">&lt;*&gt;</span> <span class="n">something</span> <span class="ow">=</span> <span class="n">fmap</span> <span class="n">f</span> <span class="n">something</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It took me a several attempts before I could parse this definition. I was particularly puzzled by the line <code>(Just f) &lt;*&gt; something = fmap f something</code>. To help me understand this better, I decided to build this definition back up from the very basics.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/08/21/maybe-as-an-applicative-functor/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -442,44 +495,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2011/01/27/stern-brocot-tree/">Stern-Brocot Tree</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-01-27T05:56:15-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>5:56 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Stern-Brocot tree is a tree data structure whose vertices correspond to the set of non-negative rational numbers. Thus, this tree provides a very elegant way for constructing the set of fractions <code>m/n</code>, where <code>m</code> and <code>n</code> are relatively prime. To construct the tree, the basic idea is to start with two fractions (<code>0/1</code>, <code>1/0</code>) and then repeat the following operation:</p>
-
-<p><strong>Insert (m+m&#8217;)/(n+n&#8217;) between two adjacent fractions m/n and m&#8217;/n&#8217;</strong></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2011/01/27/stern-brocot-tree/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -495,6 +510,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/21/maybe-as-an-applicative-functor/">Maybe as an Applicative Functor</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/07/08/pascals-triangle/">Pascal&#8217;s Triangle</a>
       </li>
     
@@ -508,10 +527,6 @@
     
       <li class="post">
         <a href="/blog/2015/05/02/sublime-text-and-haskell/">Sublime Text &amp; Haskell</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/03/27/why-racket-why-lisp/">Why Racket? Why Lisp?</a>
       </li>
     
   </ul>
