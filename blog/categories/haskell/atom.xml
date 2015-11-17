@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Haskell | Umair's blog]]></title>
   <link href="http://umairsd.github.io/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://umairsd.github.io/"/>
-  <updated>2015-10-15T06:40:27-07:00</updated>
+  <updated>2015-11-17T07:07:53-08:00</updated>
   <id>http://umairsd.github.io/</id>
   <author>
     <name><![CDATA[Umair Saeed]]></name>
@@ -102,7 +102,7 @@
 
 <p>This makes it obvious that in the definition of <code>&lt;*&gt;</code>, once we extract <code>func</code> out of <code>Just func</code>, we simply map that function over the second argument of <code>&lt;*&gt;</code> (which will be of <code>Maybe</code> type as well). This means that the <code>&lt;*&gt;</code> implementation for <code>Maybe</code> can be re-written as:</p>
 
-<pre><code class="haskell">    &lt;*&gt; (Just func) something = fmap (func something)
+<pre><code class="haskell">    &lt;*&gt; (Just func) something = fmap func something
 </code></pre>
 
 <p>This is exactly how the <code>&lt;*&gt;</code> function is implemented at the beginning of this blog post.</p>

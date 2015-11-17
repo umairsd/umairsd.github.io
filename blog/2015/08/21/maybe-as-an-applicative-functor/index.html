@@ -219,7 +219,7 @@ instance Applicative Maybe where pure = Just Nothing &lt;*&gt &hellip;">
 <p>This makes it obvious that in the definition of <code>&lt;*&gt;</code>, once we extract <code>func</code> out of <code>Just func</code>, we simply map that function over the second argument of <code>&lt;*&gt;</code> (which will be of <code>Maybe</code> type as well). This means that the <code>&lt;*&gt;</code> implementation for <code>Maybe</code> can be re-written as:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">&lt;*&gt;</span> <span class="p">(</span><span class="kt">Just</span> <span class="n">func</span><span class="p">)</span> <span class="n">something</span> <span class="ow">=</span> <span class="n">fmap</span> <span class="p">(</span><span class="n">func</span> <span class="n">something</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">&lt;*&gt;</span> <span class="p">(</span><span class="kt">Just</span> <span class="n">func</span><span class="p">)</span> <span class="n">something</span> <span class="ow">=</span> <span class="n">fmap</span> <span class="n">func</span> <span class="n">something</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
