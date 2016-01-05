@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Puzzles | Umair's blog]]></title>
+  <title><![CDATA[Category: puzzles | Umair's blog]]></title>
   <link href="http://umairsd.github.io/blog/categories/puzzles/atom.xml" rel="self"/>
   <link href="http://umairsd.github.io/"/>
-  <updated>2015-11-17T07:07:53-08:00</updated>
+  <updated>2016-01-05T11:47:09-08:00</updated>
   <id>http://umairsd.github.io/</id>
   <author>
     <name><![CDATA[Umair Saeed]]></name>

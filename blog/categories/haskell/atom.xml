@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Haskell | Umair's blog]]></title>
+  <title><![CDATA[Category: haskell | Umair's blog]]></title>
   <link href="http://umairsd.github.io/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://umairsd.github.io/"/>
-  <updated>2015-11-17T07:07:53-08:00</updated>
+  <updated>2016-01-05T11:47:09-08:00</updated>
   <id>http://umairsd.github.io/</id>
   <author>
     <name><![CDATA[Umair Saeed]]></name>
@@ -12,6 +12,188 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Applicative Laws for Maybe Type]]></title>
+    <link href="http://umairsd.github.io/blog/2016/01/05/applicative-laws-for-maybe-type/"/>
+    <updated>2016-01-05T07:32:58-08:00</updated>
+    <id>http://umairsd.github.io/blog/2016/01/05/applicative-laws-for-maybe-type</id>
+    <content type="html"><![CDATA[<p>Applicative functors come with a set of laws that apply for all Applicative instances. These laws are as follows:</p>
+
+<ul>
+<li><p>Identity: <code>pure id &lt;*&gt; v = v</code></p></li>
+<li><p>Homomorphism: <code>pure f &lt;*&gt; pure x = pure (f x)</code></p></li>
+<li><p>Interchange: <code>u &lt;*&gt; pure y = pure ($y) &lt;*&gt; u</code></p></li>
+<li><p>Composition: <code>pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w = u &lt;*&gt; (v &lt;*&gt; w)</code></p></li>
+</ul>
+
+
+<p>For more information about these laws, check out <a href="https://wiki.haskell.org/Typeclassopedia#Laws_2" title="Applicative Laws">this Haskell wiki post</a>.</p>
+
+<p><code>Maybe</code> is an Applicative functor, and this post will verify that the applicative laws hold for the <code>Maybe</code> instance.</p>
+
+<!-- more -->
+
+
+<p>Before we begin, let&rsquo;s review the <a href="https://hackage.haskell.org/package/base-4.8.1.0/docs/Control-Applicative.html" title="Control.Applicative">definition</a> for <code>Applicative</code> type-class:</p>
+
+<pre><code class="haskell">class Functor f =&gt; Applicative f where
+    pure :: a -&gt; f a
+    (&lt;*&gt;) :: f (a-&gt;b) -&gt; f a -&gt; f b
+</code></pre>
+
+<p><code>Maybe</code> is made an instance of the <code>Applicative</code> class as:</p>
+
+<pre><code class="haskell">instance Applicative Maybe where
+    pure x                   = Just x
+    (&lt;*&gt;) Nothing  _         = Nothing
+    (&lt;*&gt;) (Just f) someMaybe = fmap f someMaybe
+</code></pre>
+
+<p>Note that the last line above <a href="http://umairsaeed.com/blog/2015/08/21/maybe-as-an-applicative-functor/" title="Maybe as an Applicative Functor">can be re-written as</a>:</p>
+
+<pre><code class="haskell">    (&lt;*&gt;) (Just f) Nothing  = Nothing
+    (&lt;*&gt;) (Just f) (Just x) = Just (f x) 
+</code></pre>
+
+<p>Now, let&rsquo;s test the Applicative laws for the <code>Maybe</code> type one by one:</p>
+
+<h3>Identity</h3>
+
+<p>We need to prove that the following holds for the <code>Maybe</code> type:</p>
+
+<pre><code class="haskell">pure id &lt;*&gt; v = v
+</code></pre>
+
+<p>Let&rsquo;s start from the <em>left</em> side of the equation:</p>
+
+<pre><code class="haskell">pure id &lt;*&gt; v
+
+-- applying definition of pure for Maybe
+(Just id) &lt;*&gt; v
+-- v could be either Nothing, or (Just x)
+case v of 
+    Nothing  -&gt; Nothing 
+    (Just x) -&gt; Just (id x)
+-- applying id to x is simply x
+case v of 
+    Nothing  -&gt; Nothing
+    (Just x) -&gt; Just x
+
+v  -- the right side of equation
+</code></pre>
+
+<h3>Homomorphism</h3>
+
+<p>The law&rsquo;s statement is:</p>
+
+<pre><code class="haskell">pure f &lt;*&gt; pure x = pure (f x)
+</code></pre>
+
+<p>To prove this for <code>Maybe</code> type, let&rsquo;s begin from the <em>left</em> side of the equation:</p>
+
+<pre><code class="haskell">pure f &lt;*&gt; pure x
+
+-- applying definition of pure
+(Just f) &lt;*&gt; (Just x)
+-- applying defintion of &lt;*&gt;
+Just (f x)
+-- un-applying the definition of pure
+pure (f x) -- the right side 
+</code></pre>
+
+<h3>Interchange</h3>
+
+<p>The law&rsquo;s statement is:</p>
+
+<pre><code class="haskell">u &lt;*&gt; pure y = pure ($y) &lt;*&gt; u
+</code></pre>
+
+<p>Starting from the <em>left</em> side:</p>
+
+<pre><code class="haskell">u &lt;*&gt; pure y
+
+-- applying definition of pure 
+u &lt;*&gt; (Just y)
+
+-- u can be either Nothing, or (Just f). Let's evaluate both
+case u of 
+    Nothing  -&gt; Nothing 
+    (Just f) -&gt; Just (f y)
+
+-- re-writing (f y) using function application operator
+case u of 
+    Nothing  -&gt; Nothing 
+    (Just f) -&gt; Just (f $ y)
+
+-- Using the section representation of the $ infix operator 
+case u of 
+    Nothing  -&gt; Nothing
+    (Just f) -&gt; Just (($y) f)
+
+-- Un-applying the definition of &lt;*&gt;
+case u of 
+    Nothing  -&gt; Nothing
+    (Just f) -&gt; Just ($y) &lt;*&gt; (Just f)
+
+-- Replacing the Nothing clause with an equivalent (via 
+-- the defintion) of &lt;*&gt; for Maybe
+case u of 
+    Nothing  -&gt; Just ($y) &lt;*&gt; Nothing  
+    (Just f) -&gt; Just ($y) &lt;*&gt; (Just f)
+
+-- Un-applying the definition of pure and u
+pure ($y) &lt;*&gt; u -- Equal to the right side
+</code></pre>
+
+<h3>Composition</h3>
+
+<p>The law&rsquo;s statement is:</p>
+
+<pre><code class="haskell">pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w = u &lt;*&gt; (v &lt;*&gt; w)
+</code></pre>
+
+<p>Starting from the <em>left</em> side:</p>
+
+<pre><code class="haskell">pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w
+
+-- applying definition of pure
+(Just (.)) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w
+
+-- u, v &amp; w can all be either Nothing or (Just something). 
+-- From the definition of &lt;*&gt;, we know that if either 
+-- argument to &lt;*&gt; is Nothing, the entire expression reduces
+-- to Nothing. 
+-- Therefore, I am only going to focus on the Just cases
+(Just (.)) &lt;*&gt; (Just f) &lt;*&gt; (Just g) &lt;*&gt; (Just x)
+
+-- Appying &lt;*&gt; to the first two terms
+(Just (.) f) &lt;*&gt; (Just g) &lt;*&gt; (Just x)
+
+-- Appying &lt;*&gt; to the first two terms again
+(Just (.) f g) &lt;*&gt; (Just x)
+
+-- Applying the function composition
+(Just (f.g) ) &lt;*&gt; (Just x)
+
+-- Applying &lt;*&gt; one more time
+(Just (f.g) x)
+
+-- via the definition of the function composition 
+-- operator
+(Just f (g x))
+
+-- Applying Homomorphism law
+(Just f) &lt;*&gt; Just (g x)
+
+-- Applying Homomorphism law to the 2nd term
+(Just f) &lt;*&gt; ( (Just g) &lt;*&gt; (Just x) )
+
+-- Un-applying the definitions of u, v, w
+u &lt;*&gt; (v &lt;*&gt; w)    -- Equal to the right side
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Maybe as an Applicative Functor]]></title>
@@ -218,7 +400,7 @@ pascal = iterate next [1]
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Index Based List Operations Using Folds in Haskell]]></title>
+    <title type="html"><![CDATA[Index Based List Operations Using folds in Haskell]]></title>
     <link href="http://umairsd.github.io/blog/2015/05/16/index-based-list-operations-using-folds-in-haskell/"/>
     <updated>2015-05-16T08:53:31-07:00</updated>
     <id>http://umairsd.github.io/blog/2015/05/16/index-based-list-operations-using-folds-in-haskell</id>
