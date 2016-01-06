@@ -9,7 +9,7 @@
   <meta name="author" content="Umair Saeed">
 
   
-  <meta name="description" content="Applicative functors come with a set of laws that apply for all Applicative instances. These laws are as follows: Identity: pure id &lt;*&gt; v = v &hellip;">
+  <meta name="description" content="This is Part-2 of my series on verifying Applicative laws for various Haskell types. Part-1 is Applicative Laws for Maybe Type. Haskell&rsquo;s list &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2016/01/06/applicative-laws-for-list-type/">Applicative Laws for [] Type</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-01-06T05:00:58-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>5:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is Part-2 of my series on verifying Applicative laws for various Haskell types. Part-1 is <a href="http://umairsaeed.com/blog/2016/01/05/applicative-laws-for-maybe-type/">Applicative Laws for Maybe Type</a>.</p>
+
+<hr />
+
+<p>Haskell&rsquo;s list type <code>[]</code> is an Applicative functor. Similar to the previous post, this post will verify that the applicative laws hold for the <code>[]</code> type. For reference, <code>[]</code> is made an instance of the <code>Applicative</code> class as:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">instance</span> <span class="kt">Applicative</span> <span class="kt">[]</span> <span class="kr">where</span>
+</span><span class='line'>    <span class="n">pure</span> <span class="n">x</span>      <span class="ow">=</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span>
+</span><span class='line'>    <span class="p">(</span><span class="o">&lt;*&gt;</span><span class="p">)</span> <span class="n">fs</span> <span class="n">xs</span> <span class="ow">=</span> <span class="p">[</span><span class="n">f</span> <span class="n">x</span> <span class="o">|</span> <span class="n">f</span> <span class="ow">&lt;-</span> <span class="n">fs</span><span class="p">,</span> <span class="n">x</span> <span class="ow">&lt;-</span> <span class="n">xs</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/01/06/applicative-laws-for-list-type/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -454,42 +505,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2012/07/18/a-quine-in-objective-c/">A Quine in Objective-C</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-07-18T06:46:06-07:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>6:46 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A quine is a program that takes no input and outputs its own source code. It has been a while since I last wrote a quine, so I figured I&rsquo;ll write one in Objective-C. In general, quines follow a fairly simple formula. The program contains a string that includes all the code before the string and all the code after the string. Depending on the programming language, the string might also contain format string (for languages that use format-strings to print to stdout)</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/07/18/a-quine-in-objective-c/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -505,6 +520,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/01/06/applicative-laws-for-list-type/">Applicative Laws for [] Type</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/05/applicative-laws-for-maybe-type/">Applicative Laws for Maybe Type</a>
       </li>
     
@@ -518,10 +537,6 @@
     
       <li class="post">
         <a href="/blog/2015/05/16/index-based-list-operations-using-folds-in-haskell/">Index Based List Operations Using folds in Haskell</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/05/04/talking-about-money/">Talking About Money</a>
       </li>
     
   </ul>

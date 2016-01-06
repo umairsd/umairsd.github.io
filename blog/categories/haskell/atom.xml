@@ -4,7 +4,7 @@
   <title><![CDATA[Category: haskell | Umair's blog]]></title>
   <link href="http://umairsd.github.io/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://umairsd.github.io/"/>
-  <updated>2016-01-05T11:47:09-08:00</updated>
+  <updated>2016-01-06T07:06:41-08:00</updated>
   <id>http://umairsd.github.io/</id>
   <author>
     <name><![CDATA[Umair Saeed]]></name>
@@ -12,6 +12,176 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Applicative Laws for [] Type]]></title>
+    <link href="http://umairsd.github.io/blog/2016/01/06/applicative-laws-for-list-type/"/>
+    <updated>2016-01-06T05:00:58-08:00</updated>
+    <id>http://umairsd.github.io/blog/2016/01/06/applicative-laws-for-list-type</id>
+    <content type="html"><![CDATA[<p>This is Part-2 of my series on verifying Applicative laws for various Haskell types. Part-1 is <a href="http://umairsaeed.com/blog/2016/01/05/applicative-laws-for-maybe-type/">Applicative Laws for Maybe Type</a>.</p>
+
+<hr />
+
+<p>Haskell&rsquo;s list type <code>[]</code> is an Applicative functor. Similar to the previous post, this post will verify that the applicative laws hold for the <code>[]</code> type. For reference, <code>[]</code> is made an instance of the <code>Applicative</code> class as:</p>
+
+<pre><code class="haskell">instance Applicative [] where
+    pure x      = [x]
+    (&lt;*&gt;) fs xs = [f x | f &lt;- fs, x &lt;- xs]
+</code></pre>
+
+<!-- more -->
+
+
+<p>For review, here are the applicative laws:</p>
+
+<ul>
+<li><p>Identity: <code>pure id &lt;*&gt; v = v</code></p></li>
+<li><p>Homomorphism: <code>pure f &lt;*&gt; pure x = pure (f x)</code></p></li>
+<li><p>Interchange: <code>u &lt;*&gt; pure y = pure ($y) &lt;*&gt; u</code></p></li>
+<li><p>Composition: <code>pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w = u &lt;*&gt; (v &lt;*&gt; w)</code></p></li>
+</ul>
+
+
+<p>Now, let’s test the Applicative laws for the <code>[]</code> type one by one:</p>
+
+<h3>Identity</h3>
+
+<p>We need to prove that the following holds for the <code>[]</code> type:</p>
+
+<pre><code class="haskell">pure id &lt;*&gt; v = v
+</code></pre>
+
+<p>Consider the <em>left</em> side of the equation:</p>
+
+<pre><code class="haskell">pure id &lt;*&gt; v
+
+-- applying definition of pure for []
+[id] &lt;*&gt; v
+
+-- applying definition of &lt;*&gt;
+[id x | x &lt;- v]
+
+-- applying id
+[x | x &lt;- v]
+
+-- list comprehension reduces to v
+v  -- Same as the right side 
+</code></pre>
+
+<h3>Homomorphism</h3>
+
+<p>The law&rsquo;s statement is:</p>
+
+<pre><code class="haskell">pure f &lt;*&gt; pure x = pure (f x)
+</code></pre>
+
+<p>Starting from the <em>left</em> side:</p>
+
+<pre><code class="haskell">pure f &lt;*&gt; pure x
+
+-- applying definition of pure
+[f] &lt;*&gt; [x]
+
+-- Note that both the lists have one element each. So
+-- applying the definition of &lt;*&gt;, this reduces to:
+[f x]
+
+-- un-applying pure
+pure (f x) -- Same as the right side 
+</code></pre>
+
+<h3>Interchange</h3>
+
+<p>The law&rsquo;s statement is:</p>
+
+<pre><code class="haskell">u &lt;*&gt; pure y = pure ($y) &lt;*&gt; u
+</code></pre>
+
+<p>Starting from the <em>left</em> side,</p>
+
+<pre><code class="haskell">u &lt;*&gt; pure y
+
+-- applying definition of pure 
+u &lt;*&gt; [y]   -- A list of functions applied to 
+            -- a single element list
+
+-- via definition of &lt;*&gt;
+[f y | f &lt;- u]
+
+-- replacing f y by the function application operator
+[f $ y | f &lt;- u]
+
+-- Using the section representation of the $ infix operator 
+[($y) f | f &lt;- u]
+
+-- Un-applying the definition of &lt;*&gt;
+[($y)] &lt;*&gt; u
+
+-- Un-applying pure
+pure ($y) &lt;*&gt; u -- Same as the right side
+</code></pre>
+
+<h3>Composition</h3>
+
+<p>The law&rsquo;s statement is:</p>
+
+<pre><code class="haskell">pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w = u &lt;*&gt; (v &lt;*&gt; w)
+</code></pre>
+
+<p>Starting from the <em>left</em>:</p>
+
+<pre><code class="haskell">pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w
+
+-- applying definition of pure
+[(.)] &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w
+
+-- as u, v, w are all lists, for clarity re-writing
+-- u as fs, v as gs, w as xs
+[(.)] &lt;*&gt; fs &lt;*&gt; gs &lt;*&gt; xs
+
+-- applying definition of &lt;*&gt;
+[(.) f | f &lt;- fs] &lt;*&gt; gs &lt;*&gt; xs
+
+-- applying definition of &lt;*&gt;
+[z g | z &lt;- [(.) f | f &lt;- fs], g &lt;- gs] &lt;*&gt; xs
+
+-- replace the value of z, and reduce
+[(.) f g | f &lt;- fs, g &lt;- gs] &lt;*&gt; xs
+
+-- applying function composition
+[f.g | f &lt;- fs, g &lt;- gs] &lt;*&gt; xs
+
+-- applying the definition of &lt;*&gt;
+[ z x | z &lt;- [f.g | f &lt;- fs, g &lt;- gs],
+        x &lt;- xs]
+
+[ f.g x | f &lt;- fs, g &lt;- gs, x &lt;- xs]
+
+-- applying definition of function composition
+[ f (g x) | f &lt;- fs, g &lt;- gs, x &lt;- xs] -- (A)
+</code></pre>
+
+<p>In the same manner, let&rsquo;s consider the <em>right</em> side of the equation:</p>
+
+<pre><code class="haskell">u &lt;*&gt; (v &lt;*&gt; w)
+
+-- as u, v, w are all lists, for clarity re-writing
+-- u as fs, v as gs, w as xs
+fs &lt;*&gt; (gs &lt;*&gt; xs)
+
+-- applying definition of &lt;*&gt;
+fs &lt;*&gt; ( [g x | g &lt;- gs, x &lt;- xs] )
+
+-- applying definition of &lt;*&gt;
+[f z | f &lt;- fs, z &lt;- [g x | g &lt;- gs, x &lt;- xs] ]
+
+-- replacing z
+[f (g x) | f &lt;- fs, g &lt;- gs, x &lt;- xs] -- (B)
+</code></pre>
+
+<p>(A) &amp; (B) prove that both the left and right side of the composition law reduce to the same statement, and thus composition law is proved for the <code>[]</code> type</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Applicative Laws for Maybe Type]]></title>
@@ -434,67 +604,6 @@ insertAtL x ys n = foldl insertLHelper [] $ zip [0..] ys
 <p>Both left and right fold produce the same result. Adding an element to the head of the list (via <code>:</code>) is more efficient than concatenating lists (via <code>++</code>), so generally I prefer using the 1st version, i.e. one that uses <code>foldr</code></p>
 
 <p><a href="https://gist.github.com/umairsd/cdcb397941762fe02d05">Here&rsquo;s a gist</a> with examples of  <code>insertAt</code>, <code>updateAt</code>, and <code>deleteAt</code> functions, all implemented using folds.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Sublime Text &amp; Haskell]]></title>
-    <link href="http://umairsd.github.io/blog/2015/05/02/sublime-text-and-haskell/"/>
-    <updated>2015-05-02T16:07:28-07:00</updated>
-    <id>http://umairsd.github.io/blog/2015/05/02/sublime-text-and-haskell</id>
-    <content type="html"><![CDATA[<p>There are several excellent posts about setting up the Haskell development environment. One of the best ones is Tony Lawrence&rsquo;s <a href="http://tonylawrence.com/blog/2014/01/01/configuring-your-haskell-environment/" title="Configuring Your Haskell Environment">Configuring Your Haskell Environment</a>. I encourage you to take a look at his post first.</p>
-
-<p>Tony&rsquo;s post is more than a year old though, and it looks like a couple of things have changed since he wrote his post, especially with the latest version of Haskell and <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">SublimeHaskell</a>. I wasted a good chunk of time trying to get around those problems, so now writing this post in case others run into similar issues when setting up the SublimeHaskell plugin.</p>
-
-<!-- more -->
-
-
-<p>Here&rsquo;s a summary of the steps to setup the Haskell dev environment (from <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">Tony&rsquo;s blog</a>).</p>
-
-<ul>
-<li>Install the Haskell platform.</li>
-<li>Issue <code>cabal update</code> to update the list of available packages for Haskell.</li>
-<li>Install the requisite packages by issuing <code>cabal install aeson haskell-src-exts haddock hdevtools</code>.</li>
-<li>Install Sublime Text 3.</li>
-<li>Install Package Control for Sublime Text 3.</li>
-<li>Install SublimeHaskell via Package Control.</li>
-</ul>
-
-
-<p>This last step doesn&rsquo;t work seamlessly. When I installed SublimeHaskell, I ran into the following error message in Sublime Text:</p>
-
-<pre><code>SublimeHaskell: Failed to compile ModuleInspector
-
-/Users/umair/Library/Application Support/Sublime Text 3/Packages/SublimeHaskell/ModuleInspector.hs:141:12:
-    Not in scope: data constructor ‘H.PNeg’
-    Perhaps you meant ‘H.PRec’ (imported from Language.Haskell.Exts)
-</code></pre>
-
-<p>The problem is described in more detail in <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a> on <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">SublimeHaskell&rsquo;s GitHub page</a>. The summary is that the master branch of SublimeHaskell is too slow to accomodate the removal of <code>PNeg</code> from <code>haskell-src-exts</code>. The solution is to use the <code>hsdev</code> branch of SublimeHaskell. This is done as follows (recommended by <a href="https://github.com/MoreAxes" title="GitHub user MoreAxes">MoreAxes</a> on comment thread for <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a>):</p>
-
-<ul>
-<li>In Sublime Text, launch Package Control (<code>cmd-shift-p</code>), and use the &lsquo;Add Repository&rsquo; command to add <code>https://github.com/SublimeHaskell/SublimeHaskell/tree/hsdev</code>.</li>
-<li>Install SublimeHaskell with Package Control normally. Package Control looks in user-defined repositories first, so it is able to get SublimeHaskell from the <code>hsdev</code> branch.</li>
-<li>Restart Sublime Text.</li>
-</ul>
-
-
-<p>You can now enter and build Haskell code from Sublime Text. To verify your setup, enter the following code in Sublime Text, and then hit <code>cmd-B</code></p>
-
-<pre><code class="haskell">main :: IO()
-main = do
-    print "Hello World"
-</code></pre>
-
-<p>You will see the following printed:</p>
-
-<pre><code>"Hello World"
-[Finished in 0.2s]
-</code></pre>
-
-<p>Here&rsquo;s a screenshot of my test file, with the output of the program:</p>
-
-<p><img class="center" src="/images/sublime-text-haskell-test.png"></p>
 ]]></content>
   </entry>
   
