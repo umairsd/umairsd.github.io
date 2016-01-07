@@ -4,7 +4,7 @@
   <title><![CDATA[Category: haskell | Umair's blog]]></title>
   <link href="http://umairsd.github.io/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://umairsd.github.io/"/>
-  <updated>2016-01-06T07:06:41-08:00</updated>
+  <updated>2016-01-07T05:47:52-08:00</updated>
   <id>http://umairsd.github.io/</id>
   <author>
     <name><![CDATA[Umair Saeed]]></name>
@@ -12,6 +12,202 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Applicative Laws for ((->) r) Type]]></title>
+    <link href="http://umairsd.github.io/blog/2016/01/07/applicative-laws-for-function-type/"/>
+    <updated>2016-01-07T05:00:29-08:00</updated>
+    <id>http://umairsd.github.io/blog/2016/01/07/applicative-laws-for-function-type</id>
+    <content type="html"><![CDATA[<p>This is Part-3 of my series on verifying Applicative laws for various Haskell types. Here are Part-1 <a href="http://umairsaeed.com/blog/2016/01/05/applicative-laws-for-maybe-type/" title="Applicative Laws for Maybe Type">Applicative Laws for Maybe Type</a> and Part-2 <a href="http://umairsaeed.com/blog/2016/01/06/applicative-laws-for-list-type/" title="Applicative Laws for List Type">Applicative Laws for [] Type</a></p>
+
+<hr />
+
+<p>Haskell&rsquo;s function type <code>((-&gt;) r)</code> is an Applicative functor. Similar to the previous two posts in this series, in this post I will verify that the applicative laws hold for the <code>((-&gt;) r)</code> type.</p>
+
+<p>For reference, <code>((-&gt;) r)</code> is made an instance of the <code>Applicative</code> class as:</p>
+
+<pre><code class="haskell">instance Applicative ((-&gt;) r) where
+    pure x = (\_ -&gt; x)
+    -- pure can also be written as:
+    -- pure x = const x
+
+    -- (&lt;*&gt;) :: f (a-&gt;b) -&gt; f a -&gt; f b
+    -- (&lt;*&gt;) :: ((-&gt;) r (a-&gt;b)) -&gt; ((-&gt;) r a) -&gt; ((-&gt;) r b)
+    -- (&lt;*&gt;) :: (r -&gt; (a-&gt;b)) -&gt; (r -&gt; a) -&gt; (r -&gt; b)
+    -- the entire lambda has type r -&gt; b, which implies x :: r
+    (&lt;*&gt;) f g = (\x -&gt; f x (g x))
+</code></pre>
+
+<!-- more -->
+
+
+<p>For review, here are the applicative laws:</p>
+
+<ul>
+<li><p>Identity: <code>pure id &lt;*&gt; v = v</code></p></li>
+<li><p>Homomorphism: <code>pure f &lt;*&gt; pure x = pure (f x)</code></p></li>
+<li><p>Interchange: <code>u &lt;*&gt; pure y = pure ($y) &lt;*&gt; u</code></p></li>
+<li><p>Composition: <code>pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w = u &lt;*&gt; (v &lt;*&gt; w)</code></p></li>
+</ul>
+
+
+<h3>Identity</h3>
+
+<p>We need to prove that the following holds for the <code>((-&gt;) r)</code> type:</p>
+
+<pre><code class="haskell">pure id &lt;*&gt; v = v
+</code></pre>
+
+<p>Beginning from LHS:</p>
+
+<pre><code class="haskell">pure (id) &lt;*&gt; v
+-- using definition of pure
+const id &lt;*&gt; v
+
+-- applying definition of &lt;*&gt;
+(\x -&gt; const id x (v x))
+
+-- applying const
+(\x -&gt; id (v x))
+
+-- applying id
+(\x -&gt; v x)
+
+v -- RHS
+</code></pre>
+
+<h3>Homomorphism</h3>
+
+<p>The law&rsquo;s statement is:</p>
+
+<pre><code class="haskell">pure f &lt;*&gt; pure x = pure (f x)
+</code></pre>
+
+<p>Here&rsquo;s the proof:</p>
+
+<pre><code class="haskell">pure f &lt;*&gt; pure x
+
+-- applying definition of pure
+const f &lt;*&gt; const x
+
+-- applying definition of &lt;*&gt;
+(\y -&gt; const f y (const x y))
+
+-- applying const
+(\y -&gt; f (x))
+
+-- As y is unused, replace with _
+(\_ -&gt; f x)
+
+-- un-applying definition of pure
+pure (f x) -- RHS
+</code></pre>
+
+<h3>Interchange</h3>
+
+<p>The law&rsquo;s statement is:</p>
+
+<pre><code class="haskell">u &lt;*&gt; pure y = pure ($y) &lt;*&gt; u
+</code></pre>
+
+<p>Starting from the LHS:</p>
+
+<pre><code class="haskell">u &lt;*&gt; pure y
+
+-- applying definition of pure
+u &lt;*&gt; const y
+
+-- applying definition of &lt;*&gt;
+\x -&gt; u x (const y x)
+
+-- applying const
+\x -&gt; u x (y)
+
+\x -&gt; u x y
+</code></pre>
+
+<p>Now, starting from the RHS:</p>
+
+<pre><code class="haskell">pure ($y) &lt;*&gt; u
+
+-- applying definition of pure
+const ($y) &lt;*&gt; u
+
+-- applying definition of &lt;*&gt;
+\x -&gt; const ($y) x (u x)
+
+-- applying const
+\x -&gt; ($y) (u x)
+
+-- applying definition of function application operator ($)
+\x -&gt; (u x) $ y
+
+\x -&gt; u x y
+</code></pre>
+
+<p>As both the left and right sides reduce to the same statement, the interchange law is proved for the <code>((-&gt;) r)</code> type</p>
+
+<h3>Composition</h3>
+
+<p>The law&rsquo;s statement is:</p>
+
+<pre><code class="haskell">pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w = u &lt;*&gt; (v &lt;*&gt; w)
+</code></pre>
+
+<p>Starting from the <em>right</em> side of the equation:</p>
+
+<pre><code class="haskell">u &lt;*&gt; (v &lt;*&gt; w)
+
+-- applying definition of &lt;*&gt;
+u &lt;*&gt; ( \y -&gt; v y (w y) )
+
+-- applying definition of &lt;*&gt;
+\x -&gt; u x ( (\y -&gt; v y (w y)) x )
+
+-- Apply the lambda ( (\y -&gt; v y (w y)) to its 
+-- argument x, which results in:
+\x -&gt; u x ( v x (w x)) -- (A)
+</code></pre>
+
+<p>In the same manner, let&rsquo;s consider the <em>left</em> side of the equation:</p>
+
+<pre><code class="haskell">pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w
+
+-- applying definition of pure
+const (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w
+
+-- applying definition of &lt;*&gt; to the 1st two terms
+(\f -&gt; const (.) f (u f)) &lt;*&gt; v &lt;*&gt; w
+
+-- applying const
+(\f -&gt; (.) (u f)) &lt;*&gt; v &lt;*&gt; w
+
+-- applying definition of &lt;*&gt; to the 1st two terms
+(\g -&gt; (\f -&gt; (.) (u f)) g (v g)) &lt;*&gt; w
+
+-- applying definition of &lt;*&gt;
+\x -&gt; (\g -&gt; (\f -&gt; (.) (u f)) g (v g)) x (w x)
+
+-- Expanding the lambda (\g -&gt; ...) by applying to x
+\x -&gt; ((\f -&gt; (.) (u f)) x (v x)) (w x)
+
+-- Expanding the inner lambda (\f -&gt; ...) by applying to x
+\x -&gt; (( (.) (u x)) (v x))  (w x)
+
+-- Using definition of function composition (.)
+\x -&gt; ((u x) . (v x)) (w x) 
+
+-- Using definition of (.), i.e. f.g x = f (g x)
+\x -&gt; u x ( v x (w x) ) -- (B)
+</code></pre>
+
+<p>(A) &amp; (B) prove that both the left and right side of the composition law for <code>((-&gt;) r)</code> type reduce to the same statement, and thus the law is proved for the function type.</p>
+
+<h3>Acknowledgements</h3>
+
+<p>Thanks to <a href="http://stackoverflow.com/users/791604/daniel-wagner" title="Stack Overflow User - Daniel Wagner">Daniel Wagner</a> who nudged me in the right direction by answering my questions (<a href="http://stackoverflow.com/questions/33829415/applicative-laws-for-the-r-type" title="Applicative Laws for the ((-&gt;) r) type">1</a> and <a href="http://stackoverflow.com/questions/34538754/proving-composition-applicative-law-for-r-type" title="Proving Composition Applicative law for ((-&gt;) r) type">2</a>) on Stack Overflow.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Applicative Laws for [] Type]]></title>
@@ -566,44 +762,6 @@ pascal = iterate next [1]
 </code></pre>
 
 <p>In my view, this code is very elegant and beautiful and does a great job of highlighting the power of Haskell.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Index Based List Operations Using folds in Haskell]]></title>
-    <link href="http://umairsd.github.io/blog/2015/05/16/index-based-list-operations-using-folds-in-haskell/"/>
-    <updated>2015-05-16T08:53:31-07:00</updated>
-    <id>http://umairsd.github.io/blog/2015/05/16/index-based-list-operations-using-folds-in-haskell</id>
-    <content type="html"><![CDATA[<p>When working with lists in Haskell, occasionally there&rsquo;s a need to perform index based operations, such as adding an element at a particular index. Going by my experience, using <code>foldl</code> or <code>foldr</code> is not the first idea that comes to mind when indices are involved. However, there is a general pattern that can be applied when using folds for index-based list operations. For example, consider the case where we need to add an element at a particular index:</p>
-
-<!-- more -->
-
-
-<pre><code class="haskell">-- inserting at an index, using foldr
-insertAt :: a -&gt; [a] -&gt; Int -&gt; [a]
-insertAt x ys n = foldr insertHelper [] $ zip [0..] ys
-    where 
-        insertHelper (i,y) acc = if i == n
-            then x : y : acc
-            else y : acc
-</code></pre>
-
-<p>The basic idea is simple: We simply zip <code>[0..]</code> with the input list (<code>ys</code>) to get a list of tuples. The first element of each tuple is the index of the element in the list <code>ys</code> (input list). This allows us to perform index based tests in the helper function, as shown in <code>insertHelper</code> above.</p>
-
-<p>Both left and right folds can be used for index based list operations. Here&rsquo;s the same example using <code>foldl</code>.</p>
-
-<pre><code class="haskell">-- inserting at an index, using foldl
-insertAtL :: a -&gt; [a] -&gt; Int -&gt; [a]
-insertAtL x ys n = foldl insertLHelper [] $ zip [0..] ys
-    where 
-        insertLHelper acc (i,y) = if i == n
-            then acc ++ [x] ++ [y]
-            else acc ++ [y]
-</code></pre>
-
-<p>Both left and right fold produce the same result. Adding an element to the head of the list (via <code>:</code>) is more efficient than concatenating lists (via <code>++</code>), so generally I prefer using the 1st version, i.e. one that uses <code>foldr</code></p>
-
-<p><a href="https://gist.github.com/umairsd/cdcb397941762fe02d05">Here&rsquo;s a gist</a> with examples of  <code>insertAt</code>, <code>updateAt</code>, and <code>deleteAt</code> functions, all implemented using folds.</p>
 ]]></content>
   </entry>
   

@@ -9,7 +9,7 @@
   <meta name="author" content="Umair Saeed">
 
   
-  <meta name="description" content="This is Part-2 of my series on verifying Applicative laws for various Haskell types. Part-1 is Applicative Laws for Maybe Type. Haskell&rsquo;s list &hellip;">
+  <meta name="description" content="This is Part-3 of my series on verifying Applicative laws for various Haskell types. Here are Part-1 Applicative Laws for Maybe Type and Part-2 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2016/01/07/applicative-laws-for-function-type/">Applicative Laws for ((->) r) Type</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-01-07T05:00:29-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>5:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is Part-3 of my series on verifying Applicative laws for various Haskell types. Here are Part-1 <a href="http://umairsaeed.com/blog/2016/01/05/applicative-laws-for-maybe-type/" title="Applicative Laws for Maybe Type">Applicative Laws for Maybe Type</a> and Part-2 <a href="http://umairsaeed.com/blog/2016/01/06/applicative-laws-for-list-type/" title="Applicative Laws for List Type">Applicative Laws for [] Type</a></p>
+
+<hr />
+
+<p>Haskell&rsquo;s function type <code>((-&gt;) r)</code> is an Applicative functor. Similar to the previous two posts in this series, in this post I will verify that the applicative laws hold for the <code>((-&gt;) r)</code> type.</p>
+
+<p>For reference, <code>((-&gt;) r)</code> is made an instance of the <code>Applicative</code> class as:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">instance</span> <span class="kt">Applicative</span> <span class="p">((</span><span class="ow">-&gt;</span><span class="p">)</span> <span class="n">r</span><span class="p">)</span> <span class="kr">where</span>
+</span><span class='line'>    <span class="n">pure</span> <span class="n">x</span> <span class="ow">=</span> <span class="p">(</span><span class="nf">\</span><span class="kr">_</span> <span class="ow">-&gt;</span> <span class="n">x</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1">-- pure can also be written as:</span>
+</span><span class='line'>    <span class="c1">-- pure x = const x</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">-- (&lt;*&gt;) :: f (a-&gt;b) -&gt; f a -&gt; f b</span>
+</span><span class='line'>    <span class="c1">-- (&lt;*&gt;) :: ((-&gt;) r (a-&gt;b)) -&gt; ((-&gt;) r a) -&gt; ((-&gt;) r b)</span>
+</span><span class='line'>    <span class="c1">-- (&lt;*&gt;) :: (r -&gt; (a-&gt;b)) -&gt; (r -&gt; a) -&gt; (r -&gt; b)</span>
+</span><span class='line'>    <span class="c1">-- the entire lambda has type r -&gt; b, which implies x :: r</span>
+</span><span class='line'>    <span class="p">(</span><span class="o">&lt;*&gt;</span><span class="p">)</span> <span class="n">f</span> <span class="n">g</span> <span class="ow">=</span> <span class="p">(</span><span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="n">f</span> <span class="n">x</span> <span class="p">(</span><span class="n">g</span> <span class="n">x</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/01/07/applicative-laws-for-function-type/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -468,43 +535,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2015/01/31/a-reboot/">A reboot</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-01-31T06:54:18-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>6:54 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I started blogging occassionally a few years ago, and my first blog was on <a href="http://umairsd.wordpress.com">Wordpress.com</a>. However, for various reasons (life changes, scheduling, focus on work etc.) I pretty much stopped blogging. The oldest post on my Wordpress blog is from July 2012. Wow! Even I am surprised at how long it has been since I added anything new.</p>
-
-<p>Back to 2015. I&rsquo;ve been thinking about rebooting my blog for several weeks, and finally decided to take the first step. I hope to blog more frequently than I&rsquo;ve done in the past few years.</p>
-
-<p>For setup, I decided to generate my blog via <a href="http://octopress.org/">Octopress</a> and host it on <a href="https://pages.github.com/">GitHub Pages</a>. I really like Octopress&rsquo;s simplicity, look and feel, and control over various aspects of blog generation and hosting. Another advantage is that I do most of my writing in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> format, which is the default for Octopress. Lastly, Octopress generates my blog as static HTML.</p>
-
-<p>My next steps are to figure out what to do about my old Wordpress posts. I needed to decide whether I am going to import them here, link to them instead of importing, or simply ignore.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -520,6 +550,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/01/07/applicative-laws-for-function-type/">Applicative Laws for ((->) r) Type</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/06/applicative-laws-for-list-type/">Applicative Laws for [] Type</a>
       </li>
     
@@ -533,10 +567,6 @@
     
       <li class="post">
         <a href="/blog/2015/07/08/pascals-triangle/">Pascal&#8217;s Triangle</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/05/16/index-based-list-operations-using-folds-in-haskell/">Index Based List Operations Using folds in Haskell</a>
       </li>
     
   </ul>
