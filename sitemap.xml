@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://umairsd.github.io/blog/2017/07/03/do-you-need-self-discipline-to-have-fun/</loc>
+<lastmod>2017-07-03T07:08:05-07:00</lastmod>
+</url>
+<url>
 <loc>http://umairsd.github.io/blog/2016/01/07/applicative-laws-for-function-type/</loc>
 <lastmod>2016-01-07T05:00:29-08:00</lastmod>
 </url>
@@ -89,5 +93,14 @@
 </url>
 <url>
 <loc>http://umairsd.github.io/blog/categories/tools/</loc>
+</url>
+<url>
+<loc>http://umairsd.github.io/blog/categories/external/</loc>
+</url>
+<url>
+<loc>http://umairsd.github.io/blog/categories/productivity/</loc>
+</url>
+<url>
+<loc>http://umairsd.github.io/posts/2/</loc>
 </url>
 </urlset>
