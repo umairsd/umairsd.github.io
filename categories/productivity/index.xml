@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>productivity on Umair&#39;s Blog</title>
+    <link>http://example.com/categories/productivity/</link>
+    <description>Recent content in productivity on Umair&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 03 Jul 2017 07:08:05 -0700</lastBuildDate>
+    
+	<atom:link href="http://example.com/categories/productivity/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Do You Need Self Discipline To Have Fun?</title>
+      <link>http://example.com/posts/2017-07-03-do-you-need-self-discipline-to-have-fun/</link>
+      <pubDate>Mon, 03 Jul 2017 07:08:05 -0700</pubDate>
+      
+      <guid>http://example.com/posts/2017-07-03-do-you-need-self-discipline-to-have-fun/</guid>
+      <description>&lt;p&gt;I can relate to &lt;a href=&#34;https://www.scotthyoung.com/blog/2017/06/19/discipline-and-fun/&#34;&gt;this excellent post&lt;/a&gt; by Scott Young, where he makes the case that ease of doing an activity and its enjoyment aren&amp;rsquo;t the same. Consider:&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

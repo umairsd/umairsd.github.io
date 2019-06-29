@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Umair&#39;s Blog</title>
+    <link>http://example.com/</link>
+    <description>Recent content on Umair&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 03 Jul 2017 07:08:05 -0700</lastBuildDate>
+    
+	<atom:link href="http://example.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Do You Need Self Discipline To Have Fun?</title>
+      <link>http://example.com/posts/2017-07-03-do-you-need-self-discipline-to-have-fun/</link>
+      <pubDate>Mon, 03 Jul 2017 07:08:05 -0700</pubDate>
+      
+      <guid>http://example.com/posts/2017-07-03-do-you-need-self-discipline-to-have-fun/</guid>
+      <description>&lt;p&gt;I can relate to &lt;a href=&#34;https://www.scotthyoung.com/blog/2017/06/19/discipline-and-fun/&#34;&gt;this excellent post&lt;/a&gt; by Scott Young, where he makes the case that ease of doing an activity and its enjoyment aren&amp;rsquo;t the same. Consider:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Applicative Laws for `((-&gt;) r)` Type</title>
+      <link>http://example.com/posts/2016-01-07-applicative-laws-for-function-type/</link>
+      <pubDate>Thu, 07 Jan 2016 05:00:29 -0800</pubDate>
+      
+      <guid>http://example.com/posts/2016-01-07-applicative-laws-for-function-type/</guid>
+      <description>&lt;p&gt;Haskell&amp;rsquo;s function type &lt;code&gt;((-&amp;gt;) r)&lt;/code&gt; is an Applicative functor. Similar to the previous two posts in this series, in this post I will verify that the applicative laws hold for the &lt;code&gt;((-&amp;gt;) r)&lt;/code&gt; type.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Applicative Laws for `[]` Type</title>
+      <link>http://example.com/posts/2016-01-06-applicative-laws-for-list-type/</link>
+      <pubDate>Wed, 06 Jan 2016 05:00:58 -0800</pubDate>
+      
+      <guid>http://example.com/posts/2016-01-06-applicative-laws-for-list-type/</guid>
+      <description>&lt;p&gt;Haskell&amp;rsquo;s list type &lt;code&gt;[]&lt;/code&gt; is an Applicative functor. Similar to the previous post, this post will verify that the applicative laws hold for the &lt;code&gt;[]&lt;/code&gt; type.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Applicative Laws for `Maybe` Type</title>
+      <link>http://example.com/posts/2016-01-05-applicative-laws-for-maybe-type/</link>
+      <pubDate>Tue, 05 Jan 2016 07:32:58 -0800</pubDate>
+      
+      <guid>http://example.com/posts/2016-01-05-applicative-laws-for-maybe-type/</guid>
+      <description>&lt;p&gt;Applicative functors come with a set of laws that apply for all Applicative instances. These laws are as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Identity: &lt;code&gt;pure id &amp;lt;*&amp;gt; v = v&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Homomorphism: &lt;code&gt;pure f &amp;lt;*&amp;gt; pure x = pure (f x)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Interchange: &lt;code&gt;u &amp;lt;*&amp;gt; pure y = pure ($y) &amp;lt;*&amp;gt; u&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Composition: &lt;code&gt;pure (.) &amp;lt;*&amp;gt; u &amp;lt;*&amp;gt; v &amp;lt;*&amp;gt; w = u &amp;lt;*&amp;gt; (v &amp;lt;*&amp;gt; w)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Maybe as an Applicative Functor</title>
+      <link>http://example.com/posts/2015-08-21-maybe-as-an-applicative-functor/</link>
+      <pubDate>Fri, 21 Aug 2015 09:53:20 -0700</pubDate>
+      
+      <guid>http://example.com/posts/2015-08-21-maybe-as-an-applicative-functor/</guid>
+      <description>&lt;p&gt;&lt;code&gt;Maybe&lt;/code&gt; type is made an instance of the &lt;code&gt;Applicative&lt;/code&gt; type class as follows:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;instance&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Applicative&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Maybe&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;where&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;pure&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Just&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;Nothing&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;_&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Nothing&lt;/span&gt;
+    (&lt;span style=&#34;color:#66d9ef&#34;&gt;Just&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;f&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;something&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fmap&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;f&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;something&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Pascal&#39;s Triangle</title>
+      <link>http://example.com/posts/2015-07-08-pascals-triangle/</link>
+      <pubDate>Wed, 08 Jul 2015 06:51:27 -0700</pubDate>
+      
+      <guid>http://example.com/posts/2015-07-08-pascals-triangle/</guid>
+      <description>&lt;p&gt;One of the exercises in &lt;a href=&#34;https://mitpress.mit.edu/sicp/&#34;&gt;Structure and Implementation of Computer Programs&lt;/a&gt; deals with generating elements of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Pascal&#39;s_triangle&#34;&gt;Pascal&amp;rsquo;s Triangle&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Index Based List Operations Using folds in Haskell</title>
+      <link>http://example.com/posts/2015-05-16-index-based-list-operations-using-folds-in-haskell/</link>
+      <pubDate>Sat, 16 May 2015 08:53:31 -0700</pubDate>
+      
+      <guid>http://example.com/posts/2015-05-16-index-based-list-operations-using-folds-in-haskell/</guid>
+      <description>&lt;p&gt;When working with lists in Haskell, occasionally there&amp;rsquo;s a need to perform index based operations, such as adding an element at a particular index. As a Haskell &lt;em&gt;newbie&lt;/em&gt;, using &lt;code&gt;foldl&lt;/code&gt; or &lt;code&gt;foldr&lt;/code&gt; is not the first idea that comes to mind when indices are involved. However, there is a general pattern that can be applied when using folds for index-based list operations.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Talking About Money</title>
+      <link>http://example.com/posts/2015-05-04-talking-about-money/</link>
+      <pubDate>Mon, 04 May 2015 09:43:03 -0700</pubDate>
+      
+      <guid>http://example.com/posts/2015-05-04-talking-about-money/</guid>
+      <description>&lt;p&gt;Patrick McKenzie wrote an excellent post about compensation and salary transparency. The entire post is really informative, but for me, this passage is a true gem. Every word here is absolutely true:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Sublime Text &amp;amp; Haskell</title>
+      <link>http://example.com/posts/2015-05-02-sublime-text-and-haskell/</link>
+      <pubDate>Sat, 02 May 2015 16:07:28 -0700</pubDate>
+      
+      <guid>http://example.com/posts/2015-05-02-sublime-text-and-haskell/</guid>
+      <description>&lt;p&gt;There are several excellent posts about setting up the Haskell development environment. One of the best ones is Tony Lawrence&amp;rsquo;s &lt;a href=&#34;http://tonylawrence.com/blog/2014/01/01/configuring-your-haskell-environment/&#34; title=&#34;Configuring Your Haskell Environment&#34;&gt;Configuring Your Haskell Environment&lt;/a&gt;. I encourage you to take a look at his post first.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Why Racket? Why Lisp?</title>
+      <link>http://example.com/posts/2015-03-27-why-racket-why-lisp/</link>
+      <pubDate>Fri, 27 Mar 2015 10:30:53 -0700</pubDate>
+      
+      <guid>http://example.com/posts/2015-03-27-why-racket-why-lisp/</guid>
+      <description>&lt;p&gt;A slightly older (from Aug 2014), but nonetheless &lt;a href=&#34;http://practicaltypography.com/why-racket-why-lisp.html&#34; title=&#34;Why Racket, Why Lisp&#34;&gt;great post&lt;/a&gt; by Matthew Butterick where he enumerates the benefits of learning to program in Lisp (or one of its dialects).&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Book - Hackers &amp;amp; Painters</title>
+      <link>http://example.com/posts/2015-03-26-book-hackers-and-painters/</link>
+      <pubDate>Thu, 26 Mar 2015 10:00:12 -0700</pubDate>
+      
+      <guid>http://example.com/posts/2015-03-26-book-hackers-and-painters/</guid>
+      <description>&lt;p&gt;A couple of days ago, I finished reading Paul Graham&amp;rsquo;s book of essays &lt;a href=&#34;http://www.amazon.com/Hackers-Painters-Big-Ideas-Computer/dp/1449389554&#34;&gt;Hackers and Painters: Big Ideas from the Computer Age&lt;/a&gt;, and thoroughly enjoyed the book. I had already read a few of these essays on his &lt;a href=&#34;http://www.paulgraham.com/articles.html&#34;&gt;website&lt;/a&gt;, yet I still enjoyed re-reading them. The essays are very insightful, and I plan to re-read several essays &amp;amp; passages periodically.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A Quine in Objective-C</title>
+      <link>http://example.com/posts/2012-07-18-a-quine-in-objective-c/</link>
+      <pubDate>Wed, 18 Jul 2012 13:46:06 +0000</pubDate>
+      
+      <guid>http://example.com/posts/2012-07-18-a-quine-in-objective-c/</guid>
+      <description>&lt;p&gt;A quine is a program that takes no input and outputs its own source code. It has been a while since I last wrote a quine, so I figured I&amp;rsquo;ll write one in Objective-C. In general, quines follow a fairly simple formula. The program contains a string that includes all the code before the string and all the code after the string. Depending on the programming language, the string might also contain format string (for languages that use format-strings to print to &lt;code&gt;stdout&lt;/code&gt;)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Finding the Start of a Loop in a Circular Linked List</title>
+      <link>http://example.com/posts/2011-06-23-finding-the-start-of-a-loop-in-a-circular-linked-list/</link>
+      <pubDate>Thu, 23 Jun 2011 13:54:07 +0000</pubDate>
+      
+      <guid>http://example.com/posts/2011-06-23-finding-the-start-of-a-loop-in-a-circular-linked-list/</guid>
+      <description>&lt;p&gt;A lot of people are familiar with the problem of detecting a loop in a linked list. The problem goes as follows: “Given a linked list, what is the algorithm to determine if it has any cycles (loops)?”&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Stern-Brocot Tree</title>
+      <link>http://example.com/posts/2011-01-27-stern-brocot-tree/</link>
+      <pubDate>Thu, 27 Jan 2011 13:56:15 +0000</pubDate>
+      
+      <guid>http://example.com/posts/2011-01-27-stern-brocot-tree/</guid>
+      <description>&lt;p&gt;Stern-Brocot tree is a tree data structure whose vertices correspond to the set of non-negative rational numbers. Thus, this tree provides a very elegant way for constructing the set of fractions &lt;code&gt;m/n&lt;/code&gt;, where &lt;code&gt;m&lt;/code&gt; and &lt;code&gt;n&lt;/code&gt; are relatively prime. To construct the tree, the basic idea is to start with two fractions (&lt;code&gt;0/1&lt;/code&gt;, &lt;code&gt;1/0&lt;/code&gt;) and then repeat the following operation:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Insert (m+m&amp;rsquo;)/(n+n&amp;rsquo;) between two adjacent fractions m/n and m&amp;rsquo;/n&amp;rsquo;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Manual Memory Management in Objective-C</title>
+      <link>http://example.com/posts/2011-01-24-manual-memory-management-in-objective-c/</link>
+      <pubDate>Mon, 24 Jan 2011 19:10:40 +0000</pubDate>
+      
+      <guid>http://example.com/posts/2011-01-24-manual-memory-management-in-objective-c/</guid>
+      <description>&lt;p&gt;Objective-C on iOS has no garbage collector, so it is up to the programmer to make sure that memory is properly freed once an object is no longer needed. On the other hand, Objective-C on the Mac does have a garbage collector (in Objective C 2.0). This blog post focuses on how to manage memory in the absence of a garbage collector.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

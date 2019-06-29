@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tools on Umair&#39;s Blog</title>
+    <link>http://example.com/categories/tools/</link>
+    <description>Recent content in tools on Umair&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 02 May 2015 16:07:28 -0700</lastBuildDate>
+    
+	<atom:link href="http://example.com/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sublime Text &amp;amp; Haskell</title>
+      <link>http://example.com/posts/2015-05-02-sublime-text-and-haskell/</link>
+      <pubDate>Sat, 02 May 2015 16:07:28 -0700</pubDate>
+      
+      <guid>http://example.com/posts/2015-05-02-sublime-text-and-haskell/</guid>
+      <description>&lt;p&gt;There are several excellent posts about setting up the Haskell development environment. One of the best ones is Tony Lawrence&amp;rsquo;s &lt;a href=&#34;http://tonylawrence.com/blog/2014/01/01/configuring-your-haskell-environment/&#34; title=&#34;Configuring Your Haskell Environment&#34;&gt;Configuring Your Haskell Environment&lt;/a&gt;. I encourage you to take a look at his post first.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

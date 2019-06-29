@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Manual Memory Management in Objective-C &middot; Umair&#39;s Blog
+  </title>
+
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+  
+  <link href="" rel="alternate"
+    type="application/rss+xml" title="Umair&#39;s Blog" />
+
+</head>
+  <body>
+    <nav class="nav">
+  <div class="nav-container">
+    <a href="/">
+      <h2 class="nav-title">Umair&#39;s Blog</h2>
+    </a>
+
+    <ul>
+      
+      
+        <li>
+          <a href="/" title="">Posts</a>
+        </li>
+      
+        <li>
+          <a href="/categories/" title="">Categories</a>
+        </li>
+      
+        <li>
+          <a href="/tags/" title="">Tags</a>
+        </li>
+      
+        <li>
+          <a href="/about/" title="">About</a>
+        </li>
+      
+    </ul>
+
+  </div>
+</nav>
+
+    
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <span>Written by</span>
+        Umair Saeed
+        <br>
+        <span>on&nbsp;</span><time datetime="2011-01-24 19:10:40 &#43;0000 &#43;0000">January 24, 2011</time>
+
+    
+        <ul class="post-ul">
+        <span>in</span> [
+          
+            <li class="post-li"><a href="/categories/iOS"> iOS</a></li>
+          ]
+        </ul>
+</div>
+
+    <h1 class="post-title">
+  
+  
+    <a href="/posts/2011-01-24-manual-memory-management-in-objective-c/" class="catalog-title-anchor">
+      Manual Memory Management in Objective-C
+    </a>
+  
+</h1>
+<div class="post-line"></div>
+
+
+    
+
+    <p>Objective-C on iOS has no garbage collector, so it is up to the programmer to make sure that memory is properly freed once an object is no longer needed. On the other hand, Objective-C on the Mac does have a garbage collector (in Objective C 2.0). This blog post focuses on how to manage memory in the absence of a garbage collector.</p>
+
+<p>When managing memory manually, two major issues to watch out for are premature deallocation and memory leaks.</p>
+
+<p>Cocoa Touch framework uses manual <a href="http://en.wikipedia.org/wiki/Reference_counting">reference counting</a> to manage memory on the iOS devices. Reference counting works on the principle that once created, every object has an owner. During its existence, its owner may change and it may even have more than one owners. When the number of owners for an object drops to zero, it deallocates itself to free up the memory being used.</p>
+
+<h2 id="retain-release"><code>retain</code> &amp; <code>release</code></h2>
+
+<p>Owners are tracked via retain counts. When an object is created it always has a retain count of 1. To own an object its retain count is incremented via the <code>retain</code> message. On the other hand, when the object is no longer needed its ownership is relinquished by decrementing the retain count via the <code>release</code> message. When the count reaches zero, the object sends itself the <code>dealloc</code> message and returns all the memory back to the heap.</p>
+
+<h2 id="autorelease"><code>autorelease</code></h2>
+
+<p><code>autorelease</code> marks an object for future release (delayed release). When an object is sent the autorelease message, it is added to an instance of <code>NSAutoreleasePool</code>. The Autorelease pool keeps track of all the objects that have been sent the <code>autorelease</code> message. This pool is drained periodically, at which time all the objects within it are sent the release message.</p>
+
+<p><code>autorelease</code> is really handy when the creator of an object (e.g. a factory) simply creates the object and returns it to the caller. At this point, the creator has nothing to do with the object anymore, so it is up to the caller to retain the returned object in order to continue using it.</p>
+
+<h2 id="an-example-a-ticket-class">An Example - A Ticket class</h2>
+
+<p>Let us work through an example to see manual memory management in action. Suppose I am writing a ticketing framework, and I have a Ticket entity. The header file for Ticket looks as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#66d9ef">@interface</span> <span style="color:#a6e22e">Ticket</span> : <span style="color:#a6e22e">NSObject</span> {
+  NSString <span style="color:#f92672">*</span>ticketId;
+}
+
+- (NSString <span style="color:#f92672">*</span>) <span style="color:#a6e22e">ticketId</span>;
+- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">setTicketId:</span>(NSString <span style="color:#f92672">*</span>) tid;
+
+- (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">initWithId:</span>(NSString <span style="color:#f92672">*</span>) tid;
++ (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">ticketWithId:</span>(NSString <span style="color:#f92672">*</span>) tid;
+
+<span style="color:#66d9ef">@end</span></code></pre></div>
+<p>And the implementation file for Ticket looks as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#75715e">#import &#34;Ticket.h&#34;
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">Ticket</span>
+
+- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">dealloc</span>
+{
+  [ticketId <span style="color:#66d9ef">release</span>];
+  [super dealloc];
+}
+
+- (NSString <span style="color:#f92672">*</span>) <span style="color:#a6e22e">ticketId</span>
+{
+  <span style="color:#66d9ef">return</span> ticketId;
+}
+
+- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">setTicketId:</span>(NSString <span style="color:#f92672">*</span>)tid
+{
+  [tid <span style="color:#66d9ef">retain</span>];
+  [ticketId <span style="color:#66d9ef">release</span>];
+  ticketId <span style="color:#f92672">=</span> tid;
+}
+
+- (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">initWithId:</span>(NSString <span style="color:#f92672">*</span>) tid
+{
+  <span style="color:#66d9ef">if</span> (self <span style="color:#f92672">=</span> [super init])
+  {
+    [self setTicketId:tid];
+  }
+
+  <span style="color:#66d9ef">return</span> self;
+}
+
++ (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">ticketWithId:</span>(NSString <span style="color:#f92672">*</span>)tid
+{
+  Ticket <span style="color:#f92672">*</span>newTkt <span style="color:#f92672">=</span> [[Ticket alloc] initWithId:tid];
+  <span style="color:#66d9ef">return</span> [newTkt autorelease];
+}
+
+<span style="color:#66d9ef">@end</span></code></pre></div>
+<p>There are three memory management points to note here:</p>
+
+<ol>
+<li><p>Inside <code>dealloc</code>, an object must release all its instance variables first. Then it should go up its class hierarchy and release any instance variables of its superclass. We should never directly send the <code>dealloc</code> message to instance variables, as some other objects might still have references to those variables.</p></li>
+
+<li><p>A setter must retain the value passed in before it releases the old value, as <code>tid</code> and <code>ticketId</code> could be pointers to the same object.</p></li>
+
+<li><p>The <code>ticketWithId:</code> method creates a ticket and simply returns it to the caller. It has no use for the <code>newTkt</code>, but it owns <code>newTkt</code> by virtue of creating it. At this point, if <code>newTkt</code> were released before method exit, then the caller would get a pointer to unallocated heap. To avoid this, we put the <code>newTkt</code> on the autorelease pool. Periodically, the autorelease pool is drained and all the objects it it are sent the <code>release</code> message thus decrementing the retain count.</p></li>
+</ol>
+
+<p>Essentially, the <code>ticketWithId:</code> method is saying that it does not want to be the owner for <code>newTkt</code> and puts that responsibility on the caller. If the caller wants to hold on to <code>newTkt</code> once it is returned, it must send it the <code>retain</code> message.</p>
+
+<h4 id="using-the-ticket-class">Using the Ticket class</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#75715e">// EXAMPLE-1
+</span><span style="color:#75715e"></span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
+{
+  Ticket<span style="color:#f92672">*</span> tkt <span style="color:#f92672">=</span> [[Ticket alloc] initWithId:ticketId];
+  <span style="color:#75715e">// Do something with tkt
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>  [tkt <span style="color:#66d9ef">release</span>];
+}</code></pre></div>
+<p>At this point, the retain count for <code>tkt</code> is 1. Moreover, since the <code>processTicketWithId:</code> method created the <code>tkt</code> object, it is now the owner and thus is responsible for cleaning it up before this method exits. Clean up is done by sending it the <code>release</code> message<br />
+Let&rsquo;s see another example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#75715e">// EXAMPLE-2
+</span><span style="color:#75715e"></span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
+{
+  Ticket<span style="color:#f92672">*</span> tkt <span style="color:#f92672">=</span> [Ticket ticketWithId:ticketId];
+  [tkt <span style="color:#66d9ef">retain</span>];
+  <span style="color:#75715e">// Do something with tkt
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// ..
+</span><span style="color:#75715e"></span>  [tkt <span style="color:#66d9ef">release</span>];
+}</code></pre></div>
+<p>In this example, the memory for <code>tkt</code> wasn&rsquo;t allocated by <code>processTicketWithId</code> method, so it doesn&rsquo;t own the <code>tkt</code> object. However, as we&rsquo;ve seen in the implementation of the Ticket class, the <code>ticketWithId:</code> method created the Ticket object and added it to the autorelease pool. In order to continue using <code>tkt</code>, we must retain it so that even if it is drained from the autorelease pool, we can still continue to use the <code>tkt</code> object. Once done, we need to clean up and send the release message.</p>
+
+<h2 id="summary-of-memory-management-rules-for-objective-c">Summary of Memory Management Rules for Objective-C</h2>
+
+<ul>
+<li><p>Rule-1: If you get/create the object from <code>new</code>, <code>alloc</code> or <code>copy</code>, you must <code>release</code> it when done.</p></li>
+
+<li><p>Rule-2: If you get the object any other way, assume that it has been autoreleased. If you want to hold on to this object, send it the <code>retain</code> message.</p></li>
+
+<li><p>Rule-3: If you <code>retain</code> an object, you must balance every <code>retain</code> with a <code>release</code>.</p></li>
+
+<li><p>Rule-4: Never send the <code>dealloc</code> message to an object directly. Others might be holding references to this object, and if deallocated, they&rsquo;ll be left with pointers to unallocated memory.</p></li>
+</ul>
+
+    
+  </div>
+
+  <div class="pagination">
+    <a href="/posts/2011-01-27-stern-brocot-tree/" class="right arrow">&#8594;</a>
+
+    <a href="#" class="top">Top</a>
+  </div>
+</main>
+
+
+    <footer>
+  <span>
+    &copy; <time datetime="2019-06-28 17:33:29.898354 -0700 PDT m=&#43;0.137188267">2019</time> Umair Saeed.
+    Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
+  </span>
+</footer>
+  </body>
+</html>

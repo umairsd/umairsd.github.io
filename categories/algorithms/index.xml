@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algorithms on Umair&#39;s Blog</title>
+    <link>http://example.com/categories/algorithms/</link>
+    <description>Recent content in algorithms on Umair&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 23 Jun 2011 13:54:07 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.com/categories/algorithms/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Finding the Start of a Loop in a Circular Linked List</title>
+      <link>http://example.com/posts/2011-06-23-finding-the-start-of-a-loop-in-a-circular-linked-list/</link>
+      <pubDate>Thu, 23 Jun 2011 13:54:07 +0000</pubDate>
+      
+      <guid>http://example.com/posts/2011-06-23-finding-the-start-of-a-loop-in-a-circular-linked-list/</guid>
+      <description>&lt;p&gt;A lot of people are familiar with the problem of detecting a loop in a linked list. The problem goes as follows: “Given a linked list, what is the algorithm to determine if it has any cycles (loops)?”&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
