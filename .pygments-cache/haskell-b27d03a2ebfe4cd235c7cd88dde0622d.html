@@ -1,0 +1,12 @@
+<div class="highlight"><pre><span class="nf">pure</span> <span class="n">f</span> <span class="o">&lt;*&gt;</span> <span class="n">pure</span> <span class="n">x</span>
+
+<span class="c1">-- applying definition of pure</span>
+<span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">&lt;*&gt;</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span>
+
+<span class="c1">-- Note that both the lists have one element each. So</span>
+<span class="c1">-- applying the definition of &lt;*&gt;, this reduces to:</span>
+<span class="p">[</span><span class="n">f</span> <span class="n">x</span><span class="p">]</span>
+
+<span class="c1">-- un-applying pure</span>
+<span class="nf">pure</span> <span class="p">(</span><span class="n">f</span> <span class="n">x</span><span class="p">)</span> <span class="c1">-- Same as the right side </span>
+</pre></div>

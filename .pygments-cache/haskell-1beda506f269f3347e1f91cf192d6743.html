@@ -1,0 +1,30 @@
+<div class="highlight"><pre><span class="nf">pure</span> <span class="p">(</span><span class="o">.</span><span class="p">)</span> <span class="o">&lt;*&gt;</span> <span class="n">u</span> <span class="o">&lt;*&gt;</span> <span class="n">v</span> <span class="o">&lt;*&gt;</span> <span class="n">w</span>
+
+<span class="c1">-- applying definition of pure</span>
+<span class="p">[(</span><span class="o">.</span><span class="p">)]</span> <span class="o">&lt;*&gt;</span> <span class="n">u</span> <span class="o">&lt;*&gt;</span> <span class="n">v</span> <span class="o">&lt;*&gt;</span> <span class="n">w</span>
+
+<span class="c1">-- as u, v, w are all lists, for clarity re-writing</span>
+<span class="c1">-- u as fs, v as gs, w as xs</span>
+<span class="p">[(</span><span class="o">.</span><span class="p">)]</span> <span class="o">&lt;*&gt;</span> <span class="n">fs</span> <span class="o">&lt;*&gt;</span> <span class="n">gs</span> <span class="o">&lt;*&gt;</span> <span class="n">xs</span>
+
+<span class="c1">-- applying definition of &lt;*&gt;</span>
+<span class="p">[(</span><span class="o">.</span><span class="p">)</span> <span class="n">f</span> <span class="o">|</span> <span class="n">f</span> <span class="ow">&lt;-</span> <span class="n">fs</span><span class="p">]</span> <span class="o">&lt;*&gt;</span> <span class="n">gs</span> <span class="o">&lt;*&gt;</span> <span class="n">xs</span>
+
+<span class="c1">-- applying definition of &lt;*&gt;</span>
+<span class="p">[</span><span class="n">z</span> <span class="n">g</span> <span class="o">|</span> <span class="n">z</span> <span class="ow">&lt;-</span> <span class="p">[(</span><span class="o">.</span><span class="p">)</span> <span class="n">f</span> <span class="o">|</span> <span class="n">f</span> <span class="ow">&lt;-</span> <span class="n">fs</span><span class="p">],</span> <span class="n">g</span> <span class="ow">&lt;-</span> <span class="n">gs</span><span class="p">]</span> <span class="o">&lt;*&gt;</span> <span class="n">xs</span>
+
+<span class="c1">-- replace the value of z, and reduce</span>
+<span class="p">[(</span><span class="o">.</span><span class="p">)</span> <span class="n">f</span> <span class="n">g</span> <span class="o">|</span> <span class="n">f</span> <span class="ow">&lt;-</span> <span class="n">fs</span><span class="p">,</span> <span class="n">g</span> <span class="ow">&lt;-</span> <span class="n">gs</span><span class="p">]</span> <span class="o">&lt;*&gt;</span> <span class="n">xs</span>
+
+<span class="c1">-- applying function composition</span>
+<span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">g</span> <span class="o">|</span> <span class="n">f</span> <span class="ow">&lt;-</span> <span class="n">fs</span><span class="p">,</span> <span class="n">g</span> <span class="ow">&lt;-</span> <span class="n">gs</span><span class="p">]</span> <span class="o">&lt;*&gt;</span> <span class="n">xs</span>
+
+<span class="c1">-- applying the definition of &lt;*&gt;</span>
+<span class="p">[</span> <span class="n">z</span> <span class="n">x</span> <span class="o">|</span> <span class="n">z</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">g</span> <span class="o">|</span> <span class="n">f</span> <span class="ow">&lt;-</span> <span class="n">fs</span><span class="p">,</span> <span class="n">g</span> <span class="ow">&lt;-</span> <span class="n">gs</span><span class="p">],</span>
+        <span class="n">x</span> <span class="ow">&lt;-</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="p">[</span> <span class="n">f</span><span class="o">.</span><span class="n">g</span> <span class="n">x</span> <span class="o">|</span> <span class="n">f</span> <span class="ow">&lt;-</span> <span class="n">fs</span><span class="p">,</span> <span class="n">g</span> <span class="ow">&lt;-</span> <span class="n">gs</span><span class="p">,</span> <span class="n">x</span> <span class="ow">&lt;-</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="c1">-- applying definition of function composition</span>
+<span class="p">[</span> <span class="n">f</span> <span class="p">(</span><span class="n">g</span> <span class="n">x</span><span class="p">)</span> <span class="o">|</span> <span class="n">f</span> <span class="ow">&lt;-</span> <span class="n">fs</span><span class="p">,</span> <span class="n">g</span> <span class="ow">&lt;-</span> <span class="n">gs</span><span class="p">,</span> <span class="n">x</span> <span class="ow">&lt;-</span> <span class="n">xs</span><span class="p">]</span> <span class="c1">-- (A)</span>
+</pre></div>

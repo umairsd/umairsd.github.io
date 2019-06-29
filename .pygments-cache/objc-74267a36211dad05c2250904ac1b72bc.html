@@ -1,0 +1,39 @@
+<div class="highlight"><pre><span class="cp">#import &quot;Ticket.h&quot;</span>
+<span class="k">@implementation</span> <span class="nc">Ticket</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">dealloc</span>
+<span class="p">{</span>
+	<span class="p">[</span><span class="n">ticketId</span> <span class="k">release</span><span class="p">];</span>
+	<span class="p">[</span><span class="nb">super</span> <span class="n">dealloc</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="nf">ticketId</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="n">ticketId</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setTicketId:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">tid</span>
+<span class="p">{</span>
+	<span class="p">[</span><span class="n">tid</span> <span class="k">retain</span><span class="p">];</span>
+	<span class="p">[</span><span class="n">ticketId</span> <span class="k">release</span><span class="p">];</span>
+	<span class="n">ticketId</span> <span class="o">=</span> <span class="n">tid</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">initWithId:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="nv">tid</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nb">self</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="n">init</span><span class="p">])</span>
+	<span class="p">{</span>
+		<span class="p">[</span><span class="nb">self</span> <span class="nl">setTicketId</span><span class="p">:</span><span class="n">tid</span><span class="p">];</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">ticketWithId:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">tid</span>
+<span class="p">{</span>
+	<span class="n">Ticket</span> <span class="o">*</span><span class="n">newTkt</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Ticket</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithId</span><span class="p">:</span><span class="n">tid</span><span class="p">];</span>
+	<span class="k">return</span> <span class="p">[</span><span class="n">newTkt</span> <span class="n">autorelease</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</pre></div>

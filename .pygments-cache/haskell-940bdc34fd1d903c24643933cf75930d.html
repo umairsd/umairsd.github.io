@@ -1,0 +1,14 @@
+<div class="highlight"><pre><span class="nf">pure</span> <span class="n">id</span> <span class="o">&lt;*&gt;</span> <span class="n">v</span>
+
+<span class="c1">-- applying definition of pure for []</span>
+<span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">&lt;*&gt;</span> <span class="n">v</span>
+
+<span class="c1">-- applying definition of &lt;*&gt;</span>
+<span class="p">[</span><span class="n">id</span> <span class="n">x</span> <span class="o">|</span> <span class="n">x</span> <span class="ow">&lt;-</span> <span class="n">v</span><span class="p">]</span>
+
+<span class="c1">-- applying id</span>
+<span class="p">[</span><span class="n">x</span> <span class="o">|</span> <span class="n">x</span> <span class="ow">&lt;-</span> <span class="n">v</span><span class="p">]</span>
+
+<span class="c1">-- list comprehension reduces to v</span>
+<span class="nf">v</span>  <span class="c1">-- Same as the right side </span>
+</pre></div>

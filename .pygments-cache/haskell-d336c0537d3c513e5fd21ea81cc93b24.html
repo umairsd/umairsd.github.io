@@ -1,0 +1,21 @@
+<div class="highlight"><pre><span class="c1">-- Takes an array of integers, and adds pairs of numbers to create a new </span>
+<span class="c1">-- array. For example, [1,2,3,4] changes to [(1+2), (2+3), (3+4)], resulting</span>
+<span class="c1">-- in [3,5,7]</span>
+<span class="nf">sumOfPairs</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Integer</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Integer</span><span class="p">]</span>
+<span class="nf">sumOfPairs</span> <span class="kt">[]</span> <span class="ow">=</span> <span class="kt">[]</span>
+<span class="nf">sumOfPairs</span> <span class="p">(</span><span class="n">x</span><span class="kt">:[]</span><span class="p">)</span> <span class="ow">=</span> <span class="kt">[]</span>
+<span class="nf">sumOfPairs</span> <span class="p">(</span><span class="n">x</span><span class="kt">:</span><span class="n">y</span><span class="kt">:</span><span class="n">ys</span><span class="p">)</span> <span class="ow">=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span> <span class="kt">:</span> <span class="n">sumOfPairs</span> <span class="p">(</span><span class="n">y</span><span class="kt">:</span><span class="n">ys</span><span class="p">)</span>
+
+
+<span class="c1">-- Given a row of Pascal&#39;s triangle, returns the next row</span>
+<span class="nf">next</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Integer</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Integer</span><span class="p">]</span>
+<span class="nf">next</span> <span class="n">xs</span> <span class="ow">=</span> <span class="mi">1</span> <span class="kt">:</span>  <span class="p">(</span><span class="n">sumOfPairs</span> <span class="n">xs</span><span class="p">)</span> <span class="o">++</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="c1">-- Generates the Pascal&#39;s triangle. This function generates an</span>
+<span class="c1">-- infinite triangle, so its usage needs to be coupled with the </span>
+<span class="c1">-- take command. For example: take 5 pascalTriangle</span>
+<span class="nf">pascalTriangle</span> <span class="ow">::</span> <span class="p">[[</span><span class="kt">Integer</span><span class="p">]]</span>
+<span class="nf">pascalTriangle</span> <span class="ow">=</span> <span class="n">pascalHelper</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="kr">where</span> <span class="n">pascalHelper</span> <span class="n">xs</span> <span class="ow">=</span> <span class="n">xs</span> <span class="kt">:</span> <span class="n">pascalHelper</span> <span class="p">(</span><span class="n">next</span> <span class="n">xs</span><span class="p">)</span>
+</pre></div>

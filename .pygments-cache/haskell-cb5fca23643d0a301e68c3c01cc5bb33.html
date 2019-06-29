@@ -1,0 +1,21 @@
+<div class="highlight"><pre><span class="nf">u</span> <span class="o">&lt;*&gt;</span> <span class="n">pure</span> <span class="n">y</span>
+
+<span class="c1">-- applying definition of pure </span>
+<span class="nf">u</span> <span class="o">&lt;*&gt;</span> <span class="p">[</span><span class="n">y</span><span class="p">]</span>   <span class="c1">-- A list of functions applied to </span>
+            <span class="c1">-- a single element list</span>
+
+<span class="c1">-- via definition of &lt;*&gt;</span>
+<span class="p">[</span><span class="n">f</span> <span class="n">y</span> <span class="o">|</span> <span class="n">f</span> <span class="ow">&lt;-</span> <span class="n">u</span><span class="p">]</span>
+
+<span class="c1">-- replacing f y by the function application operator</span>
+<span class="p">[</span><span class="n">f</span> <span class="o">$</span> <span class="n">y</span> <span class="o">|</span> <span class="n">f</span> <span class="ow">&lt;-</span> <span class="n">u</span><span class="p">]</span>
+
+<span class="c1">-- Using the section representation of the $ infix operator </span>
+<span class="p">[(</span><span class="o">$</span><span class="n">y</span><span class="p">)</span> <span class="n">f</span> <span class="o">|</span> <span class="n">f</span> <span class="ow">&lt;-</span> <span class="n">u</span><span class="p">]</span>
+
+<span class="c1">-- Un-applying the definition of &lt;*&gt;</span>
+<span class="p">[(</span><span class="o">$</span><span class="n">y</span><span class="p">)]</span> <span class="o">&lt;*&gt;</span> <span class="n">u</span>
+
+<span class="c1">-- Un-applying pure</span>
+<span class="nf">pure</span> <span class="p">(</span><span class="o">$</span><span class="n">y</span><span class="p">)</span> <span class="o">&lt;*&gt;</span> <span class="n">u</span> <span class="c1">-- Same as the right side</span>
+</pre></div>

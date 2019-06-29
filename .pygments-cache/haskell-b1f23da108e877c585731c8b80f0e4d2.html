@@ -1,0 +1,12 @@
+<div class="highlight"><pre><span class="nf">u</span> <span class="o">&lt;*&gt;</span> <span class="p">(</span><span class="n">v</span> <span class="o">&lt;*&gt;</span> <span class="n">w</span><span class="p">)</span>
+
+<span class="c1">-- applying definition of &lt;*&gt;</span>
+<span class="nf">u</span> <span class="o">&lt;*&gt;</span> <span class="p">(</span> <span class="nf">\</span><span class="n">y</span> <span class="ow">-&gt;</span> <span class="n">v</span> <span class="n">y</span> <span class="p">(</span><span class="n">w</span> <span class="n">y</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1">-- applying definition of &lt;*&gt;</span>
+<span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="n">u</span> <span class="n">x</span> <span class="p">(</span> <span class="p">(</span><span class="nf">\</span><span class="n">y</span> <span class="ow">-&gt;</span> <span class="n">v</span> <span class="n">y</span> <span class="p">(</span><span class="n">w</span> <span class="n">y</span><span class="p">))</span> <span class="n">x</span> <span class="p">)</span>
+
+<span class="c1">-- Apply the lambda ( (\y -&gt; v y (w y)) to its </span>
+<span class="c1">-- argument x, which results in:</span>
+<span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="n">u</span> <span class="n">x</span> <span class="p">(</span> <span class="n">v</span> <span class="n">x</span> <span class="p">(</span><span class="n">w</span> <span class="n">x</span><span class="p">))</span> <span class="c1">-- (A)</span>
+</pre></div>

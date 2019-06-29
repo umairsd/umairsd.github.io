@@ -1,0 +1,6 @@
+<div class="highlight"><pre><span class="c1">-- By: Neil Mitchell </span>
+<span class="c1">-- (http://neilmitchell.blogspot.com/2012/01/pascals-triangle-in-haskell.html)</span>
+
+<span class="nf">next</span> <span class="n">xs</span> <span class="ow">=</span> <span class="n">zipWith</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span> <span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">++</span> <span class="n">xs</span><span class="p">)</span> <span class="p">(</span><span class="n">xs</span> <span class="o">++</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nf">pascal</span> <span class="ow">=</span> <span class="n">iterate</span> <span class="n">next</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
