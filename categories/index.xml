@@ -2,93 +2,93 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Umair&#39;s Blog</title>
-    <link>http://umairsaeed.com/categories/</link>
+    <link>https://umairsaeed.com/categories/</link>
     <description>Recent content in Categories on Umair&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Mon, 03 Jul 2017 07:08:05 -0700</lastBuildDate>
     
-	<atom:link href="http://umairsaeed.com/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://umairsaeed.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>linklog</title>
-      <link>http://umairsaeed.com/categories/linklog/</link>
+      <link>https://umairsaeed.com/categories/linklog/</link>
       <pubDate>Mon, 03 Jul 2017 07:08:05 -0700</pubDate>
       
-      <guid>http://umairsaeed.com/categories/linklog/</guid>
+      <guid>https://umairsaeed.com/categories/linklog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>productivity</title>
-      <link>http://umairsaeed.com/categories/productivity/</link>
+      <link>https://umairsaeed.com/categories/productivity/</link>
       <pubDate>Mon, 03 Jul 2017 07:08:05 -0700</pubDate>
       
-      <guid>http://umairsaeed.com/categories/productivity/</guid>
+      <guid>https://umairsaeed.com/categories/productivity/</guid>
       <description></description>
     </item>
     
     <item>
       <title>haskell</title>
-      <link>http://umairsaeed.com/categories/haskell/</link>
+      <link>https://umairsaeed.com/categories/haskell/</link>
       <pubDate>Thu, 07 Jan 2016 05:00:29 -0800</pubDate>
       
-      <guid>http://umairsaeed.com/categories/haskell/</guid>
+      <guid>https://umairsaeed.com/categories/haskell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tools</title>
-      <link>http://umairsaeed.com/categories/tools/</link>
+      <link>https://umairsaeed.com/categories/tools/</link>
       <pubDate>Sat, 02 May 2015 16:07:28 -0700</pubDate>
       
-      <guid>http://umairsaeed.com/categories/tools/</guid>
+      <guid>https://umairsaeed.com/categories/tools/</guid>
       <description></description>
     </item>
     
     <item>
       <title>books</title>
-      <link>http://umairsaeed.com/categories/books/</link>
+      <link>https://umairsaeed.com/categories/books/</link>
       <pubDate>Thu, 26 Mar 2015 10:00:12 -0700</pubDate>
       
-      <guid>http://umairsaeed.com/categories/books/</guid>
+      <guid>https://umairsaeed.com/categories/books/</guid>
       <description></description>
     </item>
     
     <item>
       <title>puzzles</title>
-      <link>http://umairsaeed.com/categories/puzzles/</link>
+      <link>https://umairsaeed.com/categories/puzzles/</link>
       <pubDate>Wed, 18 Jul 2012 13:46:06 +0000</pubDate>
       
-      <guid>http://umairsaeed.com/categories/puzzles/</guid>
+      <guid>https://umairsaeed.com/categories/puzzles/</guid>
       <description></description>
     </item>
     
     <item>
       <title>algorithms</title>
-      <link>http://umairsaeed.com/categories/algorithms/</link>
+      <link>https://umairsaeed.com/categories/algorithms/</link>
       <pubDate>Thu, 23 Jun 2011 13:54:07 +0000</pubDate>
       
-      <guid>http://umairsaeed.com/categories/algorithms/</guid>
+      <guid>https://umairsaeed.com/categories/algorithms/</guid>
       <description></description>
     </item>
     
     <item>
       <title>java</title>
-      <link>http://umairsaeed.com/categories/java/</link>
+      <link>https://umairsaeed.com/categories/java/</link>
       <pubDate>Thu, 23 Jun 2011 13:54:07 +0000</pubDate>
       
-      <guid>http://umairsaeed.com/categories/java/</guid>
+      <guid>https://umairsaeed.com/categories/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>iOS</title>
-      <link>http://umairsaeed.com/categories/ios/</link>
+      <link>https://umairsaeed.com/categories/ios/</link>
       <pubDate>Mon, 24 Jan 2011 19:10:40 +0000</pubDate>
       
-      <guid>http://umairsaeed.com/categories/ios/</guid>
+      <guid>https://umairsaeed.com/categories/ios/</guid>
       <description></description>
     </item>
     
