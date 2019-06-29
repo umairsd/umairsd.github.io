@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: 
-
-Sitemap: http://umairsd.github.io/sitemap.xml 
