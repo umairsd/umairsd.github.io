@@ -1,9 +1,0 @@
-<div class="highlight"><pre><span class="c1">-- A: Function that finds the element of Pascal&#39;s Triangle for a given row &amp; column</span>
-<span class="nf">pascal</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
-<span class="nf">pascal</span> <span class="mi">0</span> <span class="kr">_</span> <span class="ow">=</span> <span class="mi">1</span>
-<span class="nf">pascal</span> <span class="kr">_</span> <span class="mi">0</span> <span class="ow">=</span> <span class="mi">1</span>
-<span class="nf">pascal</span> <span class="n">row</span> <span class="n">col</span>
-    <span class="o">|</span> <span class="n">row</span> <span class="o">==</span> <span class="n">col</span> <span class="ow">=</span> <span class="mi">1</span>
-    <span class="o">|</span> <span class="n">col</span> <span class="o">&gt;</span> <span class="n">row</span>  <span class="ow">=</span> <span class="ne">error</span> <span class="s">&quot;Column can&#39;t be greater than row&quot;</span>
-    <span class="o">|</span> <span class="n">otherwise</span>  <span class="ow">=</span> <span class="p">(</span><span class="n">pascal</span> <span class="p">(</span><span class="n">row</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">col</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="n">pascal</span> <span class="p">(</span><span class="n">row</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">col</span><span class="p">)</span>
-</pre></div>
