@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Applicative Laws for `Maybe` Type &middot; Umair&#39;s Blog
+  </title>
+
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+  
+  <link href="" rel="alternate"
+    type="application/rss+xml" title="Umair&#39;s Blog" />
+
+</head>
+  <body>
+    <nav class="nav">
+  <div class="nav-container">
+    <a href="/">
+      <h2 class="nav-title">Umair&#39;s Blog</h2>
+    </a>
+
+    <ul>
+      
+      
+        <li>
+          <a href="/" title="">Posts</a>
+        </li>
+      
+        <li>
+          <a href="/categories/" title="">Categories</a>
+        </li>
+      
+        <li>
+          <a href="/about/" title="">About</a>
+        </li>
+      
+    </ul>
+
+  </div>
+</nav>
+
+    
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <span>Written by</span>
+        Umair Saeed
+        <br>
+        <span>on&nbsp;</span><time datetime="2016-01-05 07:32:58 -0800 PST">January 5, 2016</time>
+
+    
+        <ul class="post-ul">
+        <span>in</span> [
+          
+            <li class="post-li"><a href="/categories/haskell"> haskell</a></li>
+          ]
+        </ul>
+</div>
+
+    <h1 class="post-title">
+  
+  
+    <a href="/posts/2016-01-05-applicative-laws-for-maybe-type/" class="catalog-title-anchor">
+      Applicative Laws for <code>Maybe</code> Type
+    </a>
+  
+</h1>
+<div class="post-line"></div>
+
+
+    
+
+    <p>Applicative functors come with a set of laws that apply for all Applicative instances. These laws are as follows:</p>
+
+<ul>
+<li><p>Identity: <code>pure id &lt;*&gt; v = v</code></p></li>
+
+<li><p>Homomorphism: <code>pure f &lt;*&gt; pure x = pure (f x)</code></p></li>
+
+<li><p>Interchange: <code>u &lt;*&gt; pure y = pure ($y) &lt;*&gt; u</code></p></li>
+
+<li><p>Composition: <code>pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w = u &lt;*&gt; (v &lt;*&gt; w)</code></p></li>
+</ul>
+
+<p>For more information about these laws, check out <a href="https://wiki.haskell.org/Typeclassopedia#Laws_2" title="Applicative Laws">this Haskell wiki post</a>.</p>
+
+<p><code>Maybe</code> is an Applicative functor, and this post will verify that the applicative laws hold for the <code>Maybe</code> instance.</p>
+
+<p>Before we begin, let&rsquo;s review the <a href="https://hackage.haskell.org/package/base-4.8.1.0/docs/Control-Applicative.html" title="Control.Applicative">definition</a> for <code>Applicative</code> type-class:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#66d9ef">class</span> <span style="color:#66d9ef">Functor</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">Applicative</span> <span style="color:#a6e22e">f</span> <span style="color:#66d9ef">where</span>
+    <span style="color:#a6e22e">pure</span> <span style="color:#f92672">::</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">f</span> <span style="color:#a6e22e">a</span>
+    (<span style="color:#f92672">&lt;*&gt;</span>) <span style="color:#f92672">::</span> <span style="color:#a6e22e">f</span> (<span style="color:#a6e22e">a</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">b</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">f</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">f</span> <span style="color:#a6e22e">b</span></code></pre></div>
+<p><code>Maybe</code> is made an instance of the <code>Applicative</code> class as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#66d9ef">instance</span> <span style="color:#66d9ef">Applicative</span> <span style="color:#66d9ef">Maybe</span> <span style="color:#66d9ef">where</span>
+    <span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">x</span>                   <span style="color:#f92672">=</span> <span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">x</span>
+    (<span style="color:#f92672">&lt;*&gt;</span>) <span style="color:#66d9ef">Nothing</span>  <span style="color:#66d9ef">_</span>         <span style="color:#f92672">=</span> <span style="color:#66d9ef">Nothing</span>
+    (<span style="color:#f92672">&lt;*&gt;</span>) (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>) <span style="color:#a6e22e">someMaybe</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fmap</span> <span style="color:#a6e22e">f</span> <span style="color:#a6e22e">someMaybe</span></code></pre></div>
+<p>Note that the last line above <a href="http://umairsaeed.com/blog/2015/08/21/maybe-as-an-applicative-functor/" title="Maybe as an Applicative Functor">can be re-written as</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell">    (<span style="color:#f92672">&lt;*&gt;</span>) (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>) <span style="color:#66d9ef">Nothing</span>  <span style="color:#f92672">=</span> <span style="color:#66d9ef">Nothing</span>
+    (<span style="color:#f92672">&lt;*&gt;</span>) (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>) (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">x</span>) <span style="color:#f92672">=</span> <span style="color:#66d9ef">Just</span> (<span style="color:#a6e22e">f</span> <span style="color:#a6e22e">x</span>)</code></pre></div>
+<p>Now, let&rsquo;s test the Applicative laws for the <code>Maybe</code> type one by one:</p>
+
+<h2 id="identity">Identity</h2>
+
+<p>We need to prove that the following holds for the <code>Maybe</code> type:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">id</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">v</span></code></pre></div>
+<p>Let&rsquo;s start from the <em>left</em> side of the equation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">id</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">v</span>
+
+<span style="color:#75715e">-- applying definition of pure for Maybe</span>
+(<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">id</span>) <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">v</span>
+<span style="color:#75715e">-- v could be either Nothing, or (Just x)</span>
+<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">v</span> <span style="color:#66d9ef">of</span>
+    <span style="color:#66d9ef">Nothing</span>  <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Nothing</span>
+    (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">x</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Just</span> (<span style="color:#a6e22e">id</span> <span style="color:#a6e22e">x</span>)
+<span style="color:#75715e">-- applying id to x is simply x</span>
+<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">v</span> <span style="color:#66d9ef">of</span>
+    <span style="color:#66d9ef">Nothing</span>  <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Nothing</span>
+    (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">x</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">x</span>
+
+<span style="color:#a6e22e">v</span>  <span style="color:#75715e">-- the right side of equation</span></code></pre></div>
+<h2 id="homomorphism">Homomorphism</h2>
+
+<p>The law&rsquo;s statement is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pure</span> (<span style="color:#a6e22e">f</span> <span style="color:#a6e22e">x</span>)</code></pre></div>
+<p>To prove this for <code>Maybe</code> type, let&rsquo;s begin from the <em>left</em> side of the equation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">x</span>
+
+<span style="color:#75715e">-- applying definition of pure</span>
+(<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>) <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">x</span>)
+<span style="color:#75715e">-- applying defintion of &lt;*&gt;</span>
+<span style="color:#66d9ef">Just</span> (<span style="color:#a6e22e">f</span> <span style="color:#a6e22e">x</span>)
+<span style="color:#75715e">-- un-applying the definition of pure</span>
+<span style="color:#a6e22e">pure</span> (<span style="color:#a6e22e">f</span> <span style="color:#a6e22e">x</span>) <span style="color:#75715e">-- the right side</span></code></pre></div>
+<h2 id="interchange">Interchange</h2>
+
+<p>The law&rsquo;s statement is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pure</span> (<span style="color:#f92672">$</span><span style="color:#a6e22e">y</span>) <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">u</span></code></pre></div>
+<p>Starting from the <em>left</em> side:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">y</span>
+
+<span style="color:#75715e">-- applying definition of pure</span>
+<span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">y</span>)
+
+<span style="color:#75715e">-- u can be either Nothing, or (Just f). Let&#39;s evaluate both</span>
+<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">u</span> <span style="color:#66d9ef">of</span>
+    <span style="color:#66d9ef">Nothing</span>  <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Nothing</span>
+    (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Just</span> (<span style="color:#a6e22e">f</span> <span style="color:#a6e22e">y</span>)
+
+<span style="color:#75715e">-- re-writing (f y) using function application operator</span>
+<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">u</span> <span style="color:#66d9ef">of</span>
+    <span style="color:#66d9ef">Nothing</span>  <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Nothing</span>
+    (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Just</span> (<span style="color:#a6e22e">f</span> <span style="color:#f92672">$</span> <span style="color:#a6e22e">y</span>)
+
+<span style="color:#75715e">-- Using the section representation of the $ infix operator</span>
+<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">u</span> <span style="color:#66d9ef">of</span>
+    <span style="color:#66d9ef">Nothing</span>  <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Nothing</span>
+    (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Just</span> ((<span style="color:#f92672">$</span><span style="color:#a6e22e">y</span>) <span style="color:#a6e22e">f</span>)
+
+<span style="color:#75715e">-- Un-applying the definition of &lt;*&gt;</span>
+<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">u</span> <span style="color:#66d9ef">of</span>
+    <span style="color:#66d9ef">Nothing</span>  <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Nothing</span>
+    (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Just</span> (<span style="color:#f92672">$</span><span style="color:#a6e22e">y</span>) <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>)
+
+<span style="color:#75715e">-- Replacing the Nothing clause with an equivalent (via</span>
+<span style="color:#75715e">-- the defintion) of &lt;*&gt; for Maybe</span>
+<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">u</span> <span style="color:#66d9ef">of</span>
+    <span style="color:#66d9ef">Nothing</span>  <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Just</span> (<span style="color:#f92672">$</span><span style="color:#a6e22e">y</span>) <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#66d9ef">Nothing</span>
+    (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Just</span> (<span style="color:#f92672">$</span><span style="color:#a6e22e">y</span>) <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>)
+
+<span style="color:#75715e">-- Un-applying the definition of pure and u</span>
+<span style="color:#a6e22e">pure</span> (<span style="color:#f92672">$</span><span style="color:#a6e22e">y</span>) <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">u</span> <span style="color:#75715e">-- Equal to the right side</span></code></pre></div>
+<h2 id="composition">Composition</h2>
+
+<p>The law&rsquo;s statement is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> (<span style="color:#f92672">.</span>) <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">w</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#a6e22e">v</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">w</span>)</code></pre></div>
+<p>Starting from the <em>left</em> side:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> (<span style="color:#f92672">.</span>) <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">w</span>
+
+<span style="color:#75715e">-- applying definition of pure</span>
+(<span style="color:#66d9ef">Just</span> (<span style="color:#f92672">.</span>)) <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">w</span>
+
+<span style="color:#75715e">-- u, v &amp; w can all be either Nothing or (Just something).</span>
+<span style="color:#75715e">-- From the definition of &lt;*&gt;, we know that if either</span>
+<span style="color:#75715e">-- argument to &lt;*&gt; is Nothing, the entire expression reduces</span>
+<span style="color:#75715e">-- to Nothing.</span>
+<span style="color:#75715e">-- Therefore, I am only going to focus on the Just cases</span>
+(<span style="color:#66d9ef">Just</span> (<span style="color:#f92672">.</span>)) <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>) <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">g</span>) <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">x</span>)
+
+<span style="color:#75715e">-- Appying &lt;*&gt; to the first two terms</span>
+(<span style="color:#66d9ef">Just</span> (<span style="color:#f92672">.</span>) <span style="color:#a6e22e">f</span>) <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">g</span>) <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">x</span>)
+
+<span style="color:#75715e">-- Appying &lt;*&gt; to the first two terms again</span>
+(<span style="color:#66d9ef">Just</span> (<span style="color:#f92672">.</span>) <span style="color:#a6e22e">f</span> <span style="color:#a6e22e">g</span>) <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">x</span>)
+
+<span style="color:#75715e">-- Applying the function composition</span>
+(<span style="color:#66d9ef">Just</span> (<span style="color:#a6e22e">f</span><span style="color:#f92672">.</span><span style="color:#a6e22e">g</span>) ) <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">x</span>)
+
+<span style="color:#75715e">-- Applying &lt;*&gt; one more time</span>
+(<span style="color:#66d9ef">Just</span> (<span style="color:#a6e22e">f</span><span style="color:#f92672">.</span><span style="color:#a6e22e">g</span>) <span style="color:#a6e22e">x</span>)
+
+<span style="color:#75715e">-- via the definition of the function composition</span>
+<span style="color:#75715e">-- operator</span>
+(<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span> (<span style="color:#a6e22e">g</span> <span style="color:#a6e22e">x</span>))
+
+<span style="color:#75715e">-- Applying Homomorphism law</span>
+(<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>) <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#66d9ef">Just</span> (<span style="color:#a6e22e">g</span> <span style="color:#a6e22e">x</span>)
+
+<span style="color:#75715e">-- Applying Homomorphism law to the 2nd term</span>
+(<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">f</span>) <span style="color:#f92672">&lt;*&gt;</span> ( (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">g</span>) <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#66d9ef">Just</span> <span style="color:#a6e22e">x</span>) )
+
+<span style="color:#75715e">-- Un-applying the definitions of u, v, w</span>
+<span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#a6e22e">v</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">w</span>)    <span style="color:#75715e">-- Equal to the right side</span></code></pre></div>
+
+    
+  </div>
+
+  <div class="pagination">
+    <a href="/posts/2015-08-21-maybe-as-an-applicative-functor/" class="left arrow">&#8592;</a>
+    <a href="/posts/2016-01-06-applicative-laws-for-list-type/" class="right arrow">&#8594;</a>
+
+    <a href="#" class="top">Top</a>
+  </div>
+</main>
+
+
+    <footer>
+  <span>
+    &copy; <time datetime="2019-06-28 17:58:24.446382 -0700 PDT m=&#43;0.123489443">2019</time> Umair Saeed.
+    Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
+  </span>
+</footer>
+  </body>
+</html>

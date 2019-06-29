@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Sublime Text &amp;amp; Haskell &middot; Umair&#39;s Blog
+  </title>
+
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+  
+  <link href="" rel="alternate"
+    type="application/rss+xml" title="Umair&#39;s Blog" />
+
+</head>
+  <body>
+    <nav class="nav">
+  <div class="nav-container">
+    <a href="/">
+      <h2 class="nav-title">Umair&#39;s Blog</h2>
+    </a>
+
+    <ul>
+      
+      
+        <li>
+          <a href="/" title="">Posts</a>
+        </li>
+      
+        <li>
+          <a href="/categories/" title="">Categories</a>
+        </li>
+      
+        <li>
+          <a href="/about/" title="">About</a>
+        </li>
+      
+    </ul>
+
+  </div>
+</nav>
+
+    
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <span>Written by</span>
+        Umair Saeed
+        <br>
+        <span>on&nbsp;</span><time datetime="2015-05-02 16:07:28 -0700 PDT">May 2, 2015</time>
+
+    
+        <ul class="post-ul">
+        <span>in</span> [
+          
+            <li class="post-li"><a href="/categories/haskell"> haskell</a></li>
+          
+            <li class="post-li"><a href="/categories/tools"> tools</a></li>
+          ]
+        </ul>
+</div>
+
+    <h1 class="post-title">
+  
+  
+    <a href="/posts/2015-05-02-sublime-text-and-haskell/" class="catalog-title-anchor">
+      Sublime Text &amp; Haskell
+    </a>
+  
+</h1>
+<div class="post-line"></div>
+
+
+    
+
+    <p>There are several excellent posts about setting up the Haskell development environment. One of the best ones is Tony Lawrence&rsquo;s <a href="http://tonylawrence.com/blog/2014/01/01/configuring-your-haskell-environment/" title="Configuring Your Haskell Environment">Configuring Your Haskell Environment</a>. I encourage you to take a look at his post first.</p>
+
+<p>Tony&rsquo;s post is more than a year old though, and it looks like a couple of things have changed since he wrote his post, especially with the latest version of Haskell and <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">SublimeHaskell</a>. I wasted a good chunk of time trying to get around those problems, so now writing this post in case others run into similar issues when setting up the SublimeHaskell plugin.</p>
+
+<!-- more -->
+
+<p>Here&rsquo;s a summary of the steps to setup the Haskell dev environment (from <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">Tony&rsquo;s blog</a>).</p>
+
+<ul>
+<li>Install the Haskell platform.<br /></li>
+<li>Issue <code>cabal update</code> to update the list of available packages for Haskell.<br /></li>
+<li>Install the requisite packages by issuing <code>cabal install aeson haskell-src-exts haddock hdevtools</code>.<br /></li>
+<li>Install Sublime Text 3.<br /></li>
+<li>Install Package Control for Sublime Text 3.<br /></li>
+<li>Install SublimeHaskell via Package Control.<br />
+<br /></li>
+</ul>
+
+<p>This last step doesn&rsquo;t work seamlessly. When I installed SublimeHaskell, I ran into the following error message in Sublime Text:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">SublimeHaskell: Failed to compile ModuleInspector
+
+/Users/umair/Library/Application Support/Sublime Text 3/Packages/SublimeHaskell/ModuleInspector.hs:141:12:
+    Not in scope: data constructor ‘H.PNeg’
+    Perhaps you meant ‘H.PRec’ (imported from Language.Haskell.Exts)</code></pre></div>
+<p>The problem is described in more detail in <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a> on <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">SublimeHaskell&rsquo;s GitHub page</a>. The summary is that the master branch of SublimeHaskell is too slow to accomodate the removal of <code>PNeg</code> from <code>haskell-src-exts</code>. The solution is to use the <code>hsdev</code> branch of SublimeHaskell. This is done as follows (recommended by <a href="https://github.com/MoreAxes" title="GitHub user MoreAxes">MoreAxes</a> on comment thread for <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a>):</p>
+
+<blockquote>
+<ul>
+<li>In Sublime Text, launch Package Control (<code>cmd-shift-p</code>), and use the &lsquo;Add Repository&rsquo; command to add <code>https://github.com/SublimeHaskell/SublimeHaskell/tree/hsdev</code>.<br /></li>
+<li>Install SublimeHaskell with Package Control normally. Package Control looks in user-defined repositories first, so it is able to get SublimeHaskell from the <code>hsdev</code> branch.<br /></li>
+<li>Restart Sublime Text.<br /></li>
+</ul>
+</blockquote>
+
+<p>You can now enter and build Haskell code from Sublime Text. To verify your setup, enter the following code in Sublime Text, and then hit <code>cmd-B</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">main</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">IO</span>()
+<span style="color:#a6e22e">main</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span>
+    <span style="color:#a6e22e">print</span> <span style="color:#e6db74">&#34;Hello World&#34;</span></code></pre></div>
+<p>You will see the following printed:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">&#34;Hello World&#34;
+[Finished in 0.2s]</code></pre></div>
+<p>Here&rsquo;s a screenshot of my test file, with the output of the program:</p>
+
+<p><img src="/img/sublime-text-haskell-test.png" alt="Haskell in Sublime Text" /></p>
+
+    
+  </div>
+
+  <div class="pagination">
+    <a href="/posts/2015-03-27-why-racket-why-lisp/" class="left arrow">&#8592;</a>
+    <a href="/posts/2015-05-04-talking-about-money/" class="right arrow">&#8594;</a>
+
+    <a href="#" class="top">Top</a>
+  </div>
+</main>
+
+
+    <footer>
+  <span>
+    &copy; <time datetime="2019-06-28 17:58:24.444114 -0700 PDT m=&#43;0.121221931">2019</time> Umair Saeed.
+    Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
+  </span>
+</footer>
+  </body>
+</html>
