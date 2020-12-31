@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>puzzles on Umair&#39;s Blog</title>
@@ -6,11 +6,7 @@
     <description>Recent content in puzzles on Umair&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 18 Jul 2012 13:46:06 +0000</lastBuildDate>
-    
-	<atom:link href="https://umairsaeed.com/categories/puzzles/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 18 Jul 2012 13:46:06 +0000</lastBuildDate><atom:link href="https://umairsaeed.com/categories/puzzles/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A Quine in Objective-C</title>
       <link>https://umairsaeed.com/posts/2012-07-18-a-quine-in-objective-c/</link>
@@ -27,9 +23,8 @@
       
       <guid>https://umairsaeed.com/posts/2011-01-27-stern-brocot-tree/</guid>
       <description>&lt;p&gt;Stern-Brocot tree is a tree data structure whose vertices correspond to the set of non-negative rational numbers. Thus, this tree provides a very elegant way for constructing the set of fractions &lt;code&gt;m/n&lt;/code&gt;, where &lt;code&gt;m&lt;/code&gt; and &lt;code&gt;n&lt;/code&gt; are relatively prime. To construct the tree, the basic idea is to start with two fractions (&lt;code&gt;0/1&lt;/code&gt;, &lt;code&gt;1/0&lt;/code&gt;) and then repeat the following operation:&lt;/p&gt;
-
 &lt;blockquote&gt;
-&lt;p&gt;Insert (m+m&amp;rsquo;)/(n+n&amp;rsquo;) between two adjacent fractions m/n and m&amp;rsquo;/n&amp;rsquo;&lt;/p&gt;
+&lt;p&gt;Insert (m+m&#39;)/(n+n&#39;) between two adjacent fractions m/n and m&#39;/n&#39;&lt;/p&gt;
 &lt;/blockquote&gt;</description>
     </item>
     

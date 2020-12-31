@@ -60,12 +60,14 @@
         <span>on&nbsp;</span><time datetime="2016-01-06 05:00:58 -0800 PST">January 6, 2016</time>
 
     
-        <ul class="post-ul">
-        <span>in</span> [
-          
-            <li class="post-li"><a href="/categories/haskell"> haskell</a></li>
-          ]
-        </ul>
+        
+            <ul class="post-ul">
+            <span>in</span> [
+              
+                <li class="post-li"><a href="/categories/haskell"> haskell</a></li>
+              ]
+            </ul>
+        
 </div>
 
     <h1 class="post-title">
@@ -82,136 +84,132 @@
     
 
     <p>Haskell&rsquo;s list type <code>[]</code> is an Applicative functor. Similar to the previous post, this post will verify that the applicative laws hold for the <code>[]</code> type.</p>
-
 <p>This is Part-2 of my series on verifying Applicative laws for various Haskell types. Part-1 is <a href="http://umairsaeed.com/blog/2016/01/05/applicative-laws-for-maybe-type/">Applicative Laws for Maybe Type</a>.</p>
-
 <p>For reference, <code>[]</code> is made an instance of the <code>Applicative</code> class as:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#66d9ef">instance</span> <span style="color:#66d9ef">Applicative</span> <span style="color:#66d9ef">[]</span> <span style="color:#66d9ef">where</span>
-    <span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">x</span>      <span style="color:#f92672">=</span> [<span style="color:#a6e22e">x</span>]
-    (<span style="color:#f92672">&lt;*&gt;</span>) <span style="color:#a6e22e">fs</span> <span style="color:#a6e22e">xs</span> <span style="color:#f92672">=</span> [<span style="color:#a6e22e">f</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fs</span>, <span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xs</span>]</code></pre></div>
-<p>For review, here are the applicative laws:</p>
-
+    pure x      <span style="color:#f92672">=</span> [x]
+    (<span style="color:#f92672">&lt;*&gt;</span>) fs xs <span style="color:#f92672">=</span> [f x <span style="color:#f92672">|</span> f <span style="color:#f92672">&lt;-</span> fs, x <span style="color:#f92672">&lt;-</span> xs]
+</code></pre></div><p>For review, here are the applicative laws:</p>
 <ul>
-<li><p>Identity: <code>pure id &lt;*&gt; v = v</code></p></li>
-
-<li><p>Homomorphism: <code>pure f &lt;*&gt; pure x = pure (f x)</code></p></li>
-
-<li><p>Interchange: <code>u &lt;*&gt; pure y = pure ($y) &lt;*&gt; u</code></p></li>
-
-<li><p>Composition: <code>pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w = u &lt;*&gt; (v &lt;*&gt; w)</code></p></li>
+<li>
+<p>Identity: <code>pure id &lt;*&gt; v = v</code></p>
+</li>
+<li>
+<p>Homomorphism: <code>pure f &lt;*&gt; pure x = pure (f x)</code></p>
+</li>
+<li>
+<p>Interchange: <code>u &lt;*&gt; pure y = pure ($y) &lt;*&gt; u</code></p>
+</li>
+<li>
+<p>Composition: <code>pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w = u &lt;*&gt; (v &lt;*&gt; w)</code></p>
+</li>
 </ul>
-
 <p>Now, let’s test the Applicative laws for the <code>[]</code> type one by one:</p>
-
 <h2 id="identity">Identity</h2>
-
 <p>We need to prove that the following holds for the <code>[]</code> type:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">id</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">v</span></code></pre></div>
-<p>Consider the <em>left</em> side of the equation:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">id</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">v</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> id <span style="color:#f92672">&lt;*&gt;</span> v <span style="color:#f92672">=</span> v
+</code></pre></div><p>Consider the <em>left</em> side of the equation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> id <span style="color:#f92672">&lt;*&gt;</span> v
 
 <span style="color:#75715e">-- applying definition of pure for []</span>
-[<span style="color:#a6e22e">id</span>] <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">v</span>
+[id] <span style="color:#f92672">&lt;*&gt;</span> v
 
 <span style="color:#75715e">-- applying definition of &lt;*&gt;</span>
-[<span style="color:#a6e22e">id</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">v</span>]
+[id x <span style="color:#f92672">|</span> x <span style="color:#f92672">&lt;-</span> v]
 
 <span style="color:#75715e">-- applying id</span>
-[<span style="color:#a6e22e">x</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">v</span>]
+[x <span style="color:#f92672">|</span> x <span style="color:#f92672">&lt;-</span> v]
 
 <span style="color:#75715e">-- list comprehension reduces to v</span>
-<span style="color:#a6e22e">v</span>  <span style="color:#75715e">-- Same as the right side</span></code></pre></div>
-<h2 id="homomorphism">Homomorphism</h2>
-
+<span style="color:#a6e22e">v</span>  <span style="color:#75715e">-- Same as the right side</span>
+</code></pre></div><h2 id="homomorphism">Homomorphism</h2>
 <p>The law&rsquo;s statement is:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pure</span> (<span style="color:#a6e22e">f</span> <span style="color:#a6e22e">x</span>)</code></pre></div>
-<p>Starting from the <em>left</em> side:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">x</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> f <span style="color:#f92672">&lt;*&gt;</span> pure x <span style="color:#f92672">=</span> pure (f x)
+</code></pre></div><p>Starting from the <em>left</em> side:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> f <span style="color:#f92672">&lt;*&gt;</span> pure x
 
 <span style="color:#75715e">-- applying definition of pure</span>
-[<span style="color:#a6e22e">f</span>] <span style="color:#f92672">&lt;*&gt;</span> [<span style="color:#a6e22e">x</span>]
+[f] <span style="color:#f92672">&lt;*&gt;</span> [x]
 
 <span style="color:#75715e">-- Note that both the lists have one element each. So</span>
 <span style="color:#75715e">-- applying the definition of &lt;*&gt;, this reduces to:</span>
-[<span style="color:#a6e22e">f</span> <span style="color:#a6e22e">x</span>]
+[f x]
 
 <span style="color:#75715e">-- un-applying pure</span>
-<span style="color:#a6e22e">pure</span> (<span style="color:#a6e22e">f</span> <span style="color:#a6e22e">x</span>) <span style="color:#75715e">-- Same as the right side</span></code></pre></div>
-<h2 id="interchange">Interchange</h2>
-
+<span style="color:#a6e22e">pure</span> (f x) <span style="color:#75715e">-- Same as the right side</span>
+</code></pre></div><h2 id="interchange">Interchange</h2>
 <p>The law&rsquo;s statement is:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pure</span> (<span style="color:#f92672">$</span><span style="color:#a6e22e">y</span>) <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">u</span></code></pre></div>
-<p>Starting from the <em>left</em> side,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">y</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> pure y <span style="color:#f92672">=</span> pure (<span style="color:#f92672">$</span>y) <span style="color:#f92672">&lt;*&gt;</span> u
+</code></pre></div><p>Starting from the <em>left</em> side,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> pure y
 
 <span style="color:#75715e">-- applying definition of pure</span>
-<span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> [<span style="color:#a6e22e">y</span>]   <span style="color:#75715e">-- A list of functions applied to</span>
+<span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> [y]   <span style="color:#75715e">-- A list of functions applied to</span>
             <span style="color:#75715e">-- a single element list</span>
 
 <span style="color:#75715e">-- via definition of &lt;*&gt;</span>
-[<span style="color:#a6e22e">f</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">u</span>]
+[f y <span style="color:#f92672">|</span> f <span style="color:#f92672">&lt;-</span> u]
 
 <span style="color:#75715e">-- replacing f y by the function application operator</span>
-[<span style="color:#a6e22e">f</span> <span style="color:#f92672">$</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">u</span>]
+[f <span style="color:#f92672">$</span> y <span style="color:#f92672">|</span> f <span style="color:#f92672">&lt;-</span> u]
 
 <span style="color:#75715e">-- Using the section representation of the $ infix operator</span>
-[(<span style="color:#f92672">$</span><span style="color:#a6e22e">y</span>) <span style="color:#a6e22e">f</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">u</span>]
+[(<span style="color:#f92672">$</span>y) f <span style="color:#f92672">|</span> f <span style="color:#f92672">&lt;-</span> u]
 
 <span style="color:#75715e">-- Un-applying the definition of &lt;*&gt;</span>
-[(<span style="color:#f92672">$</span><span style="color:#a6e22e">y</span>)] <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">u</span>
+[(<span style="color:#f92672">$</span>y)] <span style="color:#f92672">&lt;*&gt;</span> u
 
 <span style="color:#75715e">-- Un-applying pure</span>
-<span style="color:#a6e22e">pure</span> (<span style="color:#f92672">$</span><span style="color:#a6e22e">y</span>) <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">u</span> <span style="color:#75715e">-- Same as the right side</span></code></pre></div>
-<h2 id="composition">Composition</h2>
-
+<span style="color:#a6e22e">pure</span> (<span style="color:#f92672">$</span>y) <span style="color:#f92672">&lt;*&gt;</span> u <span style="color:#75715e">-- Same as the right side</span>
+</code></pre></div><h2 id="composition">Composition</h2>
 <p>The law&rsquo;s statement is:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> (<span style="color:#f92672">.</span>) <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">w</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#a6e22e">v</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">w</span>)</code></pre></div>
-<p>Starting from the <em>left</em>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> (<span style="color:#f92672">.</span>) <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">w</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> (<span style="color:#f92672">.</span>) <span style="color:#f92672">&lt;*&gt;</span> u <span style="color:#f92672">&lt;*&gt;</span> v <span style="color:#f92672">&lt;*&gt;</span> w <span style="color:#f92672">=</span> u <span style="color:#f92672">&lt;*&gt;</span> (v <span style="color:#f92672">&lt;*&gt;</span> w)
+</code></pre></div><p>Starting from the <em>left</em>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> (<span style="color:#f92672">.</span>) <span style="color:#f92672">&lt;*&gt;</span> u <span style="color:#f92672">&lt;*&gt;</span> v <span style="color:#f92672">&lt;*&gt;</span> w
 
 <span style="color:#75715e">-- applying definition of pure</span>
-[(<span style="color:#f92672">.</span>)] <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">w</span>
+[(<span style="color:#f92672">.</span>)] <span style="color:#f92672">&lt;*&gt;</span> u <span style="color:#f92672">&lt;*&gt;</span> v <span style="color:#f92672">&lt;*&gt;</span> w
 
 <span style="color:#75715e">-- as u, v, w are all lists, for clarity re-writing</span>
 <span style="color:#75715e">-- u as fs, v as gs, w as xs</span>
-[(<span style="color:#f92672">.</span>)] <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">fs</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">gs</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">xs</span>
+[(<span style="color:#f92672">.</span>)] <span style="color:#f92672">&lt;*&gt;</span> fs <span style="color:#f92672">&lt;*&gt;</span> gs <span style="color:#f92672">&lt;*&gt;</span> xs
 
 <span style="color:#75715e">-- applying definition of &lt;*&gt;</span>
-[(<span style="color:#f92672">.</span>) <span style="color:#a6e22e">f</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fs</span>] <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">gs</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">xs</span>
+[(<span style="color:#f92672">.</span>) f <span style="color:#f92672">|</span> f <span style="color:#f92672">&lt;-</span> fs] <span style="color:#f92672">&lt;*&gt;</span> gs <span style="color:#f92672">&lt;*&gt;</span> xs
 
 <span style="color:#75715e">-- applying definition of &lt;*&gt;</span>
-[<span style="color:#a6e22e">z</span> <span style="color:#a6e22e">g</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">z</span> <span style="color:#f92672">&lt;-</span> [(<span style="color:#f92672">.</span>) <span style="color:#a6e22e">f</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fs</span>], <span style="color:#a6e22e">g</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">gs</span>] <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">xs</span>
+[z g <span style="color:#f92672">|</span> z <span style="color:#f92672">&lt;-</span> [(<span style="color:#f92672">.</span>) f <span style="color:#f92672">|</span> f <span style="color:#f92672">&lt;-</span> fs], g <span style="color:#f92672">&lt;-</span> gs] <span style="color:#f92672">&lt;*&gt;</span> xs
 
 <span style="color:#75715e">-- replace the value of z, and reduce</span>
-[(<span style="color:#f92672">.</span>) <span style="color:#a6e22e">f</span> <span style="color:#a6e22e">g</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fs</span>, <span style="color:#a6e22e">g</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">gs</span>] <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">xs</span>
+[(<span style="color:#f92672">.</span>) f g <span style="color:#f92672">|</span> f <span style="color:#f92672">&lt;-</span> fs, g <span style="color:#f92672">&lt;-</span> gs] <span style="color:#f92672">&lt;*&gt;</span> xs
 
 <span style="color:#75715e">-- applying function composition</span>
-[<span style="color:#a6e22e">f</span><span style="color:#f92672">.</span><span style="color:#a6e22e">g</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fs</span>, <span style="color:#a6e22e">g</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">gs</span>] <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">xs</span>
+[f<span style="color:#f92672">.</span>g <span style="color:#f92672">|</span> f <span style="color:#f92672">&lt;-</span> fs, g <span style="color:#f92672">&lt;-</span> gs] <span style="color:#f92672">&lt;*&gt;</span> xs
 
 <span style="color:#75715e">-- applying the definition of &lt;*&gt;</span>
-[ <span style="color:#a6e22e">z</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">z</span> <span style="color:#f92672">&lt;-</span> [<span style="color:#a6e22e">f</span><span style="color:#f92672">.</span><span style="color:#a6e22e">g</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fs</span>, <span style="color:#a6e22e">g</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">gs</span>],
-        <span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xs</span>]
+[ z x <span style="color:#f92672">|</span> z <span style="color:#f92672">&lt;-</span> [f<span style="color:#f92672">.</span>g <span style="color:#f92672">|</span> f <span style="color:#f92672">&lt;-</span> fs, g <span style="color:#f92672">&lt;-</span> gs],
+        x <span style="color:#f92672">&lt;-</span> xs]
 
-[ <span style="color:#a6e22e">f</span><span style="color:#f92672">.</span><span style="color:#a6e22e">g</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fs</span>, <span style="color:#a6e22e">g</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">gs</span>, <span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xs</span>]
+[ f<span style="color:#f92672">.</span>g x <span style="color:#f92672">|</span> f <span style="color:#f92672">&lt;-</span> fs, g <span style="color:#f92672">&lt;-</span> gs, x <span style="color:#f92672">&lt;-</span> xs]
 
 <span style="color:#75715e">-- applying definition of function composition</span>
-[ <span style="color:#a6e22e">f</span> (<span style="color:#a6e22e">g</span> <span style="color:#a6e22e">x</span>) <span style="color:#f92672">|</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fs</span>, <span style="color:#a6e22e">g</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">gs</span>, <span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xs</span>] <span style="color:#75715e">-- (A)</span></code></pre></div>
-<p>In the same manner, let&rsquo;s consider the <em>right</em> side of the equation:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#a6e22e">v</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">w</span>)
+[ f (g x) <span style="color:#f92672">|</span> f <span style="color:#f92672">&lt;-</span> fs, g <span style="color:#f92672">&lt;-</span> gs, x <span style="color:#f92672">&lt;-</span> xs] <span style="color:#75715e">-- (A)</span>
+</code></pre></div><p>In the same manner, let&rsquo;s consider the <em>right</em> side of the equation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> (v <span style="color:#f92672">&lt;*&gt;</span> w)
 
 <span style="color:#75715e">-- as u, v, w are all lists, for clarity re-writing</span>
 <span style="color:#75715e">-- u as fs, v as gs, w as xs</span>
-<span style="color:#a6e22e">fs</span> <span style="color:#f92672">&lt;*&gt;</span> (<span style="color:#a6e22e">gs</span> <span style="color:#f92672">&lt;*&gt;</span> <span style="color:#a6e22e">xs</span>)
+<span style="color:#a6e22e">fs</span> <span style="color:#f92672">&lt;*&gt;</span> (gs <span style="color:#f92672">&lt;*&gt;</span> xs)
 
 <span style="color:#75715e">-- applying definition of &lt;*&gt;</span>
-<span style="color:#a6e22e">fs</span> <span style="color:#f92672">&lt;*&gt;</span> ( [<span style="color:#a6e22e">g</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">g</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">gs</span>, <span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xs</span>] )
+<span style="color:#a6e22e">fs</span> <span style="color:#f92672">&lt;*&gt;</span> ( [g x <span style="color:#f92672">|</span> g <span style="color:#f92672">&lt;-</span> gs, x <span style="color:#f92672">&lt;-</span> xs] )
 
 <span style="color:#75715e">-- applying definition of &lt;*&gt;</span>
-[<span style="color:#a6e22e">f</span> <span style="color:#a6e22e">z</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fs</span>, <span style="color:#a6e22e">z</span> <span style="color:#f92672">&lt;-</span> [<span style="color:#a6e22e">g</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">g</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">gs</span>, <span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xs</span>] ]
+[f z <span style="color:#f92672">|</span> f <span style="color:#f92672">&lt;-</span> fs, z <span style="color:#f92672">&lt;-</span> [g x <span style="color:#f92672">|</span> g <span style="color:#f92672">&lt;-</span> gs, x <span style="color:#f92672">&lt;-</span> xs] ]
 
 <span style="color:#75715e">-- replacing z</span>
-[<span style="color:#a6e22e">f</span> (<span style="color:#a6e22e">g</span> <span style="color:#a6e22e">x</span>) <span style="color:#f92672">|</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fs</span>, <span style="color:#a6e22e">g</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">gs</span>, <span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xs</span>] <span style="color:#75715e">-- (B)</span></code></pre></div>
-<p>(A) &amp; (B) prove that both the left and right side of the composition law reduce to the same statement, and thus composition law is proved for the <code>[]</code> type</p>
+[f (g x) <span style="color:#f92672">|</span> f <span style="color:#f92672">&lt;-</span> fs, g <span style="color:#f92672">&lt;-</span> gs, x <span style="color:#f92672">&lt;-</span> xs] <span style="color:#75715e">-- (B)</span>
+</code></pre></div><p>(A) &amp; (B) prove that both the left and right side of the composition law reduce to the same statement, and thus composition law is proved for the <code>[]</code> type</p>
 
     
   </div>
@@ -227,7 +225,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2019-06-29 07:29:54.986352 -0700 PDT m=&#43;0.127616859">2019</time> Umair Saeed.
+    &copy; <time datetime="2020-12-31 08:13:07.930091 -0800 PST m=&#43;0.216341588">2020</time> Umair Saeed.
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>

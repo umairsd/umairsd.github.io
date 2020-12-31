@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Umair&#39;s Blog</title>
@@ -6,10 +6,15 @@
     <description>Recent content in Posts on Umair&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 03 Jul 2017 07:08:05 -0700</lastBuildDate>
-    
-	<atom:link href="https://umairsaeed.com/posts/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Thu, 31 Dec 2020 07:51:46 -0800</lastBuildDate><atom:link href="https://umairsaeed.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Refresh</title>
+      <link>https://umairsaeed.com/posts/2020-12-31-refresh/</link>
+      <pubDate>Thu, 31 Dec 2020 07:51:46 -0800</pubDate>
+      
+      <guid>https://umairsaeed.com/posts/2020-12-31-refresh/</guid>
+      <description>Time to hit refresh, and restart my blog. This is a test post to ensure that all the tooling (Hugo, my theme etc.) works as expected.</description>
+    </item>
     
     <item>
       <title>Do You Need Self Discipline To Have Fun?</title>
@@ -45,15 +50,19 @@
       
       <guid>https://umairsaeed.com/posts/2016-01-05-applicative-laws-for-maybe-type/</guid>
       <description>&lt;p&gt;Applicative functors come with a set of laws that apply for all Applicative instances. These laws are as follows:&lt;/p&gt;
-
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Identity: &lt;code&gt;pure id &amp;lt;*&amp;gt; v = v&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Homomorphism: &lt;code&gt;pure f &amp;lt;*&amp;gt; pure x = pure (f x)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Interchange: &lt;code&gt;u &amp;lt;*&amp;gt; pure y = pure ($y) &amp;lt;*&amp;gt; u&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Composition: &lt;code&gt;pure (.) &amp;lt;*&amp;gt; u &amp;lt;*&amp;gt; v &amp;lt;*&amp;gt; w = u &amp;lt;*&amp;gt; (v &amp;lt;*&amp;gt; w)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Identity: &lt;code&gt;pure id &amp;lt;*&amp;gt; v = v&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Homomorphism: &lt;code&gt;pure f &amp;lt;*&amp;gt; pure x = pure (f x)&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Interchange: &lt;code&gt;u &amp;lt;*&amp;gt; pure y = pure ($y) &amp;lt;*&amp;gt; u&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Composition: &lt;code&gt;pure (.) &amp;lt;*&amp;gt; u &amp;lt;*&amp;gt; v &amp;lt;*&amp;gt; w = u &amp;lt;*&amp;gt; (v &amp;lt;*&amp;gt; w)&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
     
@@ -65,9 +74,10 @@
       <guid>https://umairsaeed.com/posts/2015-08-21-maybe-as-an-applicative-functor/</guid>
       <description>&lt;p&gt;&lt;code&gt;Maybe&lt;/code&gt; type is made an instance of the &lt;code&gt;Applicative&lt;/code&gt; type class as follows:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;instance&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Applicative&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Maybe&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;where&lt;/span&gt;
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;pure&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Just&lt;/span&gt;
+    pure &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Just&lt;/span&gt;
     &lt;span style=&#34;color:#66d9ef&#34;&gt;Nothing&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;_&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Nothing&lt;/span&gt;
-    (&lt;span style=&#34;color:#66d9ef&#34;&gt;Just&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;f&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;something&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fmap&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;f&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;something&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    (&lt;span style=&#34;color:#66d9ef&#34;&gt;Just&lt;/span&gt; f) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;*&amp;gt;&lt;/span&gt; something &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fmap f something
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -149,9 +159,8 @@
       
       <guid>https://umairsaeed.com/posts/2011-01-27-stern-brocot-tree/</guid>
       <description>&lt;p&gt;Stern-Brocot tree is a tree data structure whose vertices correspond to the set of non-negative rational numbers. Thus, this tree provides a very elegant way for constructing the set of fractions &lt;code&gt;m/n&lt;/code&gt;, where &lt;code&gt;m&lt;/code&gt; and &lt;code&gt;n&lt;/code&gt; are relatively prime. To construct the tree, the basic idea is to start with two fractions (&lt;code&gt;0/1&lt;/code&gt;, &lt;code&gt;1/0&lt;/code&gt;) and then repeat the following operation:&lt;/p&gt;
-
 &lt;blockquote&gt;
-&lt;p&gt;Insert (m+m&amp;rsquo;)/(n+n&amp;rsquo;) between two adjacent fractions m/n and m&amp;rsquo;/n&amp;rsquo;&lt;/p&gt;
+&lt;p&gt;Insert (m+m&#39;)/(n+n&#39;) between two adjacent fractions m/n and m&#39;/n&#39;&lt;/p&gt;
 &lt;/blockquote&gt;</description>
     </item>
     

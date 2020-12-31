@@ -60,14 +60,16 @@
         <span>on&nbsp;</span><time datetime="2011-06-23 13:54:07 &#43;0000 &#43;0000">June 23, 2011</time>
 
     
-        <ul class="post-ul">
-        <span>in</span> [
-          
-            <li class="post-li"><a href="/categories/algorithms"> algorithms</a></li>
-          
-            <li class="post-li"><a href="/categories/java"> java</a></li>
-          ]
-        </ul>
+        
+            <ul class="post-ul">
+            <span>in</span> [
+              
+                <li class="post-li"><a href="/categories/algorithms"> algorithms</a></li>
+              
+                <li class="post-li"><a href="/categories/java"> java</a></li>
+              ]
+            </ul>
+        
 </div>
 
     <h1 class="post-title">
@@ -84,56 +86,35 @@
     
 
     <p>A lot of people are familiar with the problem of detecting a loop in a linked list. The problem goes as follows: “Given a linked list, what is the algorithm to determine if it has any cycles (loops)?”</p>
-
 <p>The algorithm is pretty straightforward:</p>
-
 <ol>
-<li>We start at the beginning of the linked list with two pointers.<br /></li>
-<li>The first pointer is incremented through each node of the list. The second pointer moves twice as fast, and skips every other node.<br /></li>
-<li>If the linked list contains a loop, these two pointers will eventually meet at the same node, thus indicating that the linked list contains a loop.<br />
-<br /></li>
+<li>We start at the beginning of the linked list with two pointers.</li>
+<li>The first pointer is incremented through each node of the list. The second pointer moves twice as fast, and skips every other node.</li>
+<li>If the linked list contains a loop, these two pointers will eventually meet at the same node, thus indicating that the linked list contains a loop.</li>
 </ol>
-
 <p>The algorithm is straightforward and it is relatively easy to create a mental model and get an intuitive sense of why it works.</p>
-
 <p>Now, a slight twist to the same question asks: “Given a circular linked list, what is the algorithm to find the first node of the loop.”</p>
-
 <p>For instance, in the circular list <code>A-&gt;B-&gt;C-&gt;D-&gt;E-&gt;C</code>, the first node of the loop is node C. The first part of the algorithm is identical to the algorithm for finding if there is a loop (above). Once a loop has been found, the following additional steps will give us the starting node of the loop:</p>
-
 <ol>
-<li>Once a loop as been detected (step-3 above), move one of the pointers to the beginning (head) of the linked list. The second pointer remains where it was at the end of step-3.<br /></li>
-<li>Increment both pointers one node at a time. The node at which the two pointers meet will be the starting node of the loop!<br />
-<br />
-<br /></li>
+<li>Once a loop as been detected (step-3 above), move one of the pointers to the beginning (head) of the linked list. The second pointer remains where it was at the end of step-3.</li>
+<li>Increment both pointers one node at a time. The node at which the two pointers meet will be the starting node of the loop!</li>
 </ol>
-
 <p>This algorithm isn’t too difficult compared to the algorithm for detecting a loop. However, the mental model seems a bit trickier. Why and how does it always find the start of the loop?</p>
-
 <h2 id="how-does-the-algorithm-work-an-intuitive-explanation">How does the Algorithm work? An intuitive explanation</h2>
-
 <p>Here’s some explanation which would hopefully help you intuitively understand why the algorithm works, without going into a lot of mathematical detail.</p>
-
 <h3 id="first-meeting-point-of-two-pointers-in-a-loop">First, meeting point of two pointers in a loop</h3>
-
 <p>Consider two pointers: a slow pointer <code>S</code> that increments by one node at each step, and a fast pointer <code>F</code> that increments by two nodes at each step (i.e. it is twice as fast as <code>S</code>). Both pointers start at the same time from the beginning of an n-node loop. In the time <code>S</code> covers n nodes. <code>F</code> will have covered <code>2n</code> nodes and they will both meet at the start of the loop.</p>
-
 <p>Now, let us say that the slow pointer <code>S</code> starts at the beginning of the loop, and the fast pointer <code>F</code> starts at node k (where k &lt; n) of the loop. As these two pointers move along the loop, they will meet at node (n-x).</p>
-
 <p>What we really need to do is figure out x, as it will give us the node at which the two pointers meet inside the loop.</p>
-
 <ol>
-<li>When <code>S</code> takes <code>n/2</code> steps, it will be at node <code>n/2</code>. During the same time, <code>F</code> will have taken <code>2(n/2) = n</code> steps, and it will be at node <code>(k+n)</code>. Since the we are inside a loop, <code>F</code> will be effectively back at node <code>k</code>.<br /></li>
-<li>In order for the two pointers to meet at node <code>(n-x)</code>, <code>S</code> needs to take a further <code>(n-x-n/2)=(n/2-x)</code> steps and it will end up at node <code>n-x</code>. During the same time, <code>F</code> will have taken 2*(n/2-x)=(n-2x) steps and will be at node <code>k+(n-2x)</code>. Given our assumption that both S and <code>F</code> meet at the same node:<br />
-<br /></li>
+<li>When <code>S</code> takes <code>n/2</code> steps, it will be at node <code>n/2</code>. During the same time, <code>F</code> will have taken <code>2(n/2) = n</code> steps, and it will be at node <code>(k+n)</code>. Since the we are inside a loop, <code>F</code> will be effectively back at node <code>k</code>.</li>
+<li>In order for the two pointers to meet at node <code>(n-x)</code>, <code>S</code> needs to take a further <code>(n-x-n/2)=(n/2-x)</code> steps and it will end up at node <code>n-x</code>. During the same time, <code>F</code> will have taken 2*(n/2-x)=(n-2x) steps and will be at node <code>k+(n-2x)</code>. Given our assumption that both S and <code>F</code> meet at the same node:</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-math" data-lang="math">    n-x = k+n-2x
-=&gt;    x = k</code></pre></div>
-<p>This means that if S starts from the start of the loop, and F starts k nodes into the loop, both of them will meet at node (n-k), i.e k nodes from the end of the loop. This is a key insight.</p>
-
+<pre><code class="language-math" data-lang="math">    n-x = k+n-2x
+=&gt;    x = k
+</code></pre><p>This means that if S starts from the start of the loop, and F starts k nodes into the loop, both of them will meet at node (n-k), i.e k nodes from the end of the loop. This is a key insight.</p>
 <h2 id="circular-linked-list">Circular Linked List</h2>
-
 <p>Now, coming back to the linked list that contains a loop. Suppose the start of the loop is <code>m</code> (e.g. <code>m</code>=3) nodes from the start of the linked list. Both <code>S</code> and <code>F</code> start at the beginning of the linked list [Figure-1].</p>
-
 <figure>
     <img src="/img/circular-loop-figure-1.jpg"
          alt="Figure-1: Circular linked list with S and F pointers at the start"/> <figcaption>
@@ -141,9 +122,7 @@
         </figcaption>
 </figure>
 
-
 <p>By the time <code>S</code> gets to node <code>m</code> (i.e. start of loop), <code>F</code> will be at node <code>2m</code> [Figure-2]. This means that <code>S</code> will be at the start of the loop and <code>F</code> will be <code>m</code> nodes <em>into the loop</em>.</p>
-
 <figure>
     <img src="/img/circular-loop-figure-2.jpg"
          alt="Figure-2: Circular linked list, with S at the start of loop and F m nodes into the loop"/> <figcaption>
@@ -151,9 +130,7 @@
         </figcaption>
 </figure>
 
-
 <p>Based on the discussion above, we already know that if <code>S</code> begins from the start of the loop and <code>F</code> starts from node <code>m</code>, they will meet <code>m</code> nodes from the end of the loop (i.e. the orange-node in [Figure-3]).</p>
-
 <figure>
     <img src="/img/circular-loop-figure-3.jpg"
          alt="Figure-3: Both F and S meet m nodes from the end of the loop"/> <figcaption>
@@ -161,18 +138,14 @@
         </figcaption>
 </figure>
 
-
 <p>At this point, keep the pointer <code>F</code> at the orange-node where the two pointers met (i.e. <code>m</code>-nodes from the start of the loop), and move the pointer <code>S</code> to the beginning of the linked list [Figure-4]. Now, if we increment both <code>S</code> and <code>F</code> <em>one node at a time</em>, it is obvious that they will meet at &lsquo;Node-m&rsquo; (red-node) of the list, which is the start of the loop.</p>
-
 <p>{% img center /images/circular-loop-figure-4.jpg Figure-4 %}</p>
-
 <figure>
     <img src="/img/circular-loop-figure-4.jpg"
          alt="Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on"/> <figcaption>
             <p>Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on</p>
         </figcaption>
 </figure>
-
 
 <p>For the curious, here’s the Java code snippets for detecting a loop in a linked list and finding the starting node:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
@@ -211,7 +184,8 @@
       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
     <span style="color:#f92672">}</span>
   <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
 </span><span style="color:#75715e"> * Returns the node at the start of a loop in the given circular linked
 </span><span style="color:#75715e"> * list. A circular list is one in which a node&#39;s next pointer points
 </span><span style="color:#75715e"> * to an earlier node, so as to make a loop in the linked list. For
@@ -264,7 +238,8 @@
   <span style="color:#f92672">}</span>
 
   <span style="color:#66d9ef">return</span> loopStartNode<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span></code></pre></div>
+<span style="color:#f92672">}</span>
+</code></pre></div>
 
     
   </div>
@@ -280,7 +255,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2019-06-29 07:29:54.995575 -0700 PDT m=&#43;0.136839533">2019</time> Umair Saeed.
+    &copy; <time datetime="2020-12-31 08:13:07.774308 -0800 PST m=&#43;0.060557724">2020</time> Umair Saeed.
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>

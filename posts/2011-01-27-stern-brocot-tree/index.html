@@ -60,12 +60,14 @@
         <span>on&nbsp;</span><time datetime="2011-01-27 13:56:15 &#43;0000 &#43;0000">January 27, 2011</time>
 
     
-        <ul class="post-ul">
-        <span>in</span> [
-          
-            <li class="post-li"><a href="/categories/puzzles"> puzzles</a></li>
-          ]
-        </ul>
+        
+            <ul class="post-ul">
+            <span>in</span> [
+              
+                <li class="post-li"><a href="/categories/puzzles"> puzzles</a></li>
+              ]
+            </ul>
+        
 </div>
 
     <h1 class="post-title">
@@ -82,17 +84,12 @@
     
 
     <p>Stern-Brocot tree is a tree data structure whose vertices correspond to the set of non-negative rational numbers. Thus, this tree provides a very elegant way for constructing the set of fractions <code>m/n</code>, where <code>m</code> and <code>n</code> are relatively prime. To construct the tree, the basic idea is to start with two fractions (<code>0/1</code>, <code>1/0</code>) and then repeat the following operation:</p>
-
 <blockquote>
-<p>Insert (m+m&rsquo;)/(n+n&rsquo;) between two adjacent fractions m/n and m&rsquo;/n&rsquo;</p>
+<p>Insert (m+m')/(n+n') between two adjacent fractions m/n and m'/n'</p>
 </blockquote>
-
 <p>The first step gives us the entry <code>1/1</code> between <code>0/1</code> and <code>1/0</code>. Similarly, the 2nd step gives us two more: <code>0/1</code>, <code>1/2</code>, <code>1/1</code>, <code>2/1</code>, <code>1/0</code>.</p>
-
 <p>Continuing on like this results in an infinite binary search tree which preserves the usual ordering of rational numbers.</p>
-
 <p>The figure below shows the 1st 4 levels of the Stern-Brocot tree.</p>
-
 <figure>
     <img src="/img/stern-brocot.png"
          alt="The first 4 levels of Stern-Brocot Tree"/> <figcaption>
@@ -100,31 +97,22 @@
         </figcaption>
 </figure>
 
-
 <h2 id="finding-the-path-to-k-in-stern-brocot-tree">Finding the Path to k in Stern-Brocot Tree</h2>
-
 <p>The path from the root of the tree to a number <code>k</code> in the Stern-Brocot tree can be found using binary search. At each node, <code>k</code> will either be in the left half of the tree, or the right half. We continue down the left or right subtree until we finally find <code>k</code>.</p>
-
 <ul>
-<li>Initialize the left fraction <code>L</code> to <code>0/1</code> and right fraction <code>R</code> to <code>1/0</code><br /></li>
-<li>Repeat the following until <code>k</code> is found:<br />
-
+<li>Initialize the left fraction <code>L</code> to <code>0/1</code> and right fraction <code>R</code> to <code>1/0</code></li>
+<li>Repeat the following until <code>k</code> is found:
 <ul>
-<li>Compute the mediant <code>M</code> (which is <code>(m+m')/(n+n')</code> )<br /></li>
-<li>If <code>(k&gt;M)</code>, then <code>k</code> is in the right half of the tree. <code>L:=M</code> and continue.<br /></li>
-<li>Else If <code>(M&gt;k)</code>, then <code>k</code> is in the left half of the tree. <code>R:=M</code> and continue.<br /></li>
-<li>Else <code>k=M</code>, terminate search.<br />
-<br />
-<br /></li>
-</ul></li>
+<li>Compute the mediant <code>M</code> (which is <code>(m+m')/(n+n')</code> )</li>
+<li>If <code>(k&gt;M)</code>, then <code>k</code> is in the right half of the tree. <code>L:=M</code> and continue.</li>
+<li>Else If <code>(M&gt;k)</code>, then <code>k</code> is in the left half of the tree. <code>R:=M</code> and continue.</li>
+<li>Else <code>k=M</code>, terminate search.</li>
 </ul>
-
+</li>
+</ul>
 <h2 id="implementation">Implementation</h2>
-
 <p>There&rsquo;s a couple of things to tackle in our implementation. First, I need an easy way to represent fractions, so I create my own <code>SternBrocotFraction</code> class. I deliberately chose to make it very specific to this algorithm because I needed a special way to handle the fraction 1/0 (which by definition is greater than all other rationals).</p>
-
 <p>Secondly, I needed a good way to represent the path from the root of the tree to k. I do this by using a <code>StringBuilder</code>, and at each step I append either the letter <code>L</code> or <code>R</code> depending on which sub-tree we take. When the search is finished, this gives us a string representation of the path from the root of the tree to the number <code>k</code>. This approach is similar to the approach advocated by ACM Programming Competitions for <a href="http://acm.uva.es/p/v100/10077.html">the &ldquo;Stern-Brocot Number System&rdquo; problem</a>.</p>
-
 <p>Here&rsquo;s the code to find path to a number k:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
 
@@ -159,8 +147,8 @@
     <span style="color:#f92672">}</span>
     <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
   <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span></code></pre></div>
-<p>The special <code>SternBrocotFraction</code> class is:</p>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>The special <code>SternBrocotFraction</code> class is:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
 
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotFraction</span> <span style="color:#66d9ef">implements</span>
@@ -201,8 +189,8 @@
     <span style="color:#f92672">}</span>
     <span style="color:#66d9ef">return</span> 0<span style="color:#f92672">;</span>
   <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span></code></pre></div>
-<p>Finally, some test code to exercise my class:</p>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Finally, some test code to exercise my class:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
 
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotTester</span> <span style="color:#f92672">{</span>
@@ -225,7 +213,8 @@
     f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span>1049<span style="color:#f92672">,</span> 7901<span style="color:#f92672">);</span>
     System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">findPathTo</span><span style="color:#f92672">(</span>f<span style="color:#f92672">));</span>
   <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span></code></pre></div>
+<span style="color:#f92672">}</span>
+</code></pre></div>
 
     
   </div>
@@ -241,7 +230,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2019-06-29 07:29:55.000731 -0700 PDT m=&#43;0.141995579">2019</time> Umair Saeed.
+    &copy; <time datetime="2020-12-31 08:13:07.777094 -0800 PST m=&#43;0.063344401">2020</time> Umair Saeed.
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>
