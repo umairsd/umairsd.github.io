@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Applicative Laws for `((-&gt;) r)` Type &middot; Umair&#39;s Blog
+  </title>
+
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+  
+  <link href="" rel="alternate"
+    type="application/rss+xml" title="Umair&#39;s Blog" />
+
+</head>
+  <body>
+    <nav class="nav">
+  <div class="nav-container">
+    <a href="/">
+      <h2 class="nav-title">Umair&#39;s Blog</h2>
+    </a>
+
+    <ul>
+      
+      
+        <li>
+          <a href="/" title="">Posts</a>
+        </li>
+      
+        <li>
+          <a href="/categories/" title="">Categories</a>
+        </li>
+      
+        <li>
+          <a href="/about/" title="">About</a>
+        </li>
+      
+    </ul>
+
+  </div>
+</nav>
+
+    
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <span>Written by</span>
+        Umair Saeed
+        <br>
+        <span>on&nbsp;</span><time datetime="2016-01-07 00:00:00 &#43;0000 UTC">January 7, 2016</time>
+
+    
+        
+            <ul class="post-ul">
+            <span>in</span> [
+              
+                <li class="post-li"><a href="/categories/haskell"> haskell</a></li>
+              ]
+            </ul>
+        
+</div>
+
+    <h1 class="post-title">
+  
+  
+    <a href="/applicative-laws-for-function-type/" class="catalog-title-anchor">
+      Applicative Laws for <code>((-&gt;) r)</code> Type
+    </a>
+  
+</h1>
+<div class="post-line"></div>
+
+
+    
+
+    <p>Haskell&rsquo;s function type <code>((-&gt;) r)</code> is an Applicative functor. Similar to the previous two posts in this series, in this post I will verify that the applicative laws hold for the <code>((-&gt;) r)</code> type.</p>
+<p><em>This is Part-3 of my series on verifying Applicative laws for various Haskell types. Here are Part-1 <a href="http://umairsaeed.com/blog/2016/01/05/applicative-laws-for-maybe-type/" title="Applicative Laws for Maybe Type">Applicative Laws for Maybe Type</a> and Part-2 <a href="http://umairsaeed.com/blog/2016/01/06/applicative-laws-for-list-type/" title="Applicative Laws for List Type">Applicative Laws for [] Type</a></em></p>
+<p>For reference, <code>((-&gt;) r)</code> is made an instance of the <code>Applicative</code> class as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#66d9ef">instance</span> <span style="color:#66d9ef">Applicative</span> ((<span style="color:#f92672">-&gt;</span>) r) <span style="color:#66d9ef">where</span>
+    pure x <span style="color:#f92672">=</span> (<span style="color:#a6e22e">\</span><span style="color:#66d9ef">_</span> <span style="color:#f92672">-&gt;</span> x)
+    <span style="color:#75715e">-- pure can also be written as:</span>
+    <span style="color:#75715e">-- pure x = const x</span>
+
+    <span style="color:#75715e">-- (&lt;*&gt;) :: f (a-&gt;b) -&gt; f a -&gt; f b</span>
+    <span style="color:#75715e">-- (&lt;*&gt;) :: ((-&gt;) r (a-&gt;b)) -&gt; ((-&gt;) r a) -&gt; ((-&gt;) r b)</span>
+    <span style="color:#75715e">-- (&lt;*&gt;) :: (r -&gt; (a-&gt;b)) -&gt; (r -&gt; a) -&gt; (r -&gt; b)</span>
+    <span style="color:#75715e">-- the entire lambda has type r -&gt; b, which implies x :: r</span>
+    (<span style="color:#f92672">&lt;*&gt;</span>) f g <span style="color:#f92672">=</span> (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> f x (g x))
+</code></pre></div><p>For review, here are the applicative laws:</p>
+<ul>
+<li>
+<p>Identity: <code>pure id &lt;*&gt; v = v</code></p>
+</li>
+<li>
+<p>Homomorphism: <code>pure f &lt;*&gt; pure x = pure (f x)</code></p>
+</li>
+<li>
+<p>Interchange: <code>u &lt;*&gt; pure y = pure ($y) &lt;*&gt; u</code></p>
+</li>
+<li>
+<p>Composition: <code>pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w = u &lt;*&gt; (v &lt;*&gt; w)</code></p>
+</li>
+</ul>
+<h2 id="identity">Identity</h2>
+<p>We need to prove that the following holds for the <code>((-&gt;) r)</code> type:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> id <span style="color:#f92672">&lt;*&gt;</span> v <span style="color:#f92672">=</span> v
+</code></pre></div><p>Beginning from LHS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> (id) <span style="color:#f92672">&lt;*&gt;</span> v
+<span style="color:#75715e">-- using definition of pure</span>
+<span style="color:#a6e22e">const</span> id <span style="color:#f92672">&lt;*&gt;</span> v
+
+<span style="color:#75715e">-- applying definition of &lt;*&gt;</span>
+(<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> const id x (v x))
+
+<span style="color:#75715e">-- applying const</span>
+(<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> id (v x))
+
+<span style="color:#75715e">-- applying id</span>
+(<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> v x)
+
+<span style="color:#a6e22e">v</span> <span style="color:#75715e">-- RHS</span>
+</code></pre></div><h2 id="homomorphism">Homomorphism</h2>
+<p>The law&rsquo;s statement is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> f <span style="color:#f92672">&lt;*&gt;</span> pure x <span style="color:#f92672">=</span> pure (f x)
+</code></pre></div><p>Here&rsquo;s the proof:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> f <span style="color:#f92672">&lt;*&gt;</span> pure x
+
+<span style="color:#75715e">-- applying definition of pure</span>
+<span style="color:#a6e22e">const</span> f <span style="color:#f92672">&lt;*&gt;</span> const x
+
+<span style="color:#75715e">-- applying definition of &lt;*&gt;</span>
+(<span style="color:#a6e22e">\</span>y <span style="color:#f92672">-&gt;</span> const f y (const x y))
+
+<span style="color:#75715e">-- applying const</span>
+(<span style="color:#a6e22e">\</span>y <span style="color:#f92672">-&gt;</span> f (x))
+
+<span style="color:#75715e">-- As y is unused, replace with _</span>
+(<span style="color:#a6e22e">\</span><span style="color:#66d9ef">_</span> <span style="color:#f92672">-&gt;</span> f x)
+
+<span style="color:#75715e">-- un-applying definition of pure</span>
+<span style="color:#a6e22e">pure</span> (f x) <span style="color:#75715e">-- RHS</span>
+</code></pre></div><h2 id="interchange">Interchange</h2>
+<p>The law&rsquo;s statement is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> pure y <span style="color:#f92672">=</span> pure (<span style="color:#f92672">$</span>y) <span style="color:#f92672">&lt;*&gt;</span> u
+</code></pre></div><p>Starting from the LHS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> pure y
+
+<span style="color:#75715e">-- applying definition of pure</span>
+<span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> const y
+
+<span style="color:#75715e">-- applying definition of &lt;*&gt;</span>
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> u x (const y x)
+
+<span style="color:#75715e">-- applying const</span>
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> u x (y)
+
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> u x y
+</code></pre></div><p>Now, starting from the RHS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> (<span style="color:#f92672">$</span>y) <span style="color:#f92672">&lt;*&gt;</span> u
+
+<span style="color:#75715e">-- applying definition of pure</span>
+<span style="color:#a6e22e">const</span> (<span style="color:#f92672">$</span>y) <span style="color:#f92672">&lt;*&gt;</span> u
+
+<span style="color:#75715e">-- applying definition of &lt;*&gt;</span>
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> const (<span style="color:#f92672">$</span>y) x (u x)
+
+<span style="color:#75715e">-- applying const</span>
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> (<span style="color:#f92672">$</span>y) (u x)
+
+<span style="color:#75715e">-- applying definition of function application operator ($)</span>
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> (u x) <span style="color:#f92672">$</span> y
+
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> u x y
+</code></pre></div><p>As both the left and right sides reduce to the same statement, the interchange law is proved for the <code>((-&gt;) r)</code> type</p>
+<h2 id="composition">Composition</h2>
+<p>The law&rsquo;s statement is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> (<span style="color:#f92672">.</span>) <span style="color:#f92672">&lt;*&gt;</span> u <span style="color:#f92672">&lt;*&gt;</span> v <span style="color:#f92672">&lt;*&gt;</span> w <span style="color:#f92672">=</span> u <span style="color:#f92672">&lt;*&gt;</span> (v <span style="color:#f92672">&lt;*&gt;</span> w)
+</code></pre></div><p>Starting from the <em>right</em> side of the equation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> (v <span style="color:#f92672">&lt;*&gt;</span> w)
+
+<span style="color:#75715e">-- applying definition of &lt;*&gt;</span>
+<span style="color:#a6e22e">u</span> <span style="color:#f92672">&lt;*&gt;</span> ( <span style="color:#a6e22e">\</span>y <span style="color:#f92672">-&gt;</span> v y (w y) )
+
+<span style="color:#75715e">-- applying definition of &lt;*&gt;</span>
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> u x ( (<span style="color:#a6e22e">\</span>y <span style="color:#f92672">-&gt;</span> v y (w y)) x )
+
+<span style="color:#75715e">-- Apply the lambda ( (\y -&gt; v y (w y)) to its</span>
+<span style="color:#75715e">-- argument x, which results in:</span>
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> u x ( v x (w x)) <span style="color:#75715e">-- (A)</span>
+
+</code></pre></div><p>In the same manner, let&rsquo;s consider the <em>left</em> side of the equation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">pure</span> (<span style="color:#f92672">.</span>) <span style="color:#f92672">&lt;*&gt;</span> u <span style="color:#f92672">&lt;*&gt;</span> v <span style="color:#f92672">&lt;*&gt;</span> w
+
+<span style="color:#75715e">-- applying definition of pure</span>
+<span style="color:#a6e22e">const</span> (<span style="color:#f92672">.</span>) <span style="color:#f92672">&lt;*&gt;</span> u <span style="color:#f92672">&lt;*&gt;</span> v <span style="color:#f92672">&lt;*&gt;</span> w
+
+<span style="color:#75715e">-- applying definition of &lt;*&gt; to the 1st two terms</span>
+(<span style="color:#a6e22e">\</span>f <span style="color:#f92672">-&gt;</span> const (<span style="color:#f92672">.</span>) f (u f)) <span style="color:#f92672">&lt;*&gt;</span> v <span style="color:#f92672">&lt;*&gt;</span> w
+
+<span style="color:#75715e">-- applying const</span>
+(<span style="color:#a6e22e">\</span>f <span style="color:#f92672">-&gt;</span> (<span style="color:#f92672">.</span>) (u f)) <span style="color:#f92672">&lt;*&gt;</span> v <span style="color:#f92672">&lt;*&gt;</span> w
+
+<span style="color:#75715e">-- applying definition of &lt;*&gt; to the 1st two terms</span>
+(<span style="color:#a6e22e">\</span>g <span style="color:#f92672">-&gt;</span> (<span style="color:#a6e22e">\</span>f <span style="color:#f92672">-&gt;</span> (<span style="color:#f92672">.</span>) (u f)) g (v g)) <span style="color:#f92672">&lt;*&gt;</span> w
+
+<span style="color:#75715e">-- applying definition of &lt;*&gt;</span>
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> (<span style="color:#a6e22e">\</span>g <span style="color:#f92672">-&gt;</span> (<span style="color:#a6e22e">\</span>f <span style="color:#f92672">-&gt;</span> (<span style="color:#f92672">.</span>) (u f)) g (v g)) x (w x)
+
+<span style="color:#75715e">-- Expanding the lambda (\g -&gt; ...) by applying to x</span>
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> ((<span style="color:#a6e22e">\</span>f <span style="color:#f92672">-&gt;</span> (<span style="color:#f92672">.</span>) (u f)) x (v x)) (w x)
+
+<span style="color:#75715e">-- Expanding the inner lambda (\f -&gt; ...) by applying to x</span>
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> (( (<span style="color:#f92672">.</span>) (u x)) (v x))  (w x)
+
+<span style="color:#75715e">-- Using definition of function composition (.)</span>
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> ((u x) <span style="color:#f92672">.</span> (v x)) (w x)
+
+<span style="color:#75715e">-- Using definition of (.), i.e. f.g x = f (g x)</span>
+<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> u x ( v x (w x) ) <span style="color:#75715e">-- (B)</span>
+
+</code></pre></div><p>(A) &amp; (B) prove that both the left and right side of the composition law for <code>((-&gt;) r)</code> type reduce to the same statement, and thus the law is proved for the function type.</p>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p>Thanks to <a href="http://stackoverflow.com/users/791604/daniel-wagner" title="Stack Overflow User - Daniel Wagner">Daniel Wagner</a> who nudged me in the right direction by answering my questions (<a href="http://stackoverflow.com/questions/33829415/applicative-laws-for-the-r-type" title="Applicative Laws for the ((-&gt;) r) type">1</a> and <a href="http://stackoverflow.com/questions/34538754/proving-composition-applicative-law-for-r-type" title="Proving Composition Applicative law for ((-&gt;) r) type">2</a>) on Stack Overflow.</p>
+
+    
+  </div>
+
+  <div class="pagination">
+    <a href="/applicative-laws-for-list-type/" class="left arrow">&#8592;</a>
+    <a href="/do-you-need-self-discipline-to-have-fun/" class="right arrow">&#8594;</a>
+
+    <a href="#" class="top">Top</a>
+  </div>
+</main>
+
+
+    <footer>
+  <span>
+    &copy; <time datetime="2021-01-15 15:19:39.244954 -0800 PST m=&#43;0.147221768">2021</time> Umair Saeed.
+    Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
+  </span>
+</footer>
+  </body>
+</html>

@@ -9,10 +9,10 @@
     <lastBuildDate>Thu, 23 Jun 2011 13:54:07 +0000</lastBuildDate><atom:link href="https://umairsaeed.com/categories/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Finding the Start of a Loop in a Circular Linked List</title>
-      <link>https://umairsaeed.com/posts/2011-06-23-finding-the-start-of-a-loop-in-a-circular-linked-list/</link>
+      <link>https://umairsaeed.com/finding-the-start-of-a-loop-in-a-circular-linked-list/</link>
       <pubDate>Thu, 23 Jun 2011 13:54:07 +0000</pubDate>
       
-      <guid>https://umairsaeed.com/posts/2011-06-23-finding-the-start-of-a-loop-in-a-circular-linked-list/</guid>
+      <guid>https://umairsaeed.com/finding-the-start-of-a-loop-in-a-circular-linked-list/</guid>
       <description>&lt;p&gt;A lot of people are familiar with the problem of detecting a loop in a linked list. The problem goes as follows: “Given a linked list, what is the algorithm to determine if it has any cycles (loops)?”&lt;/p&gt;</description>
     </item>
     
