@@ -92,27 +92,30 @@
 <li>The first pointer is incremented through each node of the list. The second pointer moves twice as fast, and skips every other node.</li>
 <li>If the linked list contains a loop, these two pointers will eventually meet at the same node, thus indicating that the linked list contains a loop.</li>
 </ol>
-<p>The algorithm is straightforward and it is relatively easy to create a mental model and get an intuitive sense of why it works.</p>
 <p>Now, a slight twist to the same question asks: “Given a circular linked list, what is the algorithm to find the first node of the loop.”</p>
-<p>For instance, in the circular list <code>A-&gt;B-&gt;C-&gt;D-&gt;E-&gt;C</code>, the first node of the loop is node C. The first part of the algorithm is identical to the algorithm for finding if there is a loop (above). Once a loop has been found, the following additional steps will give us the starting node of the loop:</p>
+<p>For instance, in the circular list <code>A-&gt;B-&gt;C-&gt;D-&gt;E-&gt;C</code>, the first node of the loop is node <code>C</code>. The first part of the algorithm is identical to the algorithm for finding if there is a loop (above). Once a loop has been found, the following additional steps will give us the starting node of the loop:</p>
 <ol>
 <li>Once a loop as been detected (step-3 above), move one of the pointers to the beginning (head) of the linked list. The second pointer remains where it was at the end of step-3.</li>
 <li>Increment both pointers one node at a time. The node at which the two pointers meet will be the starting node of the loop!</li>
 </ol>
 <p>This algorithm isn’t too difficult compared to the algorithm for detecting a loop. However, the mental model seems a bit trickier. Why and how does it always find the start of the loop?</p>
-<h2 id="how-does-the-algorithm-work-an-intuitive-explanation">How does the Algorithm work? An intuitive explanation</h2>
-<p>Here’s some explanation which would hopefully help you intuitively understand why the algorithm works, without going into a lot of mathematical detail.</p>
+<h2 id="an-intuitive-explanation">An intuitive explanation</h2>
+<p>Here’s an intuitive explanation of how the algorithm works, without going into a lot of mathematical detail.</p>
 <h3 id="first-meeting-point-of-two-pointers-in-a-loop">First, meeting point of two pointers in a loop</h3>
 <p>Consider two pointers: a slow pointer <code>S</code> that increments by one node at each step, and a fast pointer <code>F</code> that increments by two nodes at each step (i.e. it is twice as fast as <code>S</code>). Both pointers start at the same time from the beginning of an n-node loop. In the time <code>S</code> covers n nodes. <code>F</code> will have covered <code>2n</code> nodes and they will both meet at the start of the loop.</p>
-<p>Now, let us say that the slow pointer <code>S</code> starts at the beginning of the loop, and the fast pointer <code>F</code> starts at node k (where k &lt; n) of the loop. As these two pointers move along the loop, they will meet at node (n-x).</p>
+<p>Now, let us say that the slow pointer <code>S</code> starts at the beginning of the loop, and the fast pointer <code>F</code> starts at the <code>k</code>th node (where <code>k</code> &lt; <code>n</code>) of the loop. As these two pointers move along the loop, they will meet at node <code>(n - x)</code>, i.e. <code>x</code> nodes from the end of the loop.</p>
 <p>What we really need to do is figure out x, as it will give us the node at which the two pointers meet inside the loop.</p>
 <ol>
-<li>When <code>S</code> takes <code>n/2</code> steps, it will be at node <code>n/2</code>. During the same time, <code>F</code> will have taken <code>2(n/2) = n</code> steps, and it will be at node <code>(k+n)</code>. Since the we are inside a loop, <code>F</code> will be effectively back at node <code>k</code>.</li>
-<li>In order for the two pointers to meet at node <code>(n-x)</code>, <code>S</code> needs to take a further <code>(n-x-n/2)=(n/2-x)</code> steps and it will end up at node <code>n-x</code>. During the same time, <code>F</code> will have taken 2*(n/2-x)=(n-2x) steps and will be at node <code>k+(n-2x)</code>. Given our assumption that both S and <code>F</code> meet at the same node:</li>
+<li>
+<p>When <code>S</code> takes <code>n/2</code> steps, it will be at node <code>n / 2</code>. During the same time, <code>F</code> will have taken <code>2 (n / 2) = n</code> steps, and it will be at node <code>(k + n)</code>. Since the we are inside a loop, <code>F</code> will be effectively back at node <code>k</code>.</p>
+</li>
+<li>
+<p>In order for the two pointers to meet at node <code>(n - x)</code>, <code>S</code> needs to take a further <code>(n - x - n/2) = (n/2 - x)</code> steps and it will end up at node <code>n - x</code>. During the same time, <code>F</code> will have taken <code>2 * (n/2 - x) = n - 2x</code> steps and will be at node <code>k + (n - 2x)</code>. Given our assumption that both <code>S</code> and <code>F</code> meet at the same node:</p>
+</li>
 </ol>
 <pre><code class="language-math" data-lang="math">    n-x = k+n-2x
 =&gt;    x = k
-</code></pre><p>This means that if S starts from the start of the loop, and F starts k nodes into the loop, both of them will meet at node (n-k), i.e k nodes from the end of the loop. This is a key insight.</p>
+</code></pre><p>This means that if <code>S</code> starts from the start of the loop, and <code>F</code> starts <code>k</code> nodes into the loop, both of them will meet at node <code>n - k</code>, i.e <code>k</code> nodes from the end of the loop. This is a key insight.</p>
 <h2 id="circular-linked-list">Circular Linked List</h2>
 <p>Now, coming back to the linked list that contains a loop. Suppose the start of the loop is <code>m</code> (e.g. <code>m</code>=3) nodes from the start of the linked list. Both <code>S</code> and <code>F</code> start at the beginning of the linked list [Figure-1].</p>
 <figure>
@@ -194,8 +197,6 @@
 </span><span style="color:#75715e"> * input: A -&gt; B -&gt; C -&gt; D -&gt; E -&gt; C [the same C as earlier]
 </span><span style="color:#75715e"> * output: C
 </span><span style="color:#75715e"> *
-</span><span style="color:#75715e"> * (CCI_0205)
-</span><span style="color:#75715e"> *
 </span><span style="color:#75715e"> * @param linkedList
 </span><span style="color:#75715e"> *            list to be tested
 </span><span style="color:#75715e"> * @return the node at the start of the loop if there is a loop, null
@@ -255,7 +256,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2021-01-15 15:19:39.159753 -0800 PST m=&#43;0.062020157">2021</time> Umair Saeed.
+    &copy; <time datetime="2021-01-15 15:32:34.399788 -0800 PST m=&#43;0.067153703">2021</time> Umair Saeed.
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>
