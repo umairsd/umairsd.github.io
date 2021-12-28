@@ -90,9 +90,8 @@
 <p>The first step gives us the entry <code>1/1</code> between <code>0/1</code> and <code>1/0</code>. Similarly, the 2nd step gives us two more: <code>0/1</code>, <code>1/2</code>, <code>1/1</code>, <code>2/1</code>, <code>1/0</code>.</p>
 <p>Continuing on like this results in an infinite binary search tree which preserves the usual ordering of rational numbers.</p>
 <p>The figure below shows the 1st 4 levels of the Stern-Brocot tree.</p>
-<figure>
-    <img src="/img/stern-brocot.png"
-         alt="The first 4 levels of Stern-Brocot Tree"/> <figcaption>
+<figure><img src="/img/stern-brocot.png"
+         alt="The first 4 levels of Stern-Brocot Tree"/><figcaption>
             <p>The first 4 levels of Stern-Brocot Tree</p>
         </figcaption>
 </figure>
@@ -114,7 +113,7 @@
 <p>There&rsquo;s a couple of things to tackle in our implementation. First, I need an easy way to represent fractions, so I create my own <code>SternBrocotFraction</code> class. I deliberately chose to make it very specific to this algorithm because I needed a special way to handle the fraction 1/0 (which by definition is greater than all other rationals).</p>
 <p>Secondly, I needed a good way to represent the path from the root of the tree to k. I do this by using a <code>StringBuilder</code>, and at each step I append either the letter <code>L</code> or <code>R</code> depending on which sub-tree we take. When the search is finished, this gives us a string representation of the path from the root of the tree to the number <code>k</code>. This approach is similar to the approach advocated by ACM Programming Competitions for <a href="http://acm.uva.es/p/v100/10077.html">the &ldquo;Stern-Brocot Number System&rdquo; problem</a>.</p>
 <p>Here&rsquo;s the code to find path to a number k:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
 
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotPath</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">char</span> LEFT_SUB <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;L&#39;</span><span style="color:#f92672">;</span>
@@ -149,7 +148,7 @@
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>The special <code>SternBrocotFraction</code> class is:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
 
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotFraction</span> <span style="color:#66d9ef">implements</span>
         Comparable<span style="color:#f92672">&lt;</span>SternBrocotFraction<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
@@ -191,7 +190,7 @@
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>Finally, some test code to exercise my class:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
 
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotTester</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
@@ -230,7 +229,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2021-01-15 15:32:34.402216 -0800 PST m=&#43;0.069581154">2021</time> Umair Saeed.
+    &copy; <time datetime="2021-12-28 10:28:45.997766 -0800 PST m=&#43;0.061165350">2021</time> Umair Saeed.
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>

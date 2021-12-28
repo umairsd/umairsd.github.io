@@ -113,45 +113,41 @@
 <p>In order for the two pointers to meet at node <code>(n - x)</code>, <code>S</code> needs to take a further <code>(n - x - n/2) = (n/2 - x)</code> steps and it will end up at node <code>n - x</code>. During the same time, <code>F</code> will have taken <code>2 * (n/2 - x) = n - 2x</code> steps and will be at node <code>k + (n - 2x)</code>. Given our assumption that both <code>S</code> and <code>F</code> meet at the same node:</p>
 </li>
 </ol>
-<pre><code class="language-math" data-lang="math">    n-x = k+n-2x
+<pre tabindex="0"><code class="language-math" data-lang="math">    n-x = k+n-2x
 =&gt;    x = k
 </code></pre><p>This means that if <code>S</code> starts from the start of the loop, and <code>F</code> starts <code>k</code> nodes into the loop, both of them will meet at node <code>n - k</code>, i.e <code>k</code> nodes from the end of the loop. This is a key insight.</p>
 <h2 id="circular-linked-list">Circular Linked List</h2>
 <p>Now, coming back to the linked list that contains a loop. Suppose the start of the loop is <code>m</code> (e.g. <code>m</code>=3) nodes from the start of the linked list. Both <code>S</code> and <code>F</code> start at the beginning of the linked list [Figure-1].</p>
-<figure>
-    <img src="/img/circular-loop-figure-1.jpg"
-         alt="Figure-1: Circular linked list with S and F pointers at the start"/> <figcaption>
+<figure><img src="/img/circular-loop-figure-1.jpg"
+         alt="Figure-1: Circular linked list with S and F pointers at the start"/><figcaption>
             <p>Figure-1: Circular linked list with S and F pointers at the start</p>
         </figcaption>
 </figure>
 
 <p>By the time <code>S</code> gets to node <code>m</code> (i.e. start of loop), <code>F</code> will be at node <code>2m</code> [Figure-2]. This means that <code>S</code> will be at the start of the loop and <code>F</code> will be <code>m</code> nodes <em>into the loop</em>.</p>
-<figure>
-    <img src="/img/circular-loop-figure-2.jpg"
-         alt="Figure-2: Circular linked list, with S at the start of loop and F m nodes into the loop"/> <figcaption>
+<figure><img src="/img/circular-loop-figure-2.jpg"
+         alt="Figure-2: Circular linked list, with S at the start of loop and F m nodes into the loop"/><figcaption>
             <p>Figure-2: Circular linked list, with S at the start of loop and F m nodes into the loop</p>
         </figcaption>
 </figure>
 
 <p>Based on the discussion above, we already know that if <code>S</code> begins from the start of the loop and <code>F</code> starts from node <code>m</code>, they will meet <code>m</code> nodes from the end of the loop (i.e. the orange-node in [Figure-3]).</p>
-<figure>
-    <img src="/img/circular-loop-figure-3.jpg"
-         alt="Figure-3: Both F and S meet m nodes from the end of the loop"/> <figcaption>
+<figure><img src="/img/circular-loop-figure-3.jpg"
+         alt="Figure-3: Both F and S meet m nodes from the end of the loop"/><figcaption>
             <p>Figure-3: Both F and S meet m nodes from the end of the loop</p>
         </figcaption>
 </figure>
 
 <p>At this point, keep the pointer <code>F</code> at the orange-node where the two pointers met (i.e. <code>m</code>-nodes from the start of the loop), and move the pointer <code>S</code> to the beginning of the linked list [Figure-4]. Now, if we increment both <code>S</code> and <code>F</code> <em>one node at a time</em>, it is obvious that they will meet at &lsquo;Node-m&rsquo; (red-node) of the list, which is the start of the loop.</p>
 <p>{% img center /images/circular-loop-figure-4.jpg Figure-4 %}</p>
-<figure>
-    <img src="/img/circular-loop-figure-4.jpg"
-         alt="Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on"/> <figcaption>
+<figure><img src="/img/circular-loop-figure-4.jpg"
+         alt="Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on"/><figcaption>
             <p>Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on</p>
         </figcaption>
 </figure>
 
 <p>For the curious, here’s the Java code snippets for detecting a loop in a linked list and finding the starting node:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
 </span><span style="color:#75715e"> * Checks if the given linked list is a circular linked list (i.e. it
 </span><span style="color:#75715e"> * contains a loop). This means a list in which a node&#39;s next pointer points
 </span><span style="color:#75715e"> * to an earlier node, so as to make a loop in the linked list. For
@@ -188,7 +184,7 @@
     <span style="color:#f92672">}</span>
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
 </span><span style="color:#75715e"> * Returns the node at the start of a loop in the given circular linked
 </span><span style="color:#75715e"> * list. A circular list is one in which a node&#39;s next pointer points
 </span><span style="color:#75715e"> * to an earlier node, so as to make a loop in the linked list. For
@@ -256,7 +252,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2021-01-15 15:32:34.399788 -0800 PST m=&#43;0.067153703">2021</time> Umair Saeed.
+    &copy; <time datetime="2021-12-28 10:28:45.998499 -0800 PST m=&#43;0.061898727">2021</time> Umair Saeed.
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>

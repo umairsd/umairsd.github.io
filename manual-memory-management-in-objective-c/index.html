@@ -93,7 +93,7 @@
 <p><code>autorelease</code> is really handy when the creator of an object (e.g. a factory) simply creates the object and returns it to the caller. At this point, the creator has nothing to do with the object anymore, so it is up to the caller to retain the returned object in order to continue using it.</p>
 <h2 id="an-example---a-ticket-class">An Example - A Ticket class</h2>
 <p>Let us work through an example to see manual memory management in action. Suppose I am writing a ticketing framework, and I have a Ticket entity. The header file for Ticket looks as:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#66d9ef">@interface</span> <span style="color:#a6e22e">Ticket</span> : <span style="color:#a6e22e">NSObject</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#66d9ef">@interface</span> <span style="color:#a6e22e">Ticket</span> : <span style="color:#a6e22e">NSObject</span> {
   NSString <span style="color:#f92672">*</span>ticketId;
 }
 
@@ -105,7 +105,7 @@
 
 <span style="color:#66d9ef">@end</span>
 </code></pre></div><p>And the implementation file for Ticket looks as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#75715e">#import &#34;Ticket.h&#34;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#75715e">#import &#34;Ticket.h&#34;
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">Ticket</span>
 
 - (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">dealloc</span>
@@ -157,7 +157,7 @@
 </ol>
 <p>Essentially, the <code>ticketWithId:</code> method is saying that it does not want to be the owner for <code>newTkt</code> and puts that responsibility on the caller. If the caller wants to hold on to <code>newTkt</code> once it is returned, it must send it the <code>retain</code> message.</p>
 <h4 id="using-the-ticket-class">Using the Ticket class</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#75715e">// EXAMPLE-1
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#75715e">// EXAMPLE-1
 </span><span style="color:#75715e"></span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
 {
   Ticket<span style="color:#f92672">*</span> tkt <span style="color:#f92672">=</span> [[Ticket alloc] initWithId:ticketId];
@@ -167,7 +167,7 @@
 }
 </code></pre></div><p>At this point, the retain count for <code>tkt</code> is 1. Moreover, since the <code>processTicketWithId:</code> method created the <code>tkt</code> object, it is now the owner and thus is responsible for cleaning it up before this method exits. Clean up is done by sending it the <code>release</code> message
 Let&rsquo;s see another example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#75715e">// EXAMPLE-2
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#75715e">// EXAMPLE-2
 </span><span style="color:#75715e"></span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
 {
   Ticket<span style="color:#f92672">*</span> tkt <span style="color:#f92672">=</span> [Ticket ticketWithId:ticketId];
@@ -206,7 +206,7 @@ Let&rsquo;s see another example:</p>
 
     <footer>
   <span>
-    &copy; <time datetime="2021-01-15 15:32:34.400558 -0800 PST m=&#43;0.067923626">2021</time> Umair Saeed.
+    &copy; <time datetime="2021-12-28 10:28:45.993721 -0800 PST m=&#43;0.057120119">2021</time> Umair Saeed.
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>

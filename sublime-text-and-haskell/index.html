@@ -98,12 +98,12 @@
 <li>Install SublimeHaskell via Package Control.</li>
 </ul>
 <p>This last step doesn&rsquo;t work seamlessly. When I installed SublimeHaskell, I ran into the following error message in Sublime Text:</p>
-<pre><code class="language-console" data-lang="console">SublimeHaskell: Failed to compile ModuleInspector
-
-/Users/umair/Library/Application Support/Sublime Text 3/Packages/SublimeHaskell/ModuleInspector.hs:141:12:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">SublimeHaskell: Failed to compile ModuleInspector
+<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>/Users/umair/Library/Application Support/Sublime Text 3/Packages/SublimeHaskell/ModuleInspector.hs:141:12:
     Not in scope: data constructor ‘H.PNeg’
     Perhaps you meant ‘H.PRec’ (imported from Language.Haskell.Exts)
-</code></pre><p>The problem is described in more detail in <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a> on <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">SublimeHaskell&rsquo;s GitHub page</a>. The summary is that the master branch of SublimeHaskell is too slow to accomodate the removal of <code>PNeg</code> from <code>haskell-src-exts</code>. The solution is to use the <code>hsdev</code> branch of SublimeHaskell. This is done as follows (recommended by <a href="https://github.com/MoreAxes" title="GitHub user MoreAxes">MoreAxes</a> on comment thread for <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a>):</p>
+</code></pre></div><p>The problem is described in more detail in <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a> on <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">SublimeHaskell&rsquo;s GitHub page</a>. The summary is that the master branch of SublimeHaskell is too slow to accomodate the removal of <code>PNeg</code> from <code>haskell-src-exts</code>. The solution is to use the <code>hsdev</code> branch of SublimeHaskell. This is done as follows (recommended by <a href="https://github.com/MoreAxes" title="GitHub user MoreAxes">MoreAxes</a> on comment thread for <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a>):</p>
 <blockquote>
 <ul>
 <li>In Sublime Text, launch Package Control (<code>cmd-shift-p</code>), and use the &lsquo;Add Repository&rsquo; command to add <code>https://github.com/SublimeHaskell/SublimeHaskell/tree/hsdev</code>.</li>
@@ -112,13 +112,13 @@
 </ul>
 </blockquote>
 <p>You can now enter and build Haskell code from Sublime Text. To verify your setup, enter the following code in Sublime Text, and then hit <code>cmd-B</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">main</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">IO</span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">main</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">IO</span>()
 <span style="color:#a6e22e">main</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span>
     print <span style="color:#e6db74">&#34;Hello World&#34;</span>
 </code></pre></div><p>You will see the following printed:</p>
-<pre><code class="language-console" data-lang="console">&quot;Hello World&quot;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">&#34;Hello World&#34;
 [Finished in 0.2s]
-</code></pre><p>Here&rsquo;s a screenshot of my test file, with the output of the program:</p>
+</code></pre></div><p>Here&rsquo;s a screenshot of my test file, with the output of the program:</p>
 <p><img src="/img/sublime-text-haskell-test.png" alt="Haskell in Sublime Text"></p>
 
     
@@ -135,7 +135,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2021-01-15 15:32:34.528031 -0800 PST m=&#43;0.195397511">2021</time> Umair Saeed.
+    &copy; <time datetime="2021-12-28 10:28:45.987271 -0800 PST m=&#43;0.050670486">2021</time> Umair Saeed.
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>

@@ -6,14 +6,15 @@
     <description>Recent content on Umair&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 31 Dec 2020 07:51:46 -0800</lastBuildDate><atom:link href="https://umairsaeed.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Dec 2021 10:20:16 -0800</lastBuildDate><atom:link href="https://umairsaeed.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Refresh - 2021</title>
-      <link>https://umairsaeed.com/refresh-2021/</link>
-      <pubDate>Thu, 31 Dec 2020 07:51:46 -0800</pubDate>
+      <title>Refresh - 2022</title>
+      <link>https://umairsaeed.com/refresh-2022/</link>
+      <pubDate>Tue, 28 Dec 2021 10:20:16 -0800</pubDate>
       
-      <guid>https://umairsaeed.com/refresh-2021/</guid>
-      <description>Time to hit refresh, and restart my blog. This is a test post to ensure that all the tooling (Hugo, my theme etc.) works as expected.</description>
+      <guid>https://umairsaeed.com/refresh-2022/</guid>
+      <description>After a fairly long hiatus, I am hoping to resume blogging in 2022. This is a test post to ensure that all the tooling (Hugo, my theme etc.) works as expected.
+Time to hit refresh!</description>
     </item>
     
     <item>
@@ -73,7 +74,7 @@
       
       <guid>https://umairsaeed.com/maybe-as-an-applicative-functor/</guid>
       <description>&lt;p&gt;&lt;code&gt;Maybe&lt;/code&gt; type is made an instance of the &lt;code&gt;Applicative&lt;/code&gt; type class as follows:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;instance&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Applicative&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Maybe&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;where&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;instance&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Applicative&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Maybe&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;where&lt;/span&gt;
     pure &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Just&lt;/span&gt;
     &lt;span style=&#34;color:#66d9ef&#34;&gt;Nothing&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;_&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Nothing&lt;/span&gt;
     (&lt;span style=&#34;color:#66d9ef&#34;&gt;Just&lt;/span&gt; f) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;*&amp;gt;&lt;/span&gt; something &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fmap f something

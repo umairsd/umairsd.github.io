@@ -85,7 +85,7 @@
 
     <p>When working with lists in Haskell, occasionally there&rsquo;s a need to perform index based operations, such as adding an element at a particular index. As a Haskell <em>newbie</em>, using <code>foldl</code> or <code>foldr</code> is not the first idea that comes to mind when indices are involved. However, there is a general pattern that can be applied when using folds for index-based list operations.</p>
 <p>For example, consider the case where we need to add an element at a particular index:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#75715e">-- inserting at an index, using foldr</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#75715e">-- inserting at an index, using foldr</span>
 <span style="color:#a6e22e">insertAt</span> <span style="color:#f92672">::</span> a <span style="color:#f92672">-&gt;</span> [a] <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> [a]
 <span style="color:#a6e22e">insertAt</span> x ys n <span style="color:#f92672">=</span> foldr insertHelper <span style="color:#66d9ef">[]</span> <span style="color:#f92672">$</span> zip [<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>] ys
     <span style="color:#66d9ef">where</span>
@@ -95,7 +95,7 @@
 
 </code></pre></div><p>The basic idea is simple: We simply zip <code>[0..]</code> with the input list (<code>ys</code>) to get a list of tuples. The first element of each tuple is the index of the element in the list <code>ys</code> (input list). This allows us to perform index based tests in the helper function, as shown in <code>insertHelper</code> above.</p>
 <p>Both left and right folds can be used for index based list operations. Here&rsquo;s the same example using <code>foldl</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#75715e">-- inserting at an index, using foldl</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#75715e">-- inserting at an index, using foldl</span>
 <span style="color:#a6e22e">insertAtL</span> <span style="color:#f92672">::</span> a <span style="color:#f92672">-&gt;</span> [a] <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> [a]
 <span style="color:#a6e22e">insertAtL</span> x ys n <span style="color:#f92672">=</span> foldl insertLHelper <span style="color:#66d9ef">[]</span> <span style="color:#f92672">$</span> zip [<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>] ys
     <span style="color:#66d9ef">where</span>
@@ -120,7 +120,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2021-01-15 15:32:34.52892 -0800 PST m=&#43;0.196286893">2021</time> Umair Saeed.
+    &copy; <time datetime="2021-12-28 10:28:45.988823 -0800 PST m=&#43;0.052222717">2021</time> Umair Saeed.
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>
