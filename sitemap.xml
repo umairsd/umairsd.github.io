@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://umairsaeed.com/categories/books/</loc>
+    <lastmod>2022-01-01T10:23:26-08:00</lastmod>
+  </url><url>
+    <loc>https://umairsaeed.com/categories/</loc>
+    <lastmod>2022-01-01T10:23:26-08:00</lastmod>
+  </url><url>
+    <loc>https://umairsaeed.com/favorite-books-in-2021/</loc>
+    <lastmod>2022-01-01T10:23:26-08:00</lastmod>
+  </url><url>
+    <loc>https://umairsaeed.com/posts/</loc>
+    <lastmod>2022-01-01T10:23:26-08:00</lastmod>
+  </url><url>
+    <loc>https://umairsaeed.com/</loc>
+    <lastmod>2022-01-01T10:23:26-08:00</lastmod>
+  </url><url>
     <loc>https://umairsaeed.com/categories/blog/</loc>
     <lastmod>2021-12-28T10:20:16-08:00</lastmod>
   </url><url>
-    <loc>https://umairsaeed.com/categories/</loc>
-    <lastmod>2021-12-28T10:20:16-08:00</lastmod>
-  </url><url>
-    <loc>https://umairsaeed.com/posts/</loc>
-    <lastmod>2021-12-28T10:20:16-08:00</lastmod>
-  </url><url>
     <loc>https://umairsaeed.com/refresh-2022/</loc>
-    <lastmod>2021-12-28T10:20:16-08:00</lastmod>
-  </url><url>
-    <loc>https://umairsaeed.com/</loc>
     <lastmod>2021-12-28T10:20:16-08:00</lastmod>
   </url><url>
     <loc>https://umairsaeed.com/about/</loc>
@@ -63,9 +69,6 @@
     <lastmod>2015-03-27T10:30:53-07:00</lastmod>
   </url><url>
     <loc>https://umairsaeed.com/book-hackers-and-painters/</loc>
-    <lastmod>2015-03-26T10:00:12-07:00</lastmod>
-  </url><url>
-    <loc>https://umairsaeed.com/categories/books/</loc>
     <lastmod>2015-03-26T10:00:12-07:00</lastmod>
   </url><url>
     <loc>https://umairsaeed.com/a-quine-in-objective-c/</loc>
