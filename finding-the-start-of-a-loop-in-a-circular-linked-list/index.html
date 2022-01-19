@@ -139,7 +139,6 @@
 </figure>
 
 <p>At this point, keep the pointer <code>F</code> at the orange-node where the two pointers met (i.e. <code>m</code>-nodes from the start of the loop), and move the pointer <code>S</code> to the beginning of the linked list [Figure-4]. Now, if we increment both <code>S</code> and <code>F</code> <em>one node at a time</em>, it is obvious that they will meet at &lsquo;Node-m&rsquo; (red-node) of the list, which is the start of the loop.</p>
-<p>{% img center /images/circular-loop-figure-4.jpg Figure-4 %}</p>
 <figure><img src="/img/circular-loop-figure-4.jpg"
          alt="Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on"/><figcaption>
             <p>Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on</p>
@@ -154,35 +153,28 @@
 </span><span style="color:#75715e"> * instance:
 </span><span style="color:#75715e"> *     A -&gt; B -&gt; C -&gt; D -&gt; E -&gt; C
 </span><span style="color:#75715e"> *
-</span><span style="color:#75715e"> * @param linkedList
-</span><span style="color:#75715e"> *            the linked list to be tested
+</span><span style="color:#75715e"> * @param head
+</span><span style="color:#75715e"> *            The linked list to be tested
 </span><span style="color:#75715e"> * @return true if there is a loop, false if there isn&#39;t
 </span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">hasLoop</span><span style="color:#f92672">(</span>LinkedList linkedList<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>linkedList <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> linkedList<span style="color:#f92672">.</span><span style="color:#a6e22e">getHead</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">hasLoop</span><span style="color:#f92672">(</span>ListNode head<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>head <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
   <span style="color:#f92672">}</span>
 
-  IntegerNode slow <span style="color:#f92672">=</span> linkedList<span style="color:#f92672">.</span><span style="color:#a6e22e">getHead</span><span style="color:#f92672">();</span>
-  IntegerNode fast <span style="color:#f92672">=</span> linkedList<span style="color:#f92672">.</span><span style="color:#a6e22e">getHead</span><span style="color:#f92672">();</span>
+  ListNode slow <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
+  ListNode fast <span style="color:#f92672">=</span> head<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
 
-  <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">getNext</span><span style="color:#f92672">();</span>
-
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>fast<span style="color:#f92672">.</span><span style="color:#a6e22e">getNext</span><span style="color:#f92672">()</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-      fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">getNext</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getNext</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>slow <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> fast <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-
+  <span style="color:#66d9ef">while</span><span style="color:#f92672">(</span>slow <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>slow <span style="color:#f92672">==</span> fast<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
     <span style="color:#f92672">}</span>
+
+    slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+    fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
   <span style="color:#f92672">}</span>
+
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
 </span><span style="color:#75715e"> * Returns the node at the start of a loop in the given circular linked
@@ -198,43 +190,37 @@
 </span><span style="color:#75715e"> * @return the node at the start of the loop if there is a loop, null
 </span><span style="color:#75715e"> * otherwise
 </span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> IntegerNode <span style="color:#a6e22e">findLoopStart</span><span style="color:#f92672">(</span>LinkedList linkedList<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>linkedList <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> linkedList<span style="color:#f92672">.</span><span style="color:#a6e22e">getHead</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ListNode <span style="color:#a6e22e">findLoopStart</span><span style="color:#f92672">(</span>ListNode head<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>head <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
   <span style="color:#f92672">}</span>
 
-  IntegerNode loopStartNode <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-  IntegerNode slow <span style="color:#f92672">=</span> linkedList<span style="color:#f92672">.</span><span style="color:#a6e22e">getHead</span><span style="color:#f92672">();</span>
-  IntegerNode fast <span style="color:#f92672">=</span> linkedList<span style="color:#f92672">.</span><span style="color:#a6e22e">getHead</span><span style="color:#f92672">();</span>
+  ListNode slow <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
+  ListNode fast <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
 
-  <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>slow <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">getNext</span><span style="color:#f92672">();</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>fast<span style="color:#f92672">.</span><span style="color:#a6e22e">getNext</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-      loopStartNode <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-      <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-    fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">getNext</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getNext</span><span style="color:#f92672">();</span>
-
-    <span style="color:#75715e">// If slow and fast point to the same node, it means that the
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// linkedList contains a loop.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>slow <span style="color:#f92672">==</span> fast<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-
-      slow <span style="color:#f92672">=</span> linkedList<span style="color:#f92672">.</span><span style="color:#a6e22e">getHead</span><span style="color:#f92672">();</span>
-
-      <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>slow <span style="color:#f92672">!=</span> fast<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#75715e">// Keep incrementing the two pointers until they both
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// meet again. When this happens, both the pointers will
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// point to the beginning of the loop
-</span><span style="color:#75715e"></span>        slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">getNext</span><span style="color:#f92672">();</span> <span style="color:#75715e">// Can&#39;t be null, as we have a loop
-</span><span style="color:#75715e"></span>        fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">getNext</span><span style="color:#f92672">();</span> <span style="color:#75715e">// Can&#39;t be null, as we have a loop
-</span><span style="color:#75715e"></span>      <span style="color:#f92672">}</span>
-
-      loopStartNode <span style="color:#f92672">=</span> slow<span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+    fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>slow <span style="color:#f92672">==</span> fast<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
       <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
     <span style="color:#f92672">}</span>
   <span style="color:#f92672">}</span>
 
-  <span style="color:#66d9ef">return</span> loopStartNode<span style="color:#f92672">;</span>
+  <span style="color:#75715e">// No cycle if the fast pointer gets to the end of the list.
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>fast <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+
+  ListNode interesection <span style="color:#f92672">=</span> slow<span style="color:#f92672">;</span>
+  ListNode p1 <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
+  ListNode p2 <span style="color:#f92672">=</span> intersection<span style="color:#f92672">;</span>
+
+  <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>p1 <span style="color:#f92672">!=</span> p2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    p1 <span style="color:#f92672">=</span> p1<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+    p2 <span style="color:#f92672">=</span> p2<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+
+  <span style="color:#66d9ef">return</span> p1<span style="color:#f92672">;</span>
 <span style="color:#f92672">}</span>
 </code></pre></div>
 
@@ -252,7 +238,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2022-01-01 13:07:21.707151 -0800 PST m=&#43;0.061379507">2022</time> Umair Saeed.
+    &copy; <time datetime="2022-01-19 06:20:15.360997 -0800 PST m=&#43;0.139246661">2022</time> Umair Saeed.
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>
