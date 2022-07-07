@@ -93,57 +93,57 @@
 <p><code>autorelease</code> is really handy when the creator of an object (e.g. a factory) simply creates the object and returns it to the caller. At this point, the creator has nothing to do with the object anymore, so it is up to the caller to retain the returned object in order to continue using it.</p>
 <h2 id="an-example---a-ticket-class">An Example - A Ticket class</h2>
 <p>Let us work through an example to see manual memory management in action. Suppose I am writing a ticketing framework, and I have a Ticket entity. The header file for Ticket looks as:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#66d9ef">@interface</span> <span style="color:#a6e22e">Ticket</span> : <span style="color:#a6e22e">NSObject</span> {
-  NSString <span style="color:#f92672">*</span>ticketId;
-}
-
-- (NSString <span style="color:#f92672">*</span>) <span style="color:#a6e22e">ticketId</span>;
-- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">setTicketId:</span>(NSString <span style="color:#f92672">*</span>) tid;
-
-- (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">initWithId:</span>(NSString <span style="color:#f92672">*</span>) tid;
-+ (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">ticketWithId:</span>(NSString <span style="color:#f92672">*</span>) tid;
-
-<span style="color:#66d9ef">@end</span>
-</code></pre></div><p>And the implementation file for Ticket looks as follows:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#75715e">#import &#34;Ticket.h&#34;
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">Ticket</span>
-
-- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">dealloc</span>
-{
-  [ticketId <span style="color:#66d9ef">release</span>];
-  [super dealloc];
-}
-
-- (NSString <span style="color:#f92672">*</span>) <span style="color:#a6e22e">ticketId</span>
-{
-  <span style="color:#66d9ef">return</span> ticketId;
-}
-
-- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">setTicketId:</span>(NSString <span style="color:#f92672">*</span>)tid
-{
-  [tid <span style="color:#66d9ef">retain</span>];
-  [ticketId <span style="color:#66d9ef">release</span>];
-  ticketId <span style="color:#f92672">=</span> tid;
-}
-
-- (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">initWithId:</span>(NSString <span style="color:#f92672">*</span>) tid
-{
-  <span style="color:#66d9ef">if</span> (self <span style="color:#f92672">=</span> [super init])
-  {
-    [self setTicketId:tid];
-  }
-
-  <span style="color:#66d9ef">return</span> self;
-}
-
-+ (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">ticketWithId:</span>(NSString <span style="color:#f92672">*</span>)tid
-{
-  Ticket <span style="color:#f92672">*</span>newTkt <span style="color:#f92672">=</span> [[Ticket alloc] initWithId:tid];
-  <span style="color:#66d9ef">return</span> [newTkt autorelease];
-}
-
-<span style="color:#66d9ef">@end</span>
-</code></pre></div><p>There are three memory management points to note here:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#66d9ef">@interface</span> <span style="color:#a6e22e">Ticket</span> : <span style="color:#a6e22e">NSObject</span> {
+</span></span><span style="display:flex;"><span>  NSString <span style="color:#f92672">*</span>ticketId;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- (NSString <span style="color:#f92672">*</span>) <span style="color:#a6e22e">ticketId</span>;
+</span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">setTicketId:</span>(NSString <span style="color:#f92672">*</span>) tid;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">initWithId:</span>(NSString <span style="color:#f92672">*</span>) tid;
+</span></span><span style="display:flex;"><span>+ (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">ticketWithId:</span>(NSString <span style="color:#f92672">*</span>) tid;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@end</span>
+</span></span></code></pre></div><p>And the implementation file for Ticket looks as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#75715e">#import &#34;Ticket.h&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">Ticket</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">dealloc</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  [ticketId <span style="color:#66d9ef">release</span>];
+</span></span><span style="display:flex;"><span>  [super dealloc];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- (NSString <span style="color:#f92672">*</span>) <span style="color:#a6e22e">ticketId</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> ticketId;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">setTicketId:</span>(NSString <span style="color:#f92672">*</span>)tid
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  [tid <span style="color:#66d9ef">retain</span>];
+</span></span><span style="display:flex;"><span>  [ticketId <span style="color:#66d9ef">release</span>];
+</span></span><span style="display:flex;"><span>  ticketId <span style="color:#f92672">=</span> tid;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">initWithId:</span>(NSString <span style="color:#f92672">*</span>) tid
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (self <span style="color:#f92672">=</span> [super init])
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    [self setTicketId:tid];
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> self;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>+ (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">ticketWithId:</span>(NSString <span style="color:#f92672">*</span>)tid
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  Ticket <span style="color:#f92672">*</span>newTkt <span style="color:#f92672">=</span> [[Ticket alloc] initWithId:tid];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> [newTkt autorelease];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@end</span>
+</span></span></code></pre></div><p>There are three memory management points to note here:</p>
 <ol>
 <li>
 <p>Inside <code>dealloc</code>, an object must release all its instance variables first. Then it should go up its class hierarchy and release any instance variables of its superclass. We should never directly send the <code>dealloc</code> message to instance variables, as some other objects might still have references to those variables.</p>
@@ -157,26 +157,26 @@
 </ol>
 <p>Essentially, the <code>ticketWithId:</code> method is saying that it does not want to be the owner for <code>newTkt</code> and puts that responsibility on the caller. If the caller wants to hold on to <code>newTkt</code> once it is returned, it must send it the <code>retain</code> message.</p>
 <h4 id="using-the-ticket-class">Using the Ticket class</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#75715e">// EXAMPLE-1
-</span><span style="color:#75715e"></span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
-{
-  Ticket<span style="color:#f92672">*</span> tkt <span style="color:#f92672">=</span> [[Ticket alloc] initWithId:ticketId];
-  <span style="color:#75715e">// Do something with tkt
-</span><span style="color:#75715e"></span>  <span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>  [tkt <span style="color:#66d9ef">release</span>];
-}
-</code></pre></div><p>At this point, the retain count for <code>tkt</code> is 1. Moreover, since the <code>processTicketWithId:</code> method created the <code>tkt</code> object, it is now the owner and thus is responsible for cleaning it up before this method exits. Clean up is done by sending it the <code>release</code> message
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#75715e">// EXAMPLE-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  Ticket<span style="color:#f92672">*</span> tkt <span style="color:#f92672">=</span> [[Ticket alloc] initWithId:ticketId];
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Do something with tkt
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  [tkt <span style="color:#66d9ef">release</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>At this point, the retain count for <code>tkt</code> is 1. Moreover, since the <code>processTicketWithId:</code> method created the <code>tkt</code> object, it is now the owner and thus is responsible for cleaning it up before this method exits. Clean up is done by sending it the <code>release</code> message
 Let&rsquo;s see another example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#75715e">// EXAMPLE-2
-</span><span style="color:#75715e"></span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
-{
-  Ticket<span style="color:#f92672">*</span> tkt <span style="color:#f92672">=</span> [Ticket ticketWithId:ticketId];
-  [tkt <span style="color:#66d9ef">retain</span>];
-  <span style="color:#75715e">// Do something with tkt
-</span><span style="color:#75715e"></span>  <span style="color:#75715e">// ..
-</span><span style="color:#75715e"></span>  [tkt <span style="color:#66d9ef">release</span>];
-}
-</code></pre></div><p>In this example, the memory for <code>tkt</code> wasn&rsquo;t allocated by <code>processTicketWithId</code> method, so it doesn&rsquo;t own the <code>tkt</code> object. However, as we&rsquo;ve seen in the implementation of the Ticket class, the <code>ticketWithId:</code> method created the Ticket object and added it to the autorelease pool. In order to continue using <code>tkt</code>, we must retain it so that even if it is drained from the autorelease pool, we can still continue to use the <code>tkt</code> object. Once done, we need to clean up and send the release message.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#75715e">// EXAMPLE-2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  Ticket<span style="color:#f92672">*</span> tkt <span style="color:#f92672">=</span> [Ticket ticketWithId:ticketId];
+</span></span><span style="display:flex;"><span>  [tkt <span style="color:#66d9ef">retain</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Do something with tkt
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// ..
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  [tkt <span style="color:#66d9ef">release</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In this example, the memory for <code>tkt</code> wasn&rsquo;t allocated by <code>processTicketWithId</code> method, so it doesn&rsquo;t own the <code>tkt</code> object. However, as we&rsquo;ve seen in the implementation of the Ticket class, the <code>ticketWithId:</code> method created the Ticket object and added it to the autorelease pool. In order to continue using <code>tkt</code>, we must retain it so that even if it is drained from the autorelease pool, we can still continue to use the <code>tkt</code> object. Once done, we need to clean up and send the release message.</p>
 <h2 id="summary-of-memory-management-rules-for-objective-c">Summary of Memory Management Rules for Objective-C</h2>
 <ul>
 <li>
@@ -206,7 +206,7 @@ Let&rsquo;s see another example:</p>
 
     <footer>
   <span>
-    &copy; <time datetime="2022-01-19 06:20:15.357385 -0800 PST m=&#43;0.135635163">2022</time> Umair Saeed.
+    &copy; <time datetime="2022-07-06 17:04:59.008681 -0700 PDT m=&#43;0.048988584">2022</time> Umair Saeed.
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>

@@ -85,25 +85,23 @@
 
     <p>When working with lists in Haskell, occasionally there&rsquo;s a need to perform index based operations, such as adding an element at a particular index. As a Haskell <em>newbie</em>, using <code>foldl</code> or <code>foldr</code> is not the first idea that comes to mind when indices are involved. However, there is a general pattern that can be applied when using folds for index-based list operations.</p>
 <p>For example, consider the case where we need to add an element at a particular index:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#75715e">-- inserting at an index, using foldr</span>
-<span style="color:#a6e22e">insertAt</span> <span style="color:#f92672">::</span> a <span style="color:#f92672">-&gt;</span> [a] <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> [a]
-<span style="color:#a6e22e">insertAt</span> x ys n <span style="color:#f92672">=</span> foldr insertHelper <span style="color:#66d9ef">[]</span> <span style="color:#f92672">$</span> zip [<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>] ys
-    <span style="color:#66d9ef">where</span>
-        insertHelper (i,y) acc <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> n
-            <span style="color:#66d9ef">then</span> x <span style="color:#66d9ef">:</span> y <span style="color:#66d9ef">:</span> acc
-            <span style="color:#66d9ef">else</span> y <span style="color:#66d9ef">:</span> acc
-
-</code></pre></div><p>The basic idea is simple: We simply zip <code>[0..]</code> with the input list (<code>ys</code>) to get a list of tuples. The first element of each tuple is the index of the element in the list <code>ys</code> (input list). This allows us to perform index based tests in the helper function, as shown in <code>insertHelper</code> above.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#75715e">-- inserting at an index, using foldr</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">insertAt</span> <span style="color:#f92672">::</span> a <span style="color:#f92672">-&gt;</span> [a] <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> [a]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">insertAt</span> x ys n <span style="color:#f92672">=</span> foldr insertHelper <span style="color:#66d9ef">[]</span> <span style="color:#f92672">$</span> zip [<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>] ys
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>        insertHelper (i,y) acc <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> n
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">then</span> x <span style="color:#66d9ef">:</span> y <span style="color:#66d9ef">:</span> acc
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span> y <span style="color:#66d9ef">:</span> acc
+</span></span></code></pre></div><p>The basic idea is simple: We simply zip <code>[0..]</code> with the input list (<code>ys</code>) to get a list of tuples. The first element of each tuple is the index of the element in the list <code>ys</code> (input list). This allows us to perform index based tests in the helper function, as shown in <code>insertHelper</code> above.</p>
 <p>Both left and right folds can be used for index based list operations. Here&rsquo;s the same example using <code>foldl</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#75715e">-- inserting at an index, using foldl</span>
-<span style="color:#a6e22e">insertAtL</span> <span style="color:#f92672">::</span> a <span style="color:#f92672">-&gt;</span> [a] <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> [a]
-<span style="color:#a6e22e">insertAtL</span> x ys n <span style="color:#f92672">=</span> foldl insertLHelper <span style="color:#66d9ef">[]</span> <span style="color:#f92672">$</span> zip [<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>] ys
-    <span style="color:#66d9ef">where</span>
-        insertLHelper acc (i,y) <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> n
-            <span style="color:#66d9ef">then</span> acc <span style="color:#f92672">++</span> [x] <span style="color:#f92672">++</span> [y]
-            <span style="color:#66d9ef">else</span> acc <span style="color:#f92672">++</span> [y]
-
-</code></pre></div><p>Both left and right fold produce the same result. Adding an element to the head of the list (via <code>:</code>) is more efficient than concatenating lists (via <code>++</code>), so generally I prefer using the 1st version, i.e. one that uses <code>foldr</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#75715e">-- inserting at an index, using foldl</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">insertAtL</span> <span style="color:#f92672">::</span> a <span style="color:#f92672">-&gt;</span> [a] <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> [a]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">insertAtL</span> x ys n <span style="color:#f92672">=</span> foldl insertLHelper <span style="color:#66d9ef">[]</span> <span style="color:#f92672">$</span> zip [<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>] ys
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>        insertLHelper acc (i,y) <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> n
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">then</span> acc <span style="color:#f92672">++</span> [x] <span style="color:#f92672">++</span> [y]
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span> acc <span style="color:#f92672">++</span> [y]
+</span></span></code></pre></div><p>Both left and right fold produce the same result. Adding an element to the head of the list (via <code>:</code>) is more efficient than concatenating lists (via <code>++</code>), so generally I prefer using the 1st version, i.e. one that uses <code>foldr</code></p>
 <p><a href="https://gist.github.com/umairsd/cdcb397941762fe02d05">Here&rsquo;s a gist</a> with examples of  <code>insertAt</code>, <code>updateAt</code>, and <code>deleteAt</code> functions, all implemented using folds.</p>
 
     
@@ -120,7 +118,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2022-01-19 06:20:15.351759 -0800 PST m=&#43;0.130008327">2022</time> Umair Saeed.
+    &copy; <time datetime="2022-07-06 17:04:59.000594 -0700 PDT m=&#43;0.040901876">2022</time> Umair Saeed.
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>
