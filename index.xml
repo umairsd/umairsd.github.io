@@ -2,12 +2,30 @@
   <title>Umair&#39;s Blog</title>
   <link href="https://umairsaeed.com/index.xml" rel="self"/>
   <link href="https://umairsaeed.com/"/>
-  <updated>2023-03-20T13:46:15-07:00</updated>
+  <updated>2023-03-30T12:45:07-07:00</updated>
   <id>https://umairsaeed.com/</id>
   <author>
     <name>Umair Saeed</name>
   </author>
   <generator>Hugo -- gohugo.io</generator>
+  <entry>
+    <title type="html"><![CDATA[Mastodon]]></title>
+    <link href="https://umairsaeed.com/mastodon/"/>
+    <id>https://umairsaeed.com/mastodon/</id>
+    <author>
+      <name>Umair Saeed</name>
+    </author>
+    <published>2023-03-30T12:45:07-07:00</published>
+    <updated>2023-03-30T12:45:07-07:00</updated>
+    
+    <content type="html"><![CDATA[<p>I&rsquo;ve started using 
+  <a rel="me" href="https://mastodon.social/@umairsd">Mastodon</a>
+
+, so please feel free to follow.</p>
+<p>This could have been a tweet, but I need to add this post to be able to link back to my Mastodon profile. Doing so allows me to verify ownership of the link to my blog on my Mastodon profile.</p>
+]]></content>
+    
+  </entry>
   <entry>
     <title type="html"><![CDATA[Turtles All the Way Down]]></title>
     <link href="https://umairsaeed.com/turtles-all-the-way-down/"/>

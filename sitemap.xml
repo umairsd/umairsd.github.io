@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://umairsaeed.com/mastodon/</loc>
+    <lastmod>2023-03-30T12:45:07-07:00</lastmod>
+  </url><url>
+    <loc>https://umairsaeed.com/posts/</loc>
+    <lastmod>2023-03-30T12:45:07-07:00</lastmod>
+  </url><url>
+    <loc>https://umairsaeed.com/</loc>
+    <lastmod>2023-03-30T12:45:07-07:00</lastmod>
+  </url><url>
     <loc>https://umairsaeed.com/categories/career/</loc>
     <lastmod>2023-03-20T13:46:15-07:00</lastmod>
   </url><url>
@@ -11,13 +20,7 @@
     <loc>https://umairsaeed.com/categories/management/</loc>
     <lastmod>2023-03-20T13:46:15-07:00</lastmod>
   </url><url>
-    <loc>https://umairsaeed.com/posts/</loc>
-    <lastmod>2023-03-20T13:46:15-07:00</lastmod>
-  </url><url>
     <loc>https://umairsaeed.com/turtles-all-the-way-down/</loc>
-    <lastmod>2023-03-20T13:46:15-07:00</lastmod>
-  </url><url>
-    <loc>https://umairsaeed.com/</loc>
     <lastmod>2023-03-20T13:46:15-07:00</lastmod>
   </url><url>
     <loc>https://umairsaeed.com/lose-trust-as-a-manager/</loc>
