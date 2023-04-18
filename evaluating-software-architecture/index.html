@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8V6E04YTKR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8V6E04YTKR');
+</script>
+
+  
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Evaluating Software Architecture &middot; Umair&#39;s Blog
+  </title>
+
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+  
+  <link href="" rel="alternate"
+    type="application/rss+xml" title="Umair&#39;s Blog" />
+
+</head>
+  <body>
+    <nav class="nav">
+  <div class="nav-container">
+    <a href="/">
+      <h2 class="nav-title">Umair&#39;s Blog</h2>
+    </a>
+
+    <ul>
+      
+      
+        <li>
+          <a href="/" title="">Posts</a>
+        </li>
+      
+        <li>
+          <a href="/categories/" title="">Categories</a>
+        </li>
+      
+        <li>
+          <a href="/index.xml" title="">Atom</a>
+        </li>
+      
+        <li>
+          <a href="/about/" title="">About</a>
+        </li>
+      
+    </ul>
+
+  </div>
+</nav>
+
+    
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <br>
+        <span>on&nbsp;</span><time datetime="2023-04-17 11:28:21 -0700 PDT">April 17, 2023</time>
+
+    
+        
+            <ul class="post-ul">
+            <span>in</span> [
+              
+                <li class="post-li"><a href="/categories/system-design"> system-design</a></li>
+              
+                <li class="post-li"><a href="/categories/software"> software</a></li>
+              ]
+            </ul>
+        
+</div>
+
+    <h1 class="post-title">
+  
+  
+    <a href="/evaluating-software-architecture/" class="catalog-title-anchor">
+      Evaluating Software Architecture
+    </a>
+  
+</h1>
+
+
+
+<div class="post-line"></div>
+
+
+    
+
+    <p>Software architecture is very context-dependent. Factors such as the software application&rsquo;s goals, the development team&rsquo;s size and budget, and business needs play a significant role in the choice of software architecture.</p>
+<p>The architecture goals for an early-stage company (i.e., focused on quick prototyping to find product-market fit) are very different from those of a  growth-stage company (rapid growth in the number of users) or a company with a stable base of customers who expect the product to &ldquo;just work.&rdquo;</p>
+<p>All architectures come with their strengths and weaknesses, so how best to evaluate various decisions and tradeoffs when analyzing architectural choices? Architectural quality attributes (<em>aka</em> non-functional requirements) are the criteria used to evaluate software architectures and compare them systematically.</p>
+<h2 id="architectural-attributes">Architectural Attributes</h2>
+<p>There is a large number of <a href="https://en.wikipedia.org/wiki/List_of_system_quality_attributes">quality attributes</a> used to evaluate a system. However, I am going to use the following 11 attributes as I find them the most compelling for evaluating various architectural choices.</p>
+<h3 id="deployability">Deployability</h3>
+<p>Deployability measures the ease with which software can be allocated to &ldquo;an environment for execution.&rdquo; Moreover, it measures the ease with which the engineering or dev-ops teams can roll back the new deployment in case of issues. Ease means a predictable and acceptable amount of time and effort.</p>
+<p>The frequency of deployments, percentage of successful to failed deployments, time per deployment, and the number of issues per deployment are some of the metrics used to measure the deployability attribute.</p>
+<h3 id="fault-tolerance">Fault Tolerance</h3>
+<p>Fault tolerance is the software&rsquo;s ability to handle error and boundary conditions and the time to recovery in failures (e.g., power outage, hardware failure, etc.)</p>
+<h3 id="scalability">Scalability</h3>
+<p>Scalability is an application&rsquo;s ability to handle a large number of concurrent users without significant performance degradation.</p>
+<h3 id="elasticity">Elasticity</h3>
+<p>Elasticity is an application&rsquo;s ability to handle a sudden spike of requests. Usually, this attribute correlates with scalability. If an application is architected such that it can scale well, it will likely be able to handle a burst of users as well.</p>
+<h3 id="reliability">Reliability</h3>
+<p>The reliability attribute measures the degree to which a software system performs specific functions under certain conditions. A few factors contribute to this, such as:</p>
+<ul>
+<li>Is the software available when the users need to use it?</li>
+<li>Does the software do what it is supposed to? How buggy is it?</li>
+<li>How well does the software handle external failures, such as hardware or software issues? This factor has some overlap with fault tolerance.</li>
+</ul>
+<h3 id="performance">Performance</h3>
+<p>Performance is a measure of the responsiveness of the system. How long does it take to complete a task (e.g., a user request)? Typically, this attribute includes both the latency (time spent on responding to an event) and capacity (the number of events handled in a given time).</p>
+<h3 id="modularity">Modularity</h3>
+<p>A software module is a logical grouping of related code. In software architecture, a module is a general term to denote a related collection of code that is independently deployable, reusable, and provides a concise and standardized interface (API) to its users.</p>
+<p>Modularity measures how well the overall system is built out of modules.</p>
+<h3 id="extensibility">Extensibility</h3>
+<p>The extensibility attribute measures how easy it is to change the functionality of a software application. Shifts in business priorities, customer demands, and new technologies often necessitate changing a software application.</p>
+<h3 id="testability">Testability</h3>
+<p>Testability measures how easy it is to test an application to find bugs and to ensure that it meets all the criteria (i.e., &ldquo;Does the software work? How well?&rdquo;). One way to measure testability is through code and path coverage tools.</p>
+<h3 id="simplicity">Simplicity</h3>
+<p>Simplicity measures how easy it is to understand and build a software system. It is <em>somewhat</em> subjective, as it often depends on the development team&rsquo;s experience, skills, and budget.</p>
+<h3 id="overall-cost">Overall Cost</h3>
+<p>Finally, at a high level, the cost is the monetary expense of building and maintaining an architecture. It includes the time to build the system, the resources (hardware, licenses, etc.), and the costs of employing a team of engineers.</p>
+<p>&ndash;</p>
+<p><strong>This is the first post in a new series of blog posts to analyze some common software architectures</strong>. The primary goal is to provide a high-level overview of each architectural style and see how they stack against each other. I will use the set of architectural characteristics defined in the post to analyze each of the architectures in turn.</p>
+
+    
+  </div>
+
+  <div class="pagination">
+    <a href="/mastodon/" class="left arrow">&#8592;</a>
+
+    <a href="#" class="top">Top</a>
+  </div>
+</main>
+
+
+    <footer>
+  <span>
+    &copy; <time datetime="2023-04-18 12:12:35.478338 -0700 PDT m=&#43;0.090359897">2023</time> Umair Saeed.
+    Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
+  </span>
+</footer>
+  </body>
+</html>
