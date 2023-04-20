@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8V6E04YTKR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8V6E04YTKR');
+</script>
+
+  
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Collectors in Scheme &middot; Umair&#39;s Blog
+  </title>
+
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+  
+  <link href="" rel="alternate"
+    type="application/rss+xml" title="Umair&#39;s Blog" />
+
+</head>
+  <body>
+    <nav class="nav">
+  <div class="nav-container">
+    <a href="/">
+      <h2 class="nav-title">Umair&#39;s Blog</h2>
+    </a>
+
+    <ul>
+      
+      
+        <li>
+          <a href="/" title="">Posts</a>
+        </li>
+      
+        <li>
+          <a href="/categories/" title="">Categories</a>
+        </li>
+      
+        <li>
+          <a href="/index.xml" title="">Atom</a>
+        </li>
+      
+        <li>
+          <a href="/about/" title="">About</a>
+        </li>
+      
+    </ul>
+
+  </div>
+</nav>
+
+    
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <br>
+        <span>on&nbsp;</span><time datetime="2023-04-20 09:47:49 -0700 PDT">April 20, 2023</time>
+
+    
+        
+            <ul class="post-ul">
+            <span>in</span> [
+              
+                <li class="post-li"><a href="/categories/code"> code</a></li>
+              
+                <li class="post-li"><a href="/categories/scheme"> scheme</a></li>
+              
+                <li class="post-li"><a href="/categories/racket"> racket</a></li>
+              
+                <li class="post-li"><a href="/categories/fp"> fp</a></li>
+              ]
+            </ul>
+        
+</div>
+
+    <h1 class="post-title">
+  
+  
+    <a href="/collectors-in-scheme/" class="catalog-title-anchor">
+      Collectors in Scheme
+    </a>
+  
+</h1>
+
+
+
+<div class="post-line"></div>
+
+
+    
+
+    <p>Collector functions are a functional way of processing and accumulating collections of data. I recently encountered this pattern while going through the book <a href="https://mitpress.mit.edu/9780262560993/the-little-schemer/">The Little Schemer</a>. In the discussion of lambdas, there&rsquo;s a function named <code>multirember&amp;co</code>, which stands for <em>&ldquo;remove multiple members and collect&rdquo;</em>. Basically, it removes multiple elements from a list and collects the removed elements.&quot;</p>
+<p>This function is a good, nontrivial example of collector functions. Once I worked through it, I decided writing a short blog post about it would be helpful so others could benefit.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>multirember&amp;co
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">a</span> lat col)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">cond</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">; (1) Base case. Collect empty lists.</span>
+</span></span><span style="display:flex;"><span>      ((null? lat) (<span style="color:#a6e22e">col</span> (<span style="color:#66d9ef">quote </span>()) (<span style="color:#66d9ef">quote </span>())))
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">; (2) The head of the list is equal to `a`. Collect it in `seen`.</span>
+</span></span><span style="display:flex;"><span>      ((eq? a (car lat))
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">multirember&amp;co</span> a
+</span></span><span style="display:flex;"><span>                       (cdr lat)
+</span></span><span style="display:flex;"><span>                       (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat</span> seen)
+</span></span><span style="display:flex;"><span>                         (<span style="color:#a6e22e">col</span> newlat (cons (car lat) seen)))))
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">; (3) The head of the list is not equal to `a`. Collect it in `newlat`.</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">else</span>
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">multirember&amp;co</span> a
+</span></span><span style="display:flex;"><span>                       (cdr lat)
+</span></span><span style="display:flex;"><span>                       (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat</span> seen)
+</span></span><span style="display:flex;"><span>                         (<span style="color:#a6e22e">col</span> (cons (car lat) newlat) seen)))))))
+</span></span></code></pre></div><p>This function has three arguments: the value <code>a</code> to be removed from the list, the list <code>lat</code>, and a collector function <code>col</code>. It looks at every element of the list <code>lat</code> to see if it is equal to <code>a</code>. If so, it collects them in a list (<code>seen</code> ). If not, it collects them in another list (<code>newlat</code>).</p>
+<p>The recurrence for this function at first seems complicated. At each step, this function recurs by building a new lambda function that uses the given collector to prepend an element to one of the lists. It then passes this new lambda down to the next call of <code>multirember&amp;co</code>.</p>
+<p>Let&rsquo;s walk through the expansion of <code>(multirember&amp;co 'b '(a b c b) list)</code>. I will name the collector lambda at each step to make it easier to see what&rsquo;s happening. At each step, comments describe what&rsquo;s going on with the expansion:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span><span style="color:#75715e">; Initial: Name the collector that&#39;s passed in as `col-0`</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>col-0 list)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; Step-1:</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">multirember&amp;co</span> <span style="color:#e6db74">&#39;b</span> <span style="color:#f92672">&#39;</span>(a b c b) col-0)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; `b` does not match the head of the list `a`. The code builds a</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; new lambda for recursion. Call it `col-1`.</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>col-1
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat</span> seen)
+</span></span><span style="display:flex;"><span>		(<span style="color:#a6e22e">col-0</span> (cons <span style="color:#e6db74">&#39;a</span> newlat) seen)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; Step-2:</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">multirember&amp;co</span> <span style="color:#e6db74">&#39;b</span> <span style="color:#f92672">&#39;</span>(b c b) col-1)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; `b` matches the head of the list. Name the new lambda for the</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; recursion as `col-2`.</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>col-2
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat</span> seen)
+</span></span><span style="display:flex;"><span>	  (<span style="color:#a6e22e">col-1</span> newlat (cons <span style="color:#e6db74">&#39;b</span> seen))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; Step-3:</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">multirember&amp;co</span> <span style="color:#e6db74">&#39;b</span> <span style="color:#f92672">&#39;</span>(c b) col-2)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; `b` does not match the head of the list. Name the new lambda</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; for the recursion as `col-3`.</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>col-3
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat</span> seen)
+</span></span><span style="display:flex;"><span>	  (<span style="color:#a6e22e">col-2</span> (cons <span style="color:#e6db74">&#39;c</span> newlat) seen)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; Step-4:</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">multirember&amp;co</span> <span style="color:#e6db74">&#39;b</span> <span style="color:#f92672">&#39;</span>(b) col-3)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; `b` matches the head of the list. Name the new lambda for the</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; recursion as `col-4`:</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>col-4
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat</span> seen)
+</span></span><span style="display:flex;"><span>	  (<span style="color:#a6e22e">col-3</span> newlat (cons <span style="color:#e6db74">&#39;b</span> seen))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; Step-5:</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">multirember&amp;co</span> <span style="color:#e6db74">&#39;b</span> <span style="color:#f92672">&#39;</span>() col-4)
+</span></span><span style="display:flex;"><span>((null? lat) (<span style="color:#a6e22e">col-4</span> <span style="color:#f92672">&#39;</span>() <span style="color:#f92672">&#39;</span>()))
+</span></span></code></pre></div><p>At the last step, the stack of function calls logically looks as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">col-4</span> <span style="color:#f92672">&#39;</span>() <span style="color:#f92672">&#39;</span>())
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;|_____|</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;   |</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;   |</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>col-4
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat</span> seen)
+</span></span><span style="display:flex;"><span>		(<span style="color:#a6e22e">col-3</span> newlat (cons <span style="color:#e6db74">&#39;b</span> seen))))
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">;   |_____|</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">;      |</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">;      |</span>
+</span></span><span style="display:flex;"><span>		(<span style="color:#66d9ef">define </span>col-3
+</span></span><span style="display:flex;"><span>			(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat</span> seen)
+</span></span><span style="display:flex;"><span>				(<span style="color:#a6e22e">col-2</span> (cons <span style="color:#e6db74">&#39;c</span> newlat) seen)))
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">;   |_____|</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">;      |</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">;      |</span>
+</span></span><span style="display:flex;"><span>				(<span style="color:#66d9ef">define </span>col-2
+</span></span><span style="display:flex;"><span>					(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat</span> seen)
+</span></span><span style="display:flex;"><span>						(<span style="color:#a6e22e">col-1</span> newlat (cons <span style="color:#e6db74">&#39;b</span> seen))))
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e">;   |_____|</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e">;      |</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e">;      |</span>
+</span></span><span style="display:flex;"><span>						(<span style="color:#66d9ef">define </span>col-1
+</span></span><span style="display:flex;"><span>							(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat</span> seen)
+</span></span><span style="display:flex;"><span>								(<span style="color:#a6e22e">col-0</span> (cons <span style="color:#e6db74">&#39;a</span> newlat) seen)))
+</span></span><span style="display:flex;"><span>							<span style="color:#75715e">;   |_____|</span>
+</span></span><span style="display:flex;"><span>							<span style="color:#75715e">;      |</span>
+</span></span><span style="display:flex;"><span>							<span style="color:#75715e">;      |</span>
+</span></span><span style="display:flex;"><span>								(<span style="color:#66d9ef">define </span>col-0 list)
+</span></span></code></pre></div><p>Without the labels, the actual expansion (below) is much harder to parse and understand!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>((<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat4</span> seen4) <span style="color:#75715e">; col-4</span>
+</span></span><span style="display:flex;"><span>   ((<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat3</span> seen3) <span style="color:#75715e">; col-3</span>
+</span></span><span style="display:flex;"><span>      ((<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat2</span> seen2) <span style="color:#75715e">; col-2</span>
+</span></span><span style="display:flex;"><span>         ((<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">newlat1</span> seen1)<span style="color:#75715e">; col-1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            (<span style="color:#a6e22e">col-0</span> (cons <span style="color:#e6db74">&#39;a</span> newlat1) seen1)) <span style="color:#75715e">; arguments to col-0</span>
+</span></span><span style="display:flex;"><span>          newlat2 (cons <span style="color:#e6db74">&#39;b</span> seen2))) <span style="color:#75715e">; arguments to col-1</span>
+</span></span><span style="display:flex;"><span>       (cons <span style="color:#e6db74">&#39;c</span> newlat3) seen3)) <span style="color:#75715e">; arguments to col-2</span>
+</span></span><span style="display:flex;"><span>    newlat4 (cons <span style="color:#e6db74">&#39;b</span> seen4))) <span style="color:#75715e">; arguments to col-3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">&#39;</span>() <span style="color:#f92672">&#39;</span>()
+</span></span><span style="display:flex;"><span> )
+</span></span></code></pre></div><p>Executing the above block results in <code>'((a c) (b b))</code>, which is what we expect.</p>
+<p>Another way of looking at the expansion above is with the computed arguments for each lambda:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">col-4</span> <span style="color:#f92672">&#39;</span>() <span style="color:#f92672">&#39;</span>())
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">col-3</span> <span style="color:#f92672">&#39;</span>() <span style="color:#f92672">&#39;</span>(b))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">col-2</span> <span style="color:#f92672">&#39;</span>(c) <span style="color:#f92672">&#39;</span>(b))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">col-1</span> <span style="color:#f92672">&#39;</span>(c) <span style="color:#f92672">&#39;</span>(b b))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">col-0</span> <span style="color:#f92672">&#39;</span>(a c) <span style="color:#f92672">&#39;</span>(b b))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; `col-0` is `list`</span>
+</span></span><span style="display:flex;"><span>(list <span style="color:#f92672">&#39;</span>(a c) <span style="color:#f92672">&#39;</span>(b b))
+</span></span><span style="display:flex;"><span>(<span style="color:#f92672">&#39;</span>(a c) <span style="color:#f92672">&#39;</span>(b b))
+</span></span></code></pre></div><p>Hopefully this expansion of <code>multirember&amp;co</code> gives a clearer idea of how collector functions behave and are used in Scheme. This analysis applies generally to other functional programming languages as well.</p>
+
+    
+  </div>
+
+  <div class="pagination">
+    <a href="/evaluating-software-architecture/" class="left arrow">&#8592;</a>
+
+    <a href="#" class="top">Top</a>
+  </div>
+</main>
+
+
+    <footer>
+  <span>
+    &copy; <time datetime="2023-04-20 10:01:01.612929 -0700 PDT m=&#43;0.074144498">2023</time> Umair Saeed.
+    Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
+  </span>
+</footer>
+  </body>
+</html>
