@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Umair&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 20 Apr 2023 09:47:49 -0700</lastBuildDate><atom:link href="https://umairsaeed.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 Apr 2023 16:29:26 -0700</lastBuildDate><atom:link href="https://umairsaeed.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Layered Architecture</title>
+      <link>https://umairsaeed.com/layered-architecture/</link>
+      <pubDate>Mon, 24 Apr 2023 16:29:26 -0700</pubDate>
+      
+      <guid>https://umairsaeed.com/layered-architecture/</guid>
+      <description>&lt;p&gt;Layered Architecture is a monolithic architecture style, which means a single deployment unit for all the code. This style is also known as the &lt;em&gt;n-tiered&lt;/em&gt; architecture.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Collectors in Scheme</title>
       <link>https://umairsaeed.com/collectors-in-scheme/</link>

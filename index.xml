@@ -2,12 +2,74 @@
   <title>Umair&#39;s Blog</title>
   <link href="https://umairsaeed.com/index.xml" rel="self"/>
   <link href="https://umairsaeed.com/"/>
-  <updated>2023-04-20T09:47:49-07:00</updated>
+  <updated>2023-04-24T16:29:26-07:00</updated>
   <id>https://umairsaeed.com/</id>
   <author>
     <name>Umair Saeed</name>
   </author>
   <generator>Hugo -- gohugo.io</generator>
+  <entry>
+    <title type="html"><![CDATA[Layered Architecture]]></title>
+    <link href="https://umairsaeed.com/layered-architecture/"/>
+    <id>https://umairsaeed.com/layered-architecture/</id>
+    <author>
+      <name>Umair Saeed</name>
+    </author>
+    <published>2023-04-24T16:29:26-07:00</published>
+    <updated>2023-04-24T16:29:26-07:00</updated>
+    
+    <content type="html"><![CDATA[<p>Layered Architecture is a monolithic architecture style, which means a single deployment unit for all the code. This style is also known as the <em>n-tiered</em> architecture.</p>
+<blockquote>
+<p>This is the second post in a series of posts about software architectures. The previous post is <a href="https://umairsaeed.com/evaluating-software-architecture/">Evaluating Software Architecture Styles</a>.</p>
+</blockquote>
+<p>Layered architecture is one of the most common architectural styles. It is used in many kinds of applications, spanning the gamut from desktop to web to mobile. Even within other distributed architecture styles, layered is typically used to build out the individual components, modules, and services.</p>
+<h2 id="overview">Overview</h2>
+<p>This architecture is characterized by logically grouping code into horizontal layers (hence the name). Each layer performs a specific function. The number of layers is flexible, but four primary layers are utilized. These are:</p>
+<ul>
+<li>Presentation layer</li>
+<li>Business Layer</li>
+<li>Persistence layer</li>
+<li>Database layer</li>
+</ul>
+<figure><img src="/img/Paper-2023-Architecture-02-Layered-01w.png"
+         alt="Common layers in Layered Architecture" width="300"/><figcaption>
+            <p>Common layers in Layered Architecture</p>
+        </figcaption>
+</figure>
+
+<p>In terms of deployment, all the layers are commonly part of a single deployment unit. The layers can sometimes be deployed as separate units, as shown below.</p>
+<figure><img src="/img/Paper-2023-Architecture-02-Layered-02w.png" width="100%"/>
+</figure>
+
+<h2 id="analysis-of-quality-attributes">Analysis of Quality attributes</h2>
+<h3 id="deployability-low">Deployability (Low)</h3>
+<p>This architecture has a low score on deployability due to its monolithic nature. The entire application or website must be deployed as one unit, making frequent deployments hard. Even the simplest change requires a complete build and deployment of the whole application.</p>
+<h3 id="fault-tolerance-low">Fault Tolerance (Low)</h3>
+<p>Given the monolithic nature, a bug (e.g., out-of-memory exception) in any part of the code risks bringing down the entire application, leading to low fault tolerance for this architecture.</p>
+<h3 id="scalability-low">Scalability (Low)</h3>
+<p>Once this architecture has been deployed, little can be done to adjust the load and increase capacity dynamically. The scalability considerations are baked in once the application has been built and deployed.</p>
+<p>Dealing with increasing load typically requires updating the code and redeploying. Even then, given the monolithic nature of this architecture, the scalability cannot grow beyond a certain threshold.</p>
+<h3 id="elasticity-low">Elasticity (Low)</h3>
+<p>Similar to scalability, this architecture style scores low for elasticity, as it cannot respond to increased user spikes beyond its baked-in capacity.</p>
+<h3 id="reliability-medium">Reliability (Medium)</h3>
+<p>Layered architecture is the middle of the road for reliability. Given its monolithic nature, once deployed/installed successfully, it is likely to avoid problems with external dependencies (e.g., databases), which helps with reliability.</p>
+<p>On the other hand, it has low fault tolerance and a high time to recover (due to low deployability), which hurts the reliability score.</p>
+<h3 id="performance-medium">Performance (Medium)</h3>
+<p>Layered architecture avoids some of the costs associated with distributed architecture. However, the lack of parallel processing, closed layering, and the sinkhole architecture anti-pattern lock in its overall performance.</p>
+<h3 id="modularity-low">Modularity (Low)</h3>
+<p>The modularity is low modularity as each layer is built and deployed as part of the monolith. The layers are not standalone <em>modules</em> and are not reusable.</p>
+<h3 id="extensibility-low">Extensibility (Low)</h3>
+<p>The extensibility score is low due to low modularity and deployability. New functionality has to be added by changing and redeploying the entire application.</p>
+<h3 id="testability-low">Testability (Low)</h3>
+<p>Given the monolithic nature of this architecture, even a simple change often requires running the entire test suite before deployment, which is time consuming and lowers the testability of this architecture.</p>
+<h3 id="simplicity-high">Simplicity (High)</h3>
+<p>Simplicity is one of the strengths of this architecture. This architecture is easy to understand, and the concept of layering code is familiar to all software engineers. Often, each layer grows organically due to code organization best practices. Finally, due to its monolithic nature, this architecture does not have to deal with the complexities associated with distributed architectures.</p>
+<h3 id="overall-cost-high">Overall Cost (High)</h3>
+<p>Cost is another advantage of this architectural style. Its simplicity, low barrier to entry, and familiarity make it relatively low-cost to build and maintain.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Layered architecture is a good choice for small and straightforward applications or websites. It is also well-suited for small teams. Its simplicity makes it ideal for building prototypes and bootstrapping new products. Once the size of the application grows, teams should move away from this architecture, as the low deployability and its monolithic nature become an impediment to agility and shipping features. Moreover, it is hard to scale this beyond a certain number of users.</p>]]></content>
+    
+  </entry>
   <entry>
     <title type="html"><![CDATA[Collectors in Scheme]]></title>
     <link href="https://umairsaeed.com/collectors-in-scheme/"/>
