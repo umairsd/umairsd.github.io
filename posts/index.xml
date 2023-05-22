@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Umair&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 24 Apr 2023 16:29:26 -0700</lastBuildDate><atom:link href="https://umairsaeed.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 May 2023 15:59:59 -0700</lastBuildDate><atom:link href="https://umairsaeed.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pipeline Architecture</title>
+      <link>https://umairsaeed.com/pipeline-architecture/</link>
+      <pubDate>Mon, 22 May 2023 15:59:59 -0700</pubDate>
+      
+      <guid>https://umairsaeed.com/pipeline-architecture/</guid>
+      <description>&lt;p&gt;A pipeline architecture is a monolithic architecture style, which means a single deployment unit for all of the code. The essential characteristic of pipeline architecture is that data or tasks are processed in a series of stages. Each stage receives the output from the previous stage, processes it, and passes it on to the next stage.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Layered Architecture</title>
       <link>https://umairsaeed.com/layered-architecture/</link>
