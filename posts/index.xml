@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Umair&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 22 May 2023 15:59:59 -0700</lastBuildDate><atom:link href="https://umairsaeed.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 May 2023 08:17:56 -0700</lastBuildDate><atom:link href="https://umairsaeed.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Service Oriented Architecture</title>
+      <link>https://umairsaeed.com/service-oriented-architecture/</link>
+      <pubDate>Wed, 24 May 2023 08:17:56 -0700</pubDate>
+      
+      <guid>https://umairsaeed.com/service-oriented-architecture/</guid>
+      <description>&lt;p&gt;Service-Oriented Architecture (SOA), also known as, Service-Based Architecture (SBA), is a distributed architecture pattern in which an application is organized into a collection of loosely coupled, reusable &lt;strong&gt;services&lt;/strong&gt;. Each service is a self-contained unit that performs a specific task or function, and communicates with other services using standard communication protocols, such as REST, SOAP, or gRPC.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Pipeline Architecture</title>
       <link>https://umairsaeed.com/pipeline-architecture/</link>
