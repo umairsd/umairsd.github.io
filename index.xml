@@ -2,12 +2,106 @@
   <title>Umair&#39;s Blog</title>
   <link href="https://umairsaeed.com/index.xml" rel="self"/>
   <link href="https://umairsaeed.com/"/>
-  <updated>2023-05-24T08:17:56-07:00</updated>
+  <updated>2023-07-03T09:45:12-07:00</updated>
   <id>https://umairsaeed.com/</id>
   <author>
     <name>Umair Saeed</name>
   </author>
   <generator>Hugo -- gohugo.io</generator>
+  <entry>
+    <title type="html"><![CDATA[Event Driven Architecture]]></title>
+    <link href="https://umairsaeed.com/event-driven-architecture/"/>
+    <id>https://umairsaeed.com/event-driven-architecture/</id>
+    <author>
+      <name>Umair Saeed</name>
+    </author>
+    <published>2023-07-03T09:45:12-07:00</published>
+    <updated>2023-07-03T09:45:12-07:00</updated>
+    
+    <content type="html"><![CDATA[<p>Event-Driven Architecture (EDA) <em>uses events to trigger and communicate between decoupled nodes (services)</em> within the system. Producers generate initiating events (messages) when a significant change in state occurs. Components within the system subscribe to events and react to them by performing specific actions or tasks.</p>
+<blockquote>
+<p>This is the fifth post in a series of posts about software architectures. The previous posts are:</p>
+<ul>
+<li><a href="https://umairsaeed.com/evaluating-software-architecture/">Evaluating Software Architecture</a></li>
+<li><a href="https://umairsaeed.com/layered-architecture/">Layered Architecture</a></li>
+<li><a href="https://umairsaeed.com/pipeline-architecture/">Pipeline Architecture</a></li>
+<li><a href="https://umairsaeed.com/service-oriented-architecture/">Service Oriented Architecture</a></li>
+</ul>
+</blockquote>
+<h2 id="overview">Overview</h2>
+<p>This is an asynchronous distributed architecture, often used to produce highly scalable and high-performance applications. There are two primary topologies of Event-driven architecture.</p>
+<h3 id="broker-topology">Broker Topology</h3>
+<p>In this topology, all events are sent to a centralized broker, which then forwards them to the relevant consumers (event processors). The broker acts as a central hub for event communication.</p>
+<p>In the example below,</p>
+<ul>
+<li>The initiating event (1) is sent to the event channel in the event broker for processing.</li>
+<li>As there are no mediators, a single event processor (<code>A</code>) accepts the initiating event and begins processing.</li>
+<li>Once the event is processed, processor <code>A</code>  advertises to the system via a <em>processing event</em>, (2). This processing event is sent asynchronously to the broker.</li>
+<li>Other interested processors <code>B</code>, <code>C</code>, and <code>D</code> listen to the processing event, process it, and optionally generate a new processing event (3) to advertise to the system what they did.</li>
+<li>Processor <code>E</code> listens for this event and handles it.</li>
+</ul>
+<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-01w.png" width="90%"/>
+</figure>
+
+<h3 id="mediator-topology">Mediator Topology</h3>
+<p>The event mediator is core to this event-driven topology, which manages and controls the workflow for initiating events. A key difference from the broker topology is that the event mediator knows the steps involved in processing the event and generates corresponding processing events in a point-to-point messaging fashion.</p>
+<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-02w.png" width="90%"/>
+</figure>
+
+<p>In most implementations of the mediator topology, multiple mediators focus on a particular domain, alleviating the single point-of-failure issues associated with Event-Driven systems and increasing overall throughput and performance.</p>
+<p>In the example below, there are three separate event mediators.</p>
+<ul>
+<li>Event mediator <code>MA</code> <em>processes</em> the initiating event and sends it to the event channel for processor processor <code>A</code>.
+<ul>
+<li>Event processor <code>A</code> listens to this channel, processes the event, and responds to the mediator to indicate completion.</li>
+</ul>
+</li>
+<li>Event mediator <code>MA</code> also forwards the initiating event to the event queues for mediators <code>MB</code> and <code>MC</code>.</li>
+<li>Mediator <code>MB</code> processes the event and sends a <em>processing event</em> to the event channels of processors <code>B</code> and <code>C</code>. These processors listen to their respective channels and process the incoming events.</li>
+<li>Similarly, mediator <code>MC</code> processes its event and sends a <em>processing event</em> to the event channel of processor <code>D</code>.</li>
+</ul>
+<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-03w.png" width="90%"/>
+</figure>
+
+<h3 id="comparison">Comparison</h3>
+<ul>
+<li>
+<p>Broker topology does not have a centralized event coordinator. Various processors sign up to be interested in specific events leading to a more decoupled system. On the other hand, mediators are aware of all the producers and consumers in the system, often via point-to-point connections leading to tighter coupling within the overall design.</p>
+</li>
+<li>
+<p>Event processors in broker topology advertise what they did to the rest of the system. The communication in mediator topology is typically point-to-point.</p>
+</li>
+<li>
+<p>The mediator topology can handle complex chains of event processing logic.</p>
+</li>
+</ul>
+<h2 id="analysis-of-quality-attributes">Analysis of Quality attributes</h2>
+<h3 id="deployability-medium">Deployability (Medium)</h3>
+<p>The event-driven architecture enables the decoupling of components allowing for easier deployment and updates to individual components without affecting the entire system.</p>
+<h3 id="fault-tolerance-high">Fault Tolerance (High)</h3>
+<p>EDA&rsquo;s decoupled nature makes it possible to build fault-tolerant systems, as the failure of one component may not necessarily lead to a complete system failure. Additionally, the use of message brokers can help ensure message delivery even in case of temporary component failure.</p>
+<h3 id="scalability-high">Scalability (High)</h3>
+<p>Scalability is another strength of the event-driven architecture. High scalability is realized through horizontal scaling by programmatically adding event processors.</p>
+<h3 id="elasticity-high">Elasticity (High)</h3>
+<p>Similar to scalability, event-driven systems can adapt to changes in workload by dynamically scaling components up or down based on the number of events in the queue.</p>
+<h3 id="reliability-medium">Reliability (Medium)</h3>
+<p>By using message brokers, EDA ensures the reliable delivery of messages and can even implement retries in case of failures, contributing to the system&rsquo;s overall reliability. However, due to its asynchronous nature, data loss can become an issue that negatively impacts the overall reliability of this architecture.</p>
+<h3 id="performance-high">Performance (High)</h3>
+<p>Asynchronous communications combined with highly parallel processing leads to a high score for performance.</p>
+<h3 id="modularity-high">Modularity (High)</h3>
+<p>EDA encourages modularity by decoupling components, allowing them to evolve independently.</p>
+<h3 id="extensibility-high">Extensibility (High)</h3>
+<p>Adding new features through existing or new event processors is relatively straightforward, particularly in the broker topology. The architecture makes it easy to add, modify or remove components without a major impact on the overall system, leading to a high rating for extensibility.</p>
+<h3 id="testability-medium">Testability (Medium)</h3>
+<p>Testing individual components can be straightforward, but testing interactions between components (e.g., event flow) can be more challenging due to the asynchronous and nondeterministic event flows.</p>
+<h3 id="simplicity-low">Simplicity (Low)</h3>
+<p>EDA can simplify the overall design of a system by decoupling components. However, the asynchronous and distributed nature of the architecture can introduce complexity in understanding event flows and handling failures.</p>
+<h3 id="overall-cost-medium">Overall Cost (Medium)</h3>
+<p>High modularity and extensibility help with the overall maintenance costs of this architecture. However, the need for message brokers and managing distributed components increases operational and infrastructure costs.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Due to its adaptability, it can be used both as a standalone architecture style or embedded within other architecture styles (e.g., event-driven microservices). Event-driven architecture (EDA) is well-suited for applications requiring real-time responsiveness, scalability, and adaptability, such as real-time analytics, IoT systems, and complex event processing. EDA excels in these scenarios by leveraging loose coupling, enhanced scalability, and real-time event processing, making it an ideal choice for dynamic, data-intensive applications.</p>]]></content>
+    
+  </entry>
   <entry>
     <title type="html"><![CDATA[Service Oriented Architecture]]></title>
     <link href="https://umairsaeed.com/service-oriented-architecture/"/>
