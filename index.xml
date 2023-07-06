@@ -18,7 +18,7 @@
     <published>2023-07-06T09:47:05-07:00</published>
     <updated>2023-07-06T09:47:05-07:00</updated>
     
-    <content type="html"><![CDATA[<p>Microservice Architecture is a distributed architecture in which an application is organized into a collection of small, loosely coupled, and independently deployable services. Each microservice is responsible for a specific piece of functionality, operates within its process, and communicates with other microservices using lightweight protocols such as REST, gRPC, or messaging systems.</p>
+    <content type="html"><![CDATA[<p>Microservices Architecture is a distributed architecture in which an application is organized into a collection of small, loosely coupled, and independently deployable services. Each microservice is responsible for a specific piece of functionality, operates within its process, and communicates with other microservices using lightweight protocols such as REST, gRPC, or messaging systems.</p>
 <blockquote>
 <p>This is the seventh post in a series of posts about software architectures. The previous posts are:</p>
 <ul>

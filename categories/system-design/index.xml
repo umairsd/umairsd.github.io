@@ -13,7 +13,7 @@
       <pubDate>Thu, 06 Jul 2023 09:47:05 -0700</pubDate>
       
       <guid>https://umairsaeed.com/microservices-architecture/</guid>
-      <description>&lt;p&gt;Microservice Architecture is a distributed architecture in which an application is organized into a collection of small, loosely coupled, and independently deployable services. Each microservice is responsible for a specific piece of functionality, operates within its process, and communicates with other microservices using lightweight protocols such as REST, gRPC, or messaging systems.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Microservices Architecture is a distributed architecture in which an application is organized into a collection of small, loosely coupled, and independently deployable services. Each microservice is responsible for a specific piece of functionality, operates within its process, and communicates with other microservices using lightweight protocols such as REST, gRPC, or messaging systems.&lt;/p&gt;</description>
     </item>
     
     <item>
