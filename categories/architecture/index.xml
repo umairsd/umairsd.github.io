@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>architecture on Umair&#39;s Blog</title>
+    <link>https://umairsaeed.com/categories/architecture/</link>
+    <description>Recent content in architecture on Umair&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 10 Jul 2023 09:13:13 -0700</lastBuildDate><atom:link href="https://umairsaeed.com/categories/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Software Architecture - It All Depends</title>
+      <link>https://umairsaeed.com/software-architecture-it-depends/</link>
+      <pubDate>Mon, 10 Jul 2023 09:13:13 -0700</pubDate>
+      
+      <guid>https://umairsaeed.com/software-architecture-it-depends/</guid>
+      <description>&lt;p&gt;Now that I&amp;rsquo;ve reviewed some of the key software architectural styles, let&amp;rsquo;s see a side-by-side comparison of various architectures in terms of the architectural quality attributes:&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

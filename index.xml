@@ -2,12 +2,43 @@
   <title>Umair&#39;s Blog</title>
   <link href="https://umairsaeed.com/index.xml" rel="self"/>
   <link href="https://umairsaeed.com/"/>
-  <updated>2023-07-06T09:47:05-07:00</updated>
+  <updated>2023-07-10T09:13:13-07:00</updated>
   <id>https://umairsaeed.com/</id>
   <author>
     <name>Umair Saeed</name>
   </author>
   <generator>Hugo -- gohugo.io</generator>
+  <entry>
+    <title type="html"><![CDATA[Software Architecture - It All Depends]]></title>
+    <link href="https://umairsaeed.com/software-architecture-it-depends/"/>
+    <id>https://umairsaeed.com/software-architecture-it-depends/</id>
+    <author>
+      <name>Umair Saeed</name>
+    </author>
+    <published>2023-07-10T09:13:13-07:00</published>
+    <updated>2023-07-10T09:13:13-07:00</updated>
+    
+    <content type="html"><![CDATA[<p>Now that I&rsquo;ve reviewed some of the key software architectural styles, let&rsquo;s see a side-by-side comparison of various architectures in terms of the architectural quality attributes:</p>
+<figure><img src="/img/Paper-2023-Architecture-08-ArchitectureStylesSummary.png" width="90%"/>
+</figure>
+
+<p>This table shows that choosing the right architecture involves tradeoffs. Different architectures have their strengths and weaknesses, and thus the &ldquo;best&rdquo; architecture style is highly dependent on the context (goals, business needs, budget, etc.).</p>
+<p>Another observation is that the service-oriented architecture scores medium or high across all the attributes, making it a good middle-of-the-road architecture. It can be a good choice for web-based applications.</p>
+<p>When making an architectural choice, a good insight to keep in mind is that the current choice should be good for the current needs of the business. Over time, the business <em>will</em> evolve, and as a result the software architcture will need to evolve over time.</p>
+<p>Finally, I&rsquo;ve converted the previous blog posts into a downloadable <a href="/data/ArchitectureStylesComparison.pdf">PDF sheet</a> that you can download.</p>
+<p>The full list of all the posts in this series is:</p>
+<ul>
+<li><a href="https://umairsaeed.com/evaluating-software-architecture/">Evaluating Software Architecture</a></li>
+<li><a href="https://umairsaeed.com/layered-architecture/">Layered Architecture</a></li>
+<li><a href="https://umairsaeed.com/pipeline-architecture/">Pipeline Architecture</a></li>
+<li><a href="https://umairsaeed.com/service-oriented-architecture/">Service Oriented Architecture</a></li>
+<li><a href="https://umairsaeed.com/event-driven-architecture/">Event Driven Architecture</a></li>
+<li><a href="https://umairsaeed.com/space-based-architecture/">Space Based Architecture</a></li>
+<li><a href="https://umairsaeed.com/microservices-architecture/">Microservices Architecture</a></li>
+<li><a href="https://umairsaeed.com/software-architecture-it-depends/">Software Architecture: It all depends</a> (this post)</li>
+</ul>]]></content>
+    
+  </entry>
   <entry>
     <title type="html"><![CDATA[Microservices Architecture]]></title>
     <link href="https://umairsaeed.com/microservices-architecture/"/>

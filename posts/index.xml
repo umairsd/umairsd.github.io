@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Umair&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 06 Jul 2023 09:47:05 -0700</lastBuildDate><atom:link href="https://umairsaeed.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jul 2023 09:13:13 -0700</lastBuildDate><atom:link href="https://umairsaeed.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Software Architecture - It All Depends</title>
+      <link>https://umairsaeed.com/software-architecture-it-depends/</link>
+      <pubDate>Mon, 10 Jul 2023 09:13:13 -0700</pubDate>
+      
+      <guid>https://umairsaeed.com/software-architecture-it-depends/</guid>
+      <description>&lt;p&gt;Now that I&amp;rsquo;ve reviewed some of the key software architectural styles, let&amp;rsquo;s see a side-by-side comparison of various architectures in terms of the architectural quality attributes:&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Microservices Architecture</title>
       <link>https://umairsaeed.com/microservices-architecture/</link>
