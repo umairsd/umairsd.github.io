@@ -24,7 +24,7 @@
 
 <p>This table shows that choosing the right architecture involves tradeoffs. Different architectures have their strengths and weaknesses, and thus the &ldquo;best&rdquo; architecture style is highly dependent on the context (goals, business needs, budget, etc.).</p>
 <p>Another observation is that the service-oriented architecture scores medium or high across all the attributes, making it a good middle-of-the-road architecture. It can be a good choice for web-based applications.</p>
-<p>When making an architectural choice, a good insight to keep in mind is that the current choice should be good for the current needs of the business. Over time, the business <em>will</em> evolve, and as a result the software architcture will need to evolve over time.</p>
+<p>When making an architectural choice, a good insight to keep in mind is that the current choice should be good for the current needs of the business. Over time, the business <em>will</em> evolve, and as a result the software architecture will need to evolve over time.</p>
 <p>Finally, I&rsquo;ve converted the previous blog posts into a downloadable <a href="/data/ArchitectureStylesComparison.pdf">PDF sheet</a> that you can download.</p>
 <p>The full list of all the posts in this series is:</p>
 <ul>
