@@ -4,17 +4,11 @@
   <link href="https://umairsaeed.com/"/>
   <updated>2023-11-05T16:21:28-08:00</updated>
   <id>https://umairsaeed.com/</id>
-  <author>
-    <name>Umair Saeed</name>
-  </author>
   <generator>Hugo -- gohugo.io</generator>
   <entry>
     <title type="html"><![CDATA[Monkey Business]]></title>
     <link href="https://umairsaeed.com/monkey-business/"/>
     <id>https://umairsaeed.com/monkey-business/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-11-05T16:21:28-08:00</published>
     <updated>2023-11-05T16:21:28-08:00</updated>
     
@@ -28,9 +22,6 @@
     <title type="html"><![CDATA[Software Architecture - It All Depends]]></title>
     <link href="https://umairsaeed.com/software-architecture-it-depends/"/>
     <id>https://umairsaeed.com/software-architecture-it-depends/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-07-10T09:13:13-07:00</published>
     <updated>2023-07-10T09:13:13-07:00</updated>
     
@@ -59,9 +50,6 @@
     <title type="html"><![CDATA[Microservices Architecture]]></title>
     <link href="https://umairsaeed.com/microservices-architecture/"/>
     <id>https://umairsaeed.com/microservices-architecture/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-07-06T09:47:05-07:00</published>
     <updated>2023-07-06T09:47:05-07:00</updated>
     
@@ -154,9 +142,6 @@
     <title type="html"><![CDATA[Space Based Architecture]]></title>
     <link href="https://umairsaeed.com/space-based-architecture/"/>
     <id>https://umairsaeed.com/space-based-architecture/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-07-04T15:01:34-07:00</published>
     <updated>2023-07-04T15:01:34-07:00</updated>
     
@@ -238,9 +223,6 @@
     <title type="html"><![CDATA[Event Driven Architecture]]></title>
     <link href="https://umairsaeed.com/event-driven-architecture/"/>
     <id>https://umairsaeed.com/event-driven-architecture/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-07-03T09:45:12-07:00</published>
     <updated>2023-07-03T09:45:12-07:00</updated>
     
@@ -332,9 +314,6 @@
     <title type="html"><![CDATA[Service Oriented Architecture]]></title>
     <link href="https://umairsaeed.com/service-oriented-architecture/"/>
     <id>https://umairsaeed.com/service-oriented-architecture/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-05-24T08:17:56-07:00</published>
     <updated>2023-05-24T08:17:56-07:00</updated>
     
@@ -405,9 +384,6 @@
     <title type="html"><![CDATA[Pipeline Architecture]]></title>
     <link href="https://umairsaeed.com/pipeline-architecture/"/>
     <id>https://umairsaeed.com/pipeline-architecture/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-05-22T15:59:59-07:00</published>
     <updated>2023-05-22T15:59:59-07:00</updated>
     
@@ -470,9 +446,6 @@
     <title type="html"><![CDATA[Layered Architecture]]></title>
     <link href="https://umairsaeed.com/layered-architecture/"/>
     <id>https://umairsaeed.com/layered-architecture/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-04-24T16:29:26-07:00</published>
     <updated>2023-04-24T16:29:26-07:00</updated>
     
@@ -532,9 +505,6 @@
     <title type="html"><![CDATA[Collectors in Scheme]]></title>
     <link href="https://umairsaeed.com/collectors-in-scheme/"/>
     <id>https://umairsaeed.com/collectors-in-scheme/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-04-20T09:47:49-07:00</published>
     <updated>2023-04-20T09:47:49-07:00</updated>
     
@@ -667,9 +637,6 @@
     <title type="html"><![CDATA[Evaluating Software Architecture Styles]]></title>
     <link href="https://umairsaeed.com/evaluating-software-architecture/"/>
     <id>https://umairsaeed.com/evaluating-software-architecture/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-04-17T11:28:21-07:00</published>
     <updated>2023-04-17T11:28:21-07:00</updated>
     
@@ -715,9 +682,6 @@
     <title type="html"><![CDATA[Mastodon]]></title>
     <link href="https://umairsaeed.com/mastodon/"/>
     <id>https://umairsaeed.com/mastodon/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-03-30T12:45:07-07:00</published>
     <updated>2023-03-30T12:45:07-07:00</updated>
     
@@ -733,9 +697,6 @@
     <title type="html"><![CDATA[Turtles All the Way Down]]></title>
     <link href="https://umairsaeed.com/turtles-all-the-way-down/"/>
     <id>https://umairsaeed.com/turtles-all-the-way-down/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-03-20T13:46:15-07:00</published>
     <updated>2023-03-20T13:46:15-07:00</updated>
     
@@ -771,9 +732,6 @@
     <title type="html"><![CDATA[How to Lose Trust as a Manager]]></title>
     <link href="https://umairsaeed.com/lose-trust-as-a-manager/"/>
     <id>https://umairsaeed.com/lose-trust-as-a-manager/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-03-07T10:52:40-08:00</published>
     <updated>2023-03-07T10:52:40-08:00</updated>
     
@@ -807,9 +765,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Favorite Books in 2022]]></title>
     <link href="https://umairsaeed.com/favorite-books-in-2022/"/>
     <id>https://umairsaeed.com/favorite-books-in-2022/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2023-02-11T12:42:18-08:00</published>
     <updated>2023-02-11T12:42:18-08:00</updated>
     
@@ -835,9 +790,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Favorite Books in 2021]]></title>
     <link href="https://umairsaeed.com/favorite-books-in-2021/"/>
     <id>https://umairsaeed.com/favorite-books-in-2021/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2022-01-01T10:23:26-08:00</published>
     <updated>2022-01-01T10:23:26-08:00</updated>
     
@@ -862,9 +814,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Refresh - 2022]]></title>
     <link href="https://umairsaeed.com/refresh-2022/"/>
     <id>https://umairsaeed.com/refresh-2022/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2021-12-28T10:20:16-08:00</published>
     <updated>2021-12-28T10:20:16-08:00</updated>
     
@@ -877,9 +826,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Do You Need Self Discipline To Have Fun?]]></title>
     <link href="https://umairsaeed.com/do-you-need-self-discipline-to-have-fun/"/>
     <id>https://umairsaeed.com/do-you-need-self-discipline-to-have-fun/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2017-07-03T07:08:05-07:00</published>
     <updated>2017-07-03T07:08:05-07:00</updated>
     
@@ -897,9 +843,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Applicative Laws for `((-&gt;) r)` Type]]></title>
     <link href="https://umairsaeed.com/applicative-laws-for-function-type/"/>
     <id>https://umairsaeed.com/applicative-laws-for-function-type/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2016-01-07T00:00:00+00:00</published>
     <updated>2016-01-07T00:00:00+00:00</updated>
     
@@ -1055,9 +998,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Applicative Laws for `[]` Type]]></title>
     <link href="https://umairsaeed.com/applicative-laws-for-list-type/"/>
     <id>https://umairsaeed.com/applicative-laws-for-list-type/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2016-01-06T00:00:00+00:00</published>
     <updated>2016-01-06T00:00:00+00:00</updated>
     
@@ -1194,9 +1134,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Applicative Laws for `Maybe` Type]]></title>
     <link href="https://umairsaeed.com/applicative-laws-for-maybe-type/"/>
     <id>https://umairsaeed.com/applicative-laws-for-maybe-type/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2016-01-05T00:00:00+00:00</published>
     <updated>2016-01-05T00:00:00+00:00</updated>
     
@@ -1344,9 +1281,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Maybe as an Applicative Functor]]></title>
     <link href="https://umairsaeed.com/maybe-as-an-applicative-functor/"/>
     <id>https://umairsaeed.com/maybe-as-an-applicative-functor/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2015-08-21T09:53:20-07:00</published>
     <updated>2015-08-21T09:53:20-07:00</updated>
     
@@ -1404,9 +1338,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Pascal&#39;s Triangle]]></title>
     <link href="https://umairsaeed.com/pascals-triangle/"/>
     <id>https://umairsaeed.com/pascals-triangle/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2015-07-08T06:51:27-07:00</published>
     <updated>2015-07-08T06:51:27-07:00</updated>
     
@@ -1487,9 +1418,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Index Based List Operations Using folds in Haskell]]></title>
     <link href="https://umairsaeed.com/index-based-list-operations-using-folds-in-haskell/"/>
     <id>https://umairsaeed.com/index-based-list-operations-using-folds-in-haskell/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2015-05-16T08:53:31-07:00</published>
     <updated>2015-05-16T08:53:31-07:00</updated>
     
@@ -1519,9 +1447,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Talking About Money]]></title>
     <link href="https://umairsaeed.com/talking-about-money/"/>
     <id>https://umairsaeed.com/talking-about-money/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2015-05-04T09:43:03-07:00</published>
     <updated>2015-05-04T09:43:03-07:00</updated>
     
@@ -1537,9 +1462,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Sublime Text &amp;amp; Haskell]]></title>
     <link href="https://umairsaeed.com/sublime-text-and-haskell/"/>
     <id>https://umairsaeed.com/sublime-text-and-haskell/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2015-05-02T16:07:28-07:00</published>
     <updated>2021-01-15T00:00:00+00:00</updated>
     
@@ -1584,9 +1506,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Why Racket? Why Lisp?]]></title>
     <link href="https://umairsaeed.com/why-racket-why-lisp/"/>
     <id>https://umairsaeed.com/why-racket-why-lisp/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2015-03-27T10:30:53-07:00</published>
     <updated>2015-03-27T10:30:53-07:00</updated>
     
@@ -1603,9 +1522,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Book - Hackers &amp;amp; Painters]]></title>
     <link href="https://umairsaeed.com/book-hackers-and-painters/"/>
     <id>https://umairsaeed.com/book-hackers-and-painters/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2015-03-26T10:00:12-07:00</published>
     <updated>2015-03-26T10:00:12-07:00</updated>
     
@@ -1630,9 +1546,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[A Quine in Objective-C]]></title>
     <link href="https://umairsaeed.com/a-quine-in-objective-c/"/>
     <id>https://umairsaeed.com/a-quine-in-objective-c/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2012-07-18T13:46:06+00:00</published>
     <updated>2012-07-18T13:46:06+00:00</updated>
     
@@ -1669,9 +1582,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Finding the Start of a Loop in a Circular Linked List]]></title>
     <link href="https://umairsaeed.com/finding-the-start-of-a-loop-in-a-circular-linked-list/"/>
     <id>https://umairsaeed.com/finding-the-start-of-a-loop-in-a-circular-linked-list/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2011-06-23T13:54:07+00:00</published>
     <updated>2011-06-23T13:54:07+00:00</updated>
     
@@ -1819,9 +1729,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <title type="html"><![CDATA[Stern-Brocot Tree]]></title>
     <link href="https://umairsaeed.com/stern-brocot-tree/"/>
     <id>https://umairsaeed.com/stern-brocot-tree/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
     <published>2011-01-27T13:56:15+00:00</published>
     <updated>2011-01-27T13:56:15+00:00</updated>
     
