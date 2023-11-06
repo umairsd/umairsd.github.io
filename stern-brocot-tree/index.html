@@ -133,106 +133,106 @@
 <p>There&rsquo;s a couple of things to tackle in our implementation. First, I need an easy way to represent fractions, so I create my own <code>SternBrocotFraction</code> class. I deliberately chose to make it very specific to this algorithm because I needed a special way to handle the fraction 1/0 (which by definition is greater than all other rationals).</p>
 <p>Secondly, I needed a good way to represent the path from the root of the tree to k. I do this by using a <code>StringBuilder</code>, and at each step I append either the letter <code>L</code> or <code>R</code> depending on which sub-tree we take. When the search is finished, this gives us a string representation of the path from the root of the tree to the number <code>k</code>. This approach is similar to the approach advocated by ACM Programming Competitions for <a href="http://acm.uva.es/p/v100/10077.html">the &ldquo;Stern-Brocot Number System&rdquo; problem</a>.</p>
 <p>Here&rsquo;s the code to find path to a number k:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.umairsaeed.algorithm;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotPath</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">char</span> LEFT_SUB <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;L&#39;</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">char</span> RIGHT_SUB <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;R&#39;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotPath</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">char</span> LEFT_SUB <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;L&#39;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">char</span> RIGHT_SUB <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;R&#39;</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">findPathTo</span><span style="color:#f92672">(</span>SternBrocotFraction f<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    SternBrocotFraction L <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    SternBrocotFraction R <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">findPathTo</span>(SternBrocotFraction f) {
+</span></span><span style="display:flex;"><span>    SternBrocotFraction L <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(0, 1);
+</span></span><span style="display:flex;"><span>    SternBrocotFraction R <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(1, 0);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    StringBuilder results <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    SternBrocotPath<span style="color:#f92672">.</span><span style="color:#a6e22e">find</span><span style="color:#f92672">(</span>f<span style="color:#f92672">,</span> L<span style="color:#f92672">,</span> R<span style="color:#f92672">,</span> results<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> results<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    StringBuilder results <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder();
+</span></span><span style="display:flex;"><span>    SternBrocotPath.<span style="color:#a6e22e">find</span>(f, L, R, results);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> results.<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">find</span><span style="color:#f92672">(</span>SternBrocotFraction f<span style="color:#f92672">,</span>
-</span></span><span style="display:flex;"><span>      SternBrocotFraction L<span style="color:#f92672">,</span>
-</span></span><span style="display:flex;"><span>      SternBrocotFraction R<span style="color:#f92672">,</span>
-</span></span><span style="display:flex;"><span>      StringBuilder results<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    SternBrocotFraction M <span style="color:#f92672">=</span> L<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>R<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">find</span>(SternBrocotFraction f,
+</span></span><span style="display:flex;"><span>      SternBrocotFraction L,
+</span></span><span style="display:flex;"><span>      SternBrocotFraction R,
+</span></span><span style="display:flex;"><span>      StringBuilder results)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    SternBrocotFraction M <span style="color:#f92672">=</span> L.<span style="color:#a6e22e">add</span>(R);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>M<span style="color:#f92672">.</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>f<span style="color:#f92672">)</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      L <span style="color:#f92672">=</span> M<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>      results<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span>RIGHT_SUB<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>      SternBrocotPath<span style="color:#f92672">.</span><span style="color:#a6e22e">find</span><span style="color:#f92672">(</span>f<span style="color:#f92672">,</span> L<span style="color:#f92672">,</span> R<span style="color:#f92672">,</span> results<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>M<span style="color:#f92672">.</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>f<span style="color:#f92672">)</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      R <span style="color:#f92672">=</span> M<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>      results<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span>LEFT_SUB<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>      SternBrocotPath<span style="color:#f92672">.</span><span style="color:#a6e22e">find</span><span style="color:#f92672">(</span>f<span style="color:#f92672">,</span> L<span style="color:#f92672">,</span> R<span style="color:#f92672">,</span> results<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (M.<span style="color:#a6e22e">compareTo</span>(f) <span style="color:#f92672">&lt;</span> 0) {
+</span></span><span style="display:flex;"><span>      L <span style="color:#f92672">=</span> M;
+</span></span><span style="display:flex;"><span>      results.<span style="color:#a6e22e">append</span>(RIGHT_SUB);
+</span></span><span style="display:flex;"><span>      SternBrocotPath.<span style="color:#a6e22e">find</span>(f, L, R, results);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (M.<span style="color:#a6e22e">compareTo</span>(f) <span style="color:#f92672">&gt;</span> 0) {
+</span></span><span style="display:flex;"><span>      R <span style="color:#f92672">=</span> M;
+</span></span><span style="display:flex;"><span>      results.<span style="color:#a6e22e">append</span>(LEFT_SUB);
+</span></span><span style="display:flex;"><span>      SternBrocotPath.<span style="color:#a6e22e">find</span>(f, L, R, results);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The special <code>SternBrocotFraction</code> class is:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.umairsaeed.algorithm;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotFraction</span> <span style="color:#66d9ef">implements</span>
-</span></span><span style="display:flex;"><span>        Comparable<span style="color:#f92672">&lt;</span>SternBrocotFraction<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> numerator<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> denominator<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        Comparable<span style="color:#f92672">&lt;</span>SternBrocotFraction<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> numerator;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> denominator;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SternBrocotFraction</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> numerator<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> denominator<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>denominator <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      numerator <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>      denominator <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SternBrocotFraction</span>(<span style="color:#66d9ef">int</span> numerator, <span style="color:#66d9ef">int</span> denominator) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (denominator <span style="color:#f92672">&lt;</span> 0) {
+</span></span><span style="display:flex;"><span>      numerator <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span>1;
+</span></span><span style="display:flex;"><span>      denominator <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span>1;
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">numerator</span> <span style="color:#f92672">=</span> numerator<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">denominator</span> <span style="color:#f92672">=</span> denominator<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">numerator</span> <span style="color:#f92672">=</span> numerator;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">denominator</span> <span style="color:#f92672">=</span> denominator;
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">doubleValue</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">denominator</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> Double<span style="color:#f92672">.</span><span style="color:#a6e22e">MAX_VALUE</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">double</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">numerator</span> <span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">(</span><span style="color:#66d9ef">double</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">denominator</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">doubleValue</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">denominator</span> <span style="color:#f92672">==</span> 0) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> Double.<span style="color:#a6e22e">MAX_VALUE</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">double</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">numerator</span> <span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">double</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">denominator</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> SternBrocotFraction <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>SternBrocotFraction other<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">numerator</span> <span style="color:#f92672">+</span> other<span style="color:#f92672">.</span><span style="color:#a6e22e">numerator</span><span style="color:#f92672">,</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">denominator</span> <span style="color:#f92672">+</span> other<span style="color:#f92672">.</span><span style="color:#a6e22e">denominator</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> SternBrocotFraction <span style="color:#a6e22e">add</span>(SternBrocotFraction other) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">numerator</span> <span style="color:#f92672">+</span> other.<span style="color:#a6e22e">numerator</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">denominator</span> <span style="color:#f92672">+</span> other.<span style="color:#a6e22e">denominator</span>);
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>SternBrocotFraction other<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">doubleValue</span><span style="color:#f92672">()</span> <span style="color:#f92672">&lt;</span> other<span style="color:#f92672">.</span><span style="color:#a6e22e">doubleValue</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">doubleValue</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> other<span style="color:#f92672">.</span><span style="color:#a6e22e">doubleValue</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compareTo</span>(SternBrocotFraction other) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">doubleValue</span>() <span style="color:#f92672">&lt;</span> other.<span style="color:#a6e22e">doubleValue</span>()) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span>1;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">doubleValue</span>() <span style="color:#f92672">&gt;</span> other.<span style="color:#a6e22e">doubleValue</span>()) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> 1;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> 0;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Finally, some test code to exercise my class:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.umairsaeed.algorithm;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotTester</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    testSternBrocotPath<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotTester</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>    testSternBrocotPath();
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSternBrocotPath</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    SternBrocotPath t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotPath<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSternBrocotPath</span>() {
+</span></span><span style="display:flex;"><span>    SternBrocotPath t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotPath();
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    SternBrocotFraction f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span><span style="color:#ae81ff">5</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">7</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">findPathTo</span><span style="color:#f92672">(</span>f<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    SternBrocotFraction f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(5, 7);
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(t.<span style="color:#a6e22e">findPathTo</span>(f));
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span><span style="color:#ae81ff">19</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">101</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">findPathTo</span><span style="color:#f92672">(</span>f<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(19, 101);
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(t.<span style="color:#a6e22e">findPathTo</span>(f));
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span><span style="color:#ae81ff">977</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">331</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">findPathTo</span><span style="color:#f92672">(</span>f<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(977, 331);
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(t.<span style="color:#a6e22e">findPathTo</span>(f));
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span><span style="color:#ae81ff">1049</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">7901</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">findPathTo</span><span style="color:#f92672">(</span>f<span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(1049, 7901);
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(t.<span style="color:#a6e22e">findPathTo</span>(f));
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
 
     
@@ -249,7 +249,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2023-09-24 07:59:12.129114 -0700 PDT m=&#43;0.055501793">2023</time> Umair Saeed.
+    &copy; <time datetime="2023-11-05 16:29:46.431327 -0800 PST m=&#43;0.066763751">2023</time> Umair Saeed.
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>

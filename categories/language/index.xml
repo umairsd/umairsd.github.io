@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>language on Umair&#39;s Blog</title>
+    <link>https://umairsaeed.com/categories/language/</link>
+    <description>Recent content in language on Umair&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 05 Nov 2023 16:21:28 -0800</lastBuildDate>
+    <atom:link href="https://umairsaeed.com/categories/language/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Monkey Business</title>
+      <link>https://umairsaeed.com/monkey-business/</link>
+      <pubDate>Sun, 05 Nov 2023 16:21:28 -0800</pubDate>
+      <guid>https://umairsaeed.com/monkey-business/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve written my first programming language interpreter! Monkey is a programming language described in the excellent books &lt;a href=&#34;https://interpreterbook.com/&#34;&gt;Writing An Interpreter In Go&lt;/a&gt; and &lt;a href=&#34;https://compilerbook.com/&#34;&gt;Writing A Compiler In Go&lt;/a&gt;, by &lt;a href=&#34;https://twitter.com/thorstenball&#34;&gt;Thorsten Ball&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

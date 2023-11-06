@@ -6,177 +6,154 @@
     <description>Recent content in Categories on Umair&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 10 Jul 2023 09:13:13 -0700</lastBuildDate><atom:link href="https://umairsaeed.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Nov 2023 16:21:28 -0800</lastBuildDate>
+    <atom:link href="https://umairsaeed.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>code</title>
+      <link>https://umairsaeed.com/categories/code/</link>
+      <pubDate>Sun, 05 Nov 2023 16:21:28 -0800</pubDate>
+      <guid>https://umairsaeed.com/categories/code/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>language</title>
+      <link>https://umairsaeed.com/categories/language/</link>
+      <pubDate>Sun, 05 Nov 2023 16:21:28 -0800</pubDate>
+      <guid>https://umairsaeed.com/categories/language/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>swift</title>
+      <link>https://umairsaeed.com/categories/swift/</link>
+      <pubDate>Sun, 05 Nov 2023 16:21:28 -0800</pubDate>
+      <guid>https://umairsaeed.com/categories/swift/</guid>
+      <description></description>
+    </item>
     <item>
       <title>architecture</title>
       <link>https://umairsaeed.com/categories/architecture/</link>
       <pubDate>Mon, 10 Jul 2023 09:13:13 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/categories/architecture/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>software</title>
       <link>https://umairsaeed.com/categories/software/</link>
       <pubDate>Mon, 10 Jul 2023 09:13:13 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/categories/software/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>system-design</title>
       <link>https://umairsaeed.com/categories/system-design/</link>
       <pubDate>Mon, 10 Jul 2023 09:13:13 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/categories/system-design/</guid>
       <description></description>
     </item>
-    
-    <item>
-      <title>code</title>
-      <link>https://umairsaeed.com/categories/code/</link>
-      <pubDate>Thu, 20 Apr 2023 09:47:49 -0700</pubDate>
-      
-      <guid>https://umairsaeed.com/categories/code/</guid>
-      <description></description>
-    </item>
-    
     <item>
       <title>fp</title>
       <link>https://umairsaeed.com/categories/fp/</link>
       <pubDate>Thu, 20 Apr 2023 09:47:49 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/categories/fp/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>racket</title>
       <link>https://umairsaeed.com/categories/racket/</link>
       <pubDate>Thu, 20 Apr 2023 09:47:49 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/categories/racket/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>scheme</title>
       <link>https://umairsaeed.com/categories/scheme/</link>
       <pubDate>Thu, 20 Apr 2023 09:47:49 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/categories/scheme/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>career</title>
       <link>https://umairsaeed.com/categories/career/</link>
       <pubDate>Mon, 20 Mar 2023 13:46:15 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/categories/career/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>management</title>
       <link>https://umairsaeed.com/categories/management/</link>
       <pubDate>Mon, 20 Mar 2023 13:46:15 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/categories/management/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>books</title>
       <link>https://umairsaeed.com/categories/books/</link>
       <pubDate>Sat, 11 Feb 2023 12:42:18 -0800</pubDate>
-      
       <guid>https://umairsaeed.com/categories/books/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>blog</title>
       <link>https://umairsaeed.com/categories/blog/</link>
       <pubDate>Tue, 28 Dec 2021 10:20:16 -0800</pubDate>
-      
       <guid>https://umairsaeed.com/categories/blog/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>linklog</title>
       <link>https://umairsaeed.com/categories/linklog/</link>
       <pubDate>Mon, 03 Jul 2017 07:08:05 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/categories/linklog/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>productivity</title>
       <link>https://umairsaeed.com/categories/productivity/</link>
       <pubDate>Mon, 03 Jul 2017 07:08:05 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/categories/productivity/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>haskell</title>
       <link>https://umairsaeed.com/categories/haskell/</link>
       <pubDate>Thu, 07 Jan 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://umairsaeed.com/categories/haskell/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>tools</title>
       <link>https://umairsaeed.com/categories/tools/</link>
       <pubDate>Sat, 02 May 2015 16:07:28 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/categories/tools/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>puzzles</title>
       <link>https://umairsaeed.com/categories/puzzles/</link>
       <pubDate>Wed, 18 Jul 2012 13:46:06 +0000</pubDate>
-      
       <guid>https://umairsaeed.com/categories/puzzles/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>algorithms</title>
       <link>https://umairsaeed.com/categories/algorithms/</link>
       <pubDate>Thu, 23 Jun 2011 13:54:07 +0000</pubDate>
-      
       <guid>https://umairsaeed.com/categories/algorithms/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>java</title>
       <link>https://umairsaeed.com/categories/java/</link>
       <pubDate>Thu, 23 Jun 2011 13:54:07 +0000</pubDate>
-      
       <guid>https://umairsaeed.com/categories/java/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>iOS</title>
       <link>https://umairsaeed.com/categories/ios/</link>
       <pubDate>Mon, 24 Jan 2011 19:10:40 +0000</pubDate>
-      
       <guid>https://umairsaeed.com/categories/ios/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

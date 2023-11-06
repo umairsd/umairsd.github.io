@@ -6,78 +6,63 @@
     <description>Recent content in system-design on Umair&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 10 Jul 2023 09:13:13 -0700</lastBuildDate><atom:link href="https://umairsaeed.com/categories/system-design/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jul 2023 09:13:13 -0700</lastBuildDate>
+    <atom:link href="https://umairsaeed.com/categories/system-design/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Software Architecture - It All Depends</title>
       <link>https://umairsaeed.com/software-architecture-it-depends/</link>
       <pubDate>Mon, 10 Jul 2023 09:13:13 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/software-architecture-it-depends/</guid>
       <description>&lt;p&gt;Now that I&amp;rsquo;ve reviewed some of the key software architectural styles, let&amp;rsquo;s see a side-by-side comparison of various architectures in terms of the architectural quality attributes:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Microservices Architecture</title>
       <link>https://umairsaeed.com/microservices-architecture/</link>
       <pubDate>Thu, 06 Jul 2023 09:47:05 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/microservices-architecture/</guid>
       <description>&lt;p&gt;Microservices Architecture is a distributed architecture in which an application is organized into a collection of small, loosely coupled, and independently deployable services. Each microservice is responsible for a specific piece of functionality, operates within its process, and communicates with other microservices using lightweight protocols such as REST, gRPC, or messaging systems.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Space Based Architecture</title>
       <link>https://umairsaeed.com/space-based-architecture/</link>
       <pubDate>Tue, 04 Jul 2023 15:01:34 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/space-based-architecture/</guid>
       <description>&lt;p&gt;Space-based architecture is a software architecture pattern designed for highly-scalable, distributed systems that can handle large workloads and accommodate varying demand. It relies on the principles of partitioning and replication of data and processing components, allowing for parallelism, fault tolerance, and load balancing across the system.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Event Driven Architecture</title>
       <link>https://umairsaeed.com/event-driven-architecture/</link>
       <pubDate>Mon, 03 Jul 2023 09:45:12 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/event-driven-architecture/</guid>
       <description>&lt;p&gt;Event-Driven Architecture (EDA) &lt;em&gt;uses events to trigger and communicate between decoupled nodes (services)&lt;/em&gt; within the system. Producers generate initiating events (messages) when a significant change in state occurs. Components within the system subscribe to events and react to them by performing specific actions or tasks.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Service Oriented Architecture</title>
       <link>https://umairsaeed.com/service-oriented-architecture/</link>
       <pubDate>Wed, 24 May 2023 08:17:56 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/service-oriented-architecture/</guid>
       <description>&lt;p&gt;Service-Oriented Architecture (SOA), also known as, Service-Based Architecture (SBA), is a distributed architecture pattern in which an application is organized into a collection of loosely coupled, reusable &lt;strong&gt;services&lt;/strong&gt;. Each service is a self-contained unit that performs a specific task or function, and communicates with other services using standard communication protocols, such as REST, SOAP, or gRPC.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Pipeline Architecture</title>
       <link>https://umairsaeed.com/pipeline-architecture/</link>
       <pubDate>Mon, 22 May 2023 15:59:59 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/pipeline-architecture/</guid>
       <description>&lt;p&gt;A pipeline architecture is a monolithic architecture style, which means a single deployment unit for all of the code. The essential characteristic of pipeline architecture is that data or tasks are processed in a series of stages. Each stage receives the output from the previous stage, processes it, and passes it on to the next stage.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Layered Architecture</title>
       <link>https://umairsaeed.com/layered-architecture/</link>
       <pubDate>Mon, 24 Apr 2023 16:29:26 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/layered-architecture/</guid>
       <description>&lt;p&gt;Layered Architecture is a monolithic architecture style, which means a single deployment unit for all the code. This style is also known as the &lt;em&gt;n-tiered&lt;/em&gt; architecture.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Evaluating Software Architecture Styles</title>
       <link>https://umairsaeed.com/evaluating-software-architecture/</link>
       <pubDate>Mon, 17 Apr 2023 11:28:21 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/evaluating-software-architecture/</guid>
       <description>&lt;p&gt;Software architecture is very context-dependent. Factors such as the software application&amp;rsquo;s goals, the development team&amp;rsquo;s size and budget, and business needs play a significant role in the choice of software architecture.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -6,177 +6,148 @@
     <description>Recent content in Posts on Umair&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 10 Jul 2023 09:13:13 -0700</lastBuildDate><atom:link href="https://umairsaeed.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Nov 2023 16:21:28 -0800</lastBuildDate>
+    <atom:link href="https://umairsaeed.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Monkey Business</title>
+      <link>https://umairsaeed.com/monkey-business/</link>
+      <pubDate>Sun, 05 Nov 2023 16:21:28 -0800</pubDate>
+      <guid>https://umairsaeed.com/monkey-business/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve written my first programming language interpreter! Monkey is a programming language described in the excellent books &lt;a href=&#34;https://interpreterbook.com/&#34;&gt;Writing An Interpreter In Go&lt;/a&gt; and &lt;a href=&#34;https://compilerbook.com/&#34;&gt;Writing A Compiler In Go&lt;/a&gt;, by &lt;a href=&#34;https://twitter.com/thorstenball&#34;&gt;Thorsten Ball&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Software Architecture - It All Depends</title>
       <link>https://umairsaeed.com/software-architecture-it-depends/</link>
       <pubDate>Mon, 10 Jul 2023 09:13:13 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/software-architecture-it-depends/</guid>
       <description>&lt;p&gt;Now that I&amp;rsquo;ve reviewed some of the key software architectural styles, let&amp;rsquo;s see a side-by-side comparison of various architectures in terms of the architectural quality attributes:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Microservices Architecture</title>
       <link>https://umairsaeed.com/microservices-architecture/</link>
       <pubDate>Thu, 06 Jul 2023 09:47:05 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/microservices-architecture/</guid>
       <description>&lt;p&gt;Microservices Architecture is a distributed architecture in which an application is organized into a collection of small, loosely coupled, and independently deployable services. Each microservice is responsible for a specific piece of functionality, operates within its process, and communicates with other microservices using lightweight protocols such as REST, gRPC, or messaging systems.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Space Based Architecture</title>
       <link>https://umairsaeed.com/space-based-architecture/</link>
       <pubDate>Tue, 04 Jul 2023 15:01:34 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/space-based-architecture/</guid>
       <description>&lt;p&gt;Space-based architecture is a software architecture pattern designed for highly-scalable, distributed systems that can handle large workloads and accommodate varying demand. It relies on the principles of partitioning and replication of data and processing components, allowing for parallelism, fault tolerance, and load balancing across the system.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Event Driven Architecture</title>
       <link>https://umairsaeed.com/event-driven-architecture/</link>
       <pubDate>Mon, 03 Jul 2023 09:45:12 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/event-driven-architecture/</guid>
       <description>&lt;p&gt;Event-Driven Architecture (EDA) &lt;em&gt;uses events to trigger and communicate between decoupled nodes (services)&lt;/em&gt; within the system. Producers generate initiating events (messages) when a significant change in state occurs. Components within the system subscribe to events and react to them by performing specific actions or tasks.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Service Oriented Architecture</title>
       <link>https://umairsaeed.com/service-oriented-architecture/</link>
       <pubDate>Wed, 24 May 2023 08:17:56 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/service-oriented-architecture/</guid>
       <description>&lt;p&gt;Service-Oriented Architecture (SOA), also known as, Service-Based Architecture (SBA), is a distributed architecture pattern in which an application is organized into a collection of loosely coupled, reusable &lt;strong&gt;services&lt;/strong&gt;. Each service is a self-contained unit that performs a specific task or function, and communicates with other services using standard communication protocols, such as REST, SOAP, or gRPC.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Pipeline Architecture</title>
       <link>https://umairsaeed.com/pipeline-architecture/</link>
       <pubDate>Mon, 22 May 2023 15:59:59 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/pipeline-architecture/</guid>
       <description>&lt;p&gt;A pipeline architecture is a monolithic architecture style, which means a single deployment unit for all of the code. The essential characteristic of pipeline architecture is that data or tasks are processed in a series of stages. Each stage receives the output from the previous stage, processes it, and passes it on to the next stage.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Layered Architecture</title>
       <link>https://umairsaeed.com/layered-architecture/</link>
       <pubDate>Mon, 24 Apr 2023 16:29:26 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/layered-architecture/</guid>
       <description>&lt;p&gt;Layered Architecture is a monolithic architecture style, which means a single deployment unit for all the code. This style is also known as the &lt;em&gt;n-tiered&lt;/em&gt; architecture.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Collectors in Scheme</title>
       <link>https://umairsaeed.com/collectors-in-scheme/</link>
       <pubDate>Thu, 20 Apr 2023 09:47:49 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/collectors-in-scheme/</guid>
       <description>&lt;p&gt;Collector functions are a functional way of processing and accumulating collections of data. I recently encountered this pattern while going through the book &lt;a href=&#34;https://mitpress.mit.edu/9780262560993/the-little-schemer/&#34;&gt;The Little Schemer&lt;/a&gt;. In the discussion of lambdas, there&amp;rsquo;s a function named &lt;code&gt;multirember&amp;amp;co&lt;/code&gt;, which stands for &lt;em&gt;&amp;ldquo;remove multiple members and collect&amp;rdquo;&lt;/em&gt;. Basically, it removes multiple elements from a list and collects the removed elements.&amp;quot;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Evaluating Software Architecture Styles</title>
       <link>https://umairsaeed.com/evaluating-software-architecture/</link>
       <pubDate>Mon, 17 Apr 2023 11:28:21 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/evaluating-software-architecture/</guid>
       <description>&lt;p&gt;Software architecture is very context-dependent. Factors such as the software application&amp;rsquo;s goals, the development team&amp;rsquo;s size and budget, and business needs play a significant role in the choice of software architecture.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Mastodon</title>
       <link>https://umairsaeed.com/mastodon/</link>
       <pubDate>Thu, 30 Mar 2023 12:45:07 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/mastodon/</guid>
       <description>I&amp;rsquo;ve started using {{&amp;lt; custom_a title=&amp;ldquo;Mastodon&amp;rdquo; url=&amp;ldquo;&lt;a href=&#34;https://mastodon.social/@umairsd%22&#34;&gt;https://mastodon.social/@umairsd&amp;quot;&lt;/a&gt; rel=&amp;ldquo;me&amp;rdquo; &amp;gt;}}, so please feel free to follow.
 This could have been a tweet, but I need to add this post to be able to link back to my Mastodon profile. Doing so allows me to verify ownership of the link to my blog on my Mastodon profile.</description>
     </item>
-    
     <item>
       <title>Turtles All the Way Down</title>
       <link>https://umairsaeed.com/turtles-all-the-way-down/</link>
       <pubDate>Mon, 20 Mar 2023 13:46:15 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/turtles-all-the-way-down/</guid>
       <description>&lt;p&gt;A friend of mine shared the post &lt;a href=&#34;https://brandur.org/fragments/meta-layoffs&#34;&gt;Meta Layoffs&lt;/a&gt; by &lt;a href=&#34;https://twitter.com/brandur&#34;&gt;@Brandur&lt;/a&gt; with me. I agree everything in the post.&lt;/p&gt;
 &lt;p&gt;Here, I want to focus and expand on the point about Meta&amp;rsquo;s desire to &amp;ldquo;flatten the company&amp;rsquo;s structure.&amp;rdquo;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>How to Lose Trust as a Manager</title>
       <link>https://umairsaeed.com/lose-trust-as-a-manager/</link>
       <pubDate>Tue, 07 Mar 2023 10:52:40 -0800</pubDate>
-      
       <guid>https://umairsaeed.com/lose-trust-as-a-manager/</guid>
       <description>&lt;p&gt;A lot of deliberate effort goes into becoming a good manager. Yet, even good managers can lose their direct reports&amp;rsquo; trust through (often) subtle habits and behaviors. Based on my experience, here are a few important ones.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Favorite Books in 2022</title>
       <link>https://umairsaeed.com/favorite-books-in-2022/</link>
       <pubDate>Sat, 11 Feb 2023 12:42:18 -0800</pubDate>
-      
       <guid>https://umairsaeed.com/favorite-books-in-2022/</guid>
       <description>&lt;p&gt;How is it February already?! Going with the mantra of &amp;ldquo;better late than never&amp;rdquo;, here are some of my favorite books from 2022.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Favorite Books in 2021</title>
       <link>https://umairsaeed.com/favorite-books-in-2021/</link>
       <pubDate>Sat, 01 Jan 2022 10:23:26 -0800</pubDate>
-      
       <guid>https://umairsaeed.com/favorite-books-in-2021/</guid>
       <description>&lt;p&gt;Now that we are done with 2021, it is time to list some of my favorite books from last year.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Refresh - 2022</title>
       <link>https://umairsaeed.com/refresh-2022/</link>
       <pubDate>Tue, 28 Dec 2021 10:20:16 -0800</pubDate>
-      
       <guid>https://umairsaeed.com/refresh-2022/</guid>
       <description>After a fairly long hiatus, I am hoping to resume blogging in 2022. This is a test post to ensure that all the tooling (Hugo, my theme etc.) works as expected.
 Time to hit refresh!</description>
     </item>
-    
     <item>
       <title>Do You Need Self Discipline To Have Fun?</title>
       <link>https://umairsaeed.com/do-you-need-self-discipline-to-have-fun/</link>
       <pubDate>Mon, 03 Jul 2017 07:08:05 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/do-you-need-self-discipline-to-have-fun/</guid>
       <description>&lt;p&gt;I can relate to &lt;a href=&#34;https://www.scotthyoung.com/blog/2017/06/19/discipline-and-fun/&#34;&gt;this excellent post&lt;/a&gt; by Scott Young, where he makes the case that ease of doing an activity and its enjoyment aren&amp;rsquo;t the same. Consider:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Applicative Laws for `((-&gt;) r)` Type</title>
       <link>https://umairsaeed.com/applicative-laws-for-function-type/</link>
       <pubDate>Thu, 07 Jan 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://umairsaeed.com/applicative-laws-for-function-type/</guid>
       <description>&lt;p&gt;Haskell&amp;rsquo;s function type &lt;code&gt;((-&amp;gt;) r)&lt;/code&gt; is an Applicative functor. Similar to the previous two posts in this series, in this post I will verify that the applicative laws hold for the &lt;code&gt;((-&amp;gt;) r)&lt;/code&gt; type.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Applicative Laws for `[]` Type</title>
       <link>https://umairsaeed.com/applicative-laws-for-list-type/</link>
       <pubDate>Wed, 06 Jan 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://umairsaeed.com/applicative-laws-for-list-type/</guid>
       <description>&lt;p&gt;Haskell&amp;rsquo;s list type &lt;code&gt;[]&lt;/code&gt; is an Applicative functor. Similar to the previous post, this post will verify that the applicative laws hold for the &lt;code&gt;[]&lt;/code&gt; type.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Applicative Laws for `Maybe` Type</title>
       <link>https://umairsaeed.com/applicative-laws-for-maybe-type/</link>
       <pubDate>Tue, 05 Jan 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://umairsaeed.com/applicative-laws-for-maybe-type/</guid>
       <description>&lt;p&gt;Applicative functors come with a set of laws that apply for all Applicative instances. These laws are as follows:&lt;/p&gt;
 &lt;ul&gt;
@@ -194,12 +165,10 @@ Time to hit refresh!</description>
 &lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>Maybe as an Applicative Functor</title>
       <link>https://umairsaeed.com/maybe-as-an-applicative-functor/</link>
       <pubDate>Fri, 21 Aug 2015 09:53:20 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/maybe-as-an-applicative-functor/</guid>
       <description>&lt;p&gt;&lt;code&gt;Maybe&lt;/code&gt; type is made an instance of the &lt;code&gt;Applicative&lt;/code&gt; type class as follows:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;instance&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Applicative&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Maybe&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;where&lt;/span&gt;
@@ -208,99 +177,71 @@ Time to hit refresh!</description>
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    (&lt;span style=&#34;color:#66d9ef&#34;&gt;Just&lt;/span&gt; f) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;*&amp;gt;&lt;/span&gt; something &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fmap f something
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
-    
     <item>
       <title>Pascal&#39;s Triangle</title>
       <link>https://umairsaeed.com/pascals-triangle/</link>
       <pubDate>Wed, 08 Jul 2015 06:51:27 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/pascals-triangle/</guid>
       <description>&lt;p&gt;One of the exercises in &lt;a href=&#34;https://mitpress.mit.edu/sicp/&#34;&gt;Structure and Implementation of Computer Programs&lt;/a&gt; deals with generating elements of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Pascal&#39;s_triangle&#34;&gt;Pascal&amp;rsquo;s Triangle&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Index Based List Operations Using folds in Haskell</title>
       <link>https://umairsaeed.com/index-based-list-operations-using-folds-in-haskell/</link>
       <pubDate>Sat, 16 May 2015 08:53:31 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/index-based-list-operations-using-folds-in-haskell/</guid>
       <description>&lt;p&gt;When working with lists in Haskell, occasionally there&amp;rsquo;s a need to perform index based operations, such as adding an element at a particular index. As a Haskell &lt;em&gt;newbie&lt;/em&gt;, using &lt;code&gt;foldl&lt;/code&gt; or &lt;code&gt;foldr&lt;/code&gt; is not the first idea that comes to mind when indices are involved. However, there is a general pattern that can be applied when using folds for index-based list operations.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Talking About Money</title>
       <link>https://umairsaeed.com/talking-about-money/</link>
       <pubDate>Mon, 04 May 2015 09:43:03 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/talking-about-money/</guid>
       <description>&lt;p&gt;Patrick McKenzie wrote an excellent post about compensation and salary transparency. The entire post is really informative, but for me, this passage is a true gem. Every word here is absolutely true:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Sublime Text &amp;amp; Haskell</title>
       <link>https://umairsaeed.com/sublime-text-and-haskell/</link>
       <pubDate>Sat, 02 May 2015 16:07:28 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/sublime-text-and-haskell/</guid>
       <description>&lt;p&gt;There are several excellent posts about setting up the Haskell development environment. One of the best ones is Tony Lawrence&amp;rsquo;s &lt;a href=&#34;http://tonylawrence.com/blog/2014/01/01/configuring-your-haskell-environment/&#34; title=&#34;Configuring Your Haskell Environment&#34;&gt;Configuring Your Haskell Environment&lt;/a&gt;. I encourage you to take a look at his post first.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Why Racket? Why Lisp?</title>
       <link>https://umairsaeed.com/why-racket-why-lisp/</link>
       <pubDate>Fri, 27 Mar 2015 10:30:53 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/why-racket-why-lisp/</guid>
       <description>&lt;p&gt;A slightly older (from Aug 2014), but nonetheless &lt;a href=&#34;http://practicaltypography.com/why-racket-why-lisp.html&#34; title=&#34;Why Racket, Why Lisp&#34;&gt;great post&lt;/a&gt; by Matthew Butterick where he enumerates the benefits of learning to program in Lisp (or one of its dialects).&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Book - Hackers &amp;amp; Painters</title>
       <link>https://umairsaeed.com/book-hackers-and-painters/</link>
       <pubDate>Thu, 26 Mar 2015 10:00:12 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/book-hackers-and-painters/</guid>
       <description>&lt;p&gt;A couple of days ago, I finished reading Paul Graham&amp;rsquo;s book of essays &lt;a href=&#34;http://www.amazon.com/Hackers-Painters-Big-Ideas-Computer/dp/1449389554&#34;&gt;Hackers and Painters: Big Ideas from the Computer Age&lt;/a&gt;, and thoroughly enjoyed the book. I had already read a few of these essays on his &lt;a href=&#34;http://www.paulgraham.com/articles.html&#34;&gt;website&lt;/a&gt;, yet I still enjoyed re-reading them. The essays are very insightful, and I plan to re-read several essays &amp;amp; passages periodically.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>A Quine in Objective-C</title>
       <link>https://umairsaeed.com/a-quine-in-objective-c/</link>
       <pubDate>Wed, 18 Jul 2012 13:46:06 +0000</pubDate>
-      
       <guid>https://umairsaeed.com/a-quine-in-objective-c/</guid>
       <description>&lt;p&gt;A quine is a program that takes no input and outputs its own source code. It has been a while since I last wrote a quine, so I figured I&amp;rsquo;ll write one in Objective-C. In general, quines follow a fairly simple formula. The program contains a string that includes all the code before the string and all the code after the string. Depending on the programming language, the string might also contain format string (for languages that use format-strings to print to &lt;code&gt;stdout&lt;/code&gt;)&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Finding the Start of a Loop in a Circular Linked List</title>
       <link>https://umairsaeed.com/finding-the-start-of-a-loop-in-a-circular-linked-list/</link>
       <pubDate>Thu, 23 Jun 2011 13:54:07 +0000</pubDate>
-      
       <guid>https://umairsaeed.com/finding-the-start-of-a-loop-in-a-circular-linked-list/</guid>
       <description>&lt;p&gt;A lot of people are familiar with the problem of detecting a loop in a linked list. The problem goes as follows: “Given a linked list, what is the algorithm to determine if it has any cycles (loops)?”&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Stern-Brocot Tree</title>
       <link>https://umairsaeed.com/stern-brocot-tree/</link>
       <pubDate>Thu, 27 Jan 2011 13:56:15 +0000</pubDate>
-      
       <guid>https://umairsaeed.com/stern-brocot-tree/</guid>
       <description>&lt;p&gt;Stern-Brocot tree is a tree data structure whose vertices correspond to the set of non-negative rational numbers. Thus, this tree provides a very elegant way for constructing the set of fractions &lt;code&gt;m/n&lt;/code&gt;, where &lt;code&gt;m&lt;/code&gt; and &lt;code&gt;n&lt;/code&gt; are relatively prime. To construct the tree, the basic idea is to start with two fractions (&lt;code&gt;0/1&lt;/code&gt;, &lt;code&gt;1/0&lt;/code&gt;) and then repeat the following operation:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Insert (m+m&amp;rsquo;)/(n+n&amp;rsquo;) between two adjacent fractions m/n and m&amp;rsquo;/n&#39;&lt;/p&gt;
 &lt;/blockquote&gt;</description>
     </item>
-    
-    <item>
-      <title>Manual Memory Management in Objective-C</title>
-      <link>https://umairsaeed.com/manual-memory-management-in-objective-c/</link>
-      <pubDate>Mon, 24 Jan 2011 19:10:40 +0000</pubDate>
-      
-      <guid>https://umairsaeed.com/manual-memory-management-in-objective-c/</guid>
-      <description>&lt;p&gt;Objective-C on iOS has no garbage collector, so it is up to the programmer to make sure that memory is properly freed once an object is no longer needed. On the other hand, Objective-C on the Mac does have a garbage collector (in Objective C 2.0). This blog post focuses on how to manage memory in the absence of a garbage collector.&lt;/p&gt;</description>
-    </item>
-    
   </channel>
 </rss>

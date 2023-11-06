@@ -2,12 +2,28 @@
   <title>Umair&#39;s Blog</title>
   <link href="https://umairsaeed.com/index.xml" rel="self"/>
   <link href="https://umairsaeed.com/"/>
-  <updated>2023-07-10T09:13:13-07:00</updated>
+  <updated>2023-11-05T16:21:28-08:00</updated>
   <id>https://umairsaeed.com/</id>
   <author>
     <name>Umair Saeed</name>
   </author>
   <generator>Hugo -- gohugo.io</generator>
+  <entry>
+    <title type="html"><![CDATA[Monkey Business]]></title>
+    <link href="https://umairsaeed.com/monkey-business/"/>
+    <id>https://umairsaeed.com/monkey-business/</id>
+    <author>
+      <name>Umair Saeed</name>
+    </author>
+    <published>2023-11-05T16:21:28-08:00</published>
+    <updated>2023-11-05T16:21:28-08:00</updated>
+    
+    <content type="html"><![CDATA[<p>I&rsquo;ve written my first programming language interpreter! Monkey is a programming language described in the excellent books <a href="https://interpreterbook.com/">Writing An Interpreter In Go</a> and <a href="https://compilerbook.com/">Writing A Compiler In Go</a>, by <a href="https://twitter.com/thorstenball">Thorsten Ball</a>.</p>
+<p>Over the past few weeks, I went through the first of these books (<a href="https://interpreterbook.com/">Writing An Interpreter In Go</a>) and wrote an interpreter for the Monkey language in the Swift programming language. Here&rsquo;s the GitHub repo: <a href="https://github.com/umairsd/swift-monkey-interpreter">https://github.com/umairsd/swift-monkey-interpreter</a>. Check it out, and let me know what you think. Please share any feedback!</p>
+<p><a href="https://interpreterbook.com/">Writing An Interpreter In Go</a> is a brilliant book. It has been on my reading list for a couple of years, and I regret not going through it sooner. The book walks the reader through the ideas behind building an interpreter step-by-step, with fully functional code (in Go) and tests. I particularly appreciated the test-driven nature and tried to follow it very closely in my implementation as well.</p>
+<p>Now that I&rsquo;ve written the interpreter, I can&rsquo;t wait to start building the compiler by following Thorsten&rsquo;s second book.</p>]]></content>
+    
+  </entry>
   <entry>
     <title type="html"><![CDATA[Software Architecture - It All Depends]]></title>
     <link href="https://umairsaeed.com/software-architecture-it-depends/"/>
@@ -1731,25 +1747,25 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *            The linked list to be tested
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return true if there is a loop, false if there isn&#39;t
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">hasLoop</span><span style="color:#f92672">(</span>ListNode head<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>head <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">hasLoop</span>(ListNode head) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (head <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  ListNode slow <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  ListNode fast <span style="color:#f92672">=</span> head<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>  ListNode slow <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>  ListNode fast <span style="color:#f92672">=</span> head.<span style="color:#a6e22e">next</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span><span style="color:#f92672">(</span>slow <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>slow <span style="color:#f92672">==</span> fast<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span>(slow <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast.<span style="color:#a6e22e">next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (slow <span style="color:#f92672">==</span> fast) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    slow <span style="color:#f92672">=</span> slow.<span style="color:#a6e22e">next</span>;
+</span></span><span style="display:flex;"><span>    fast <span style="color:#f92672">=</span> fast.<span style="color:#a6e22e">next</span>.<span style="color:#a6e22e">next</span>;
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Returns the node at the start of a loop in the given circular linked
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * list. A circular list is one in which a node&#39;s next pointer points
@@ -1764,38 +1780,38 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the node at the start of the loop if there is a loop, null
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * otherwise
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ListNode <span style="color:#a6e22e">findLoopStart</span><span style="color:#f92672">(</span>ListNode head<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>head <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ListNode <span style="color:#a6e22e">findLoopStart</span>(ListNode head) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (head <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  ListNode slow <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  ListNode fast <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>  ListNode slow <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>  ListNode fast <span style="color:#f92672">=</span> head;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>slow <span style="color:#f92672">==</span> fast<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> (fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> fast.<span style="color:#a6e22e">next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    slow <span style="color:#f92672">=</span> slow.<span style="color:#a6e22e">next</span>;
+</span></span><span style="display:flex;"><span>    fast <span style="color:#f92672">=</span> fast.<span style="color:#a6e22e">next</span>.<span style="color:#a6e22e">next</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (slow <span style="color:#f92672">==</span> fast) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// No cycle if the fast pointer gets to the end of the list.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>fast <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// No cycle if the fast pointer gets to the end of the list.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (fast <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  ListNode interesection <span style="color:#f92672">=</span> slow<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  ListNode p1 <span style="color:#f92672">=</span> head<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  ListNode p2 <span style="color:#f92672">=</span> intersection<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>  ListNode interesection <span style="color:#f92672">=</span> slow;
+</span></span><span style="display:flex;"><span>  ListNode p1 <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>  ListNode p2 <span style="color:#f92672">=</span> intersection;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>p1 <span style="color:#f92672">!=</span> p2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    p1 <span style="color:#f92672">=</span> p1<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    p2 <span style="color:#f92672">=</span> p2<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> (p1 <span style="color:#f92672">!=</span> p2) {
+</span></span><span style="display:flex;"><span>    p1 <span style="color:#f92672">=</span> p1.<span style="color:#a6e22e">next</span>;
+</span></span><span style="display:flex;"><span>    p2 <span style="color:#f92672">=</span> p2.<span style="color:#a6e22e">next</span>;
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> p1<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> p1;
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>]]></content>
     
   </entry>
@@ -1839,228 +1855,107 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
 <p>There&rsquo;s a couple of things to tackle in our implementation. First, I need an easy way to represent fractions, so I create my own <code>SternBrocotFraction</code> class. I deliberately chose to make it very specific to this algorithm because I needed a special way to handle the fraction 1/0 (which by definition is greater than all other rationals).</p>
 <p>Secondly, I needed a good way to represent the path from the root of the tree to k. I do this by using a <code>StringBuilder</code>, and at each step I append either the letter <code>L</code> or <code>R</code> depending on which sub-tree we take. When the search is finished, this gives us a string representation of the path from the root of the tree to the number <code>k</code>. This approach is similar to the approach advocated by ACM Programming Competitions for <a href="http://acm.uva.es/p/v100/10077.html">the &ldquo;Stern-Brocot Number System&rdquo; problem</a>.</p>
 <p>Here&rsquo;s the code to find path to a number k:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.umairsaeed.algorithm;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotPath</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">char</span> LEFT_SUB <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;L&#39;</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">char</span> RIGHT_SUB <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;R&#39;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotPath</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">char</span> LEFT_SUB <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;L&#39;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">char</span> RIGHT_SUB <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;R&#39;</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">findPathTo</span><span style="color:#f92672">(</span>SternBrocotFraction f<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    SternBrocotFraction L <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    SternBrocotFraction R <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">findPathTo</span>(SternBrocotFraction f) {
+</span></span><span style="display:flex;"><span>    SternBrocotFraction L <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(0, 1);
+</span></span><span style="display:flex;"><span>    SternBrocotFraction R <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(1, 0);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    StringBuilder results <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>    SternBrocotPath<span style="color:#f92672">.</span><span style="color:#a6e22e">find</span><span style="color:#f92672">(</span>f<span style="color:#f92672">,</span> L<span style="color:#f92672">,</span> R<span style="color:#f92672">,</span> results<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> results<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">find</span><span style="color:#f92672">(</span>SternBrocotFraction f<span style="color:#f92672">,</span>
-</span></span><span style="display:flex;"><span>      SternBrocotFraction L<span style="color:#f92672">,</span>
-</span></span><span style="display:flex;"><span>      SternBrocotFraction R<span style="color:#f92672">,</span>
-</span></span><span style="display:flex;"><span>      StringBuilder results<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    SternBrocotFraction M <span style="color:#f92672">=</span> L<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>R<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>M<span style="color:#f92672">.</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>f<span style="color:#f92672">)</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      L <span style="color:#f92672">=</span> M<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>      results<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span>RIGHT_SUB<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>      SternBrocotPath<span style="color:#f92672">.</span><span style="color:#a6e22e">find</span><span style="color:#f92672">(</span>f<span style="color:#f92672">,</span> L<span style="color:#f92672">,</span> R<span style="color:#f92672">,</span> results<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>M<span style="color:#f92672">.</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>f<span style="color:#f92672">)</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      R <span style="color:#f92672">=</span> M<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>      results<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span>LEFT_SUB<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>      SternBrocotPath<span style="color:#f92672">.</span><span style="color:#a6e22e">find</span><span style="color:#f92672">(</span>f<span style="color:#f92672">,</span> L<span style="color:#f92672">,</span> R<span style="color:#f92672">,</span> results<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><p>The special <code>SternBrocotFraction</code> class is:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotFraction</span> <span style="color:#66d9ef">implements</span>
-</span></span><span style="display:flex;"><span>        Comparable<span style="color:#f92672">&lt;</span>SternBrocotFraction<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> numerator<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> denominator<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SternBrocotFraction</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> numerator<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> denominator<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>denominator <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      numerator <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>      denominator <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">numerator</span> <span style="color:#f92672">=</span> numerator<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">denominator</span> <span style="color:#f92672">=</span> denominator<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">doubleValue</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">denominator</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> Double<span style="color:#f92672">.</span><span style="color:#a6e22e">MAX_VALUE</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">double</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">numerator</span> <span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">(</span><span style="color:#66d9ef">double</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">denominator</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> SternBrocotFraction <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>SternBrocotFraction other<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">numerator</span> <span style="color:#f92672">+</span> other<span style="color:#f92672">.</span><span style="color:#a6e22e">numerator</span><span style="color:#f92672">,</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">denominator</span> <span style="color:#f92672">+</span> other<span style="color:#f92672">.</span><span style="color:#a6e22e">denominator</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>SternBrocotFraction other<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">doubleValue</span><span style="color:#f92672">()</span> <span style="color:#f92672">&lt;</span> other<span style="color:#f92672">.</span><span style="color:#a6e22e">doubleValue</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">doubleValue</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> other<span style="color:#f92672">.</span><span style="color:#a6e22e">doubleValue</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><p>Finally, some test code to exercise my class:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.umairsaeed.algorithm<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotTester</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    testSternBrocotPath<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSternBrocotPath</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    SternBrocotPath t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotPath<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    SternBrocotFraction f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span><span style="color:#ae81ff">5</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">7</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">findPathTo</span><span style="color:#f92672">(</span>f<span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span><span style="color:#ae81ff">19</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">101</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">findPathTo</span><span style="color:#f92672">(</span>f<span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span><span style="color:#ae81ff">977</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">331</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">findPathTo</span><span style="color:#f92672">(</span>f<span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction<span style="color:#f92672">(</span><span style="color:#ae81ff">1049</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">7901</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">findPathTo</span><span style="color:#f92672">(</span>f<span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div>]]></content>
-    
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[Manual Memory Management in Objective-C]]></title>
-    <link href="https://umairsaeed.com/manual-memory-management-in-objective-c/"/>
-    <id>https://umairsaeed.com/manual-memory-management-in-objective-c/</id>
-    <author>
-      <name>Umair Saeed</name>
-    </author>
-    <published>2011-01-24T19:10:40+00:00</published>
-    <updated>2011-01-24T19:10:40+00:00</updated>
-    
-    <content type="html"><![CDATA[<p>Objective-C on iOS has no garbage collector, so it is up to the programmer to make sure that memory is properly freed once an object is no longer needed. On the other hand, Objective-C on the Mac does have a garbage collector (in Objective C 2.0). This blog post focuses on how to manage memory in the absence of a garbage collector.</p>
-<p>When managing memory manually, two major issues to watch out for are premature deallocation and memory leaks.</p>
-<p>Cocoa Touch framework uses manual <a href="http://en.wikipedia.org/wiki/Reference_counting">reference counting</a> to manage memory on the iOS devices. Reference counting works on the principle that once created, every object has an owner. During its existence, its owner may change and it may even have more than one owners. When the number of owners for an object drops to zero, it deallocates itself to free up the memory being used.</p>
-<h2 id="retain--release"><code>retain</code> &amp; <code>release</code></h2>
-<p>Owners are tracked via retain counts. When an object is created it always has a retain count of 1. To own an object its retain count is incremented via the <code>retain</code> message. On the other hand, when the object is no longer needed its ownership is relinquished by decrementing the retain count via the <code>release</code> message. When the count reaches zero, the object sends itself the <code>dealloc</code> message and returns all the memory back to the heap.</p>
-<h2 id="autorelease"><code>autorelease</code></h2>
-<p><code>autorelease</code> marks an object for future release (delayed release). When an object is sent the autorelease message, it is added to an instance of <code>NSAutoreleasePool</code>. The Autorelease pool keeps track of all the objects that have been sent the <code>autorelease</code> message. This pool is drained periodically, at which time all the objects within it are sent the release message.</p>
-<p><code>autorelease</code> is really handy when the creator of an object (e.g. a factory) simply creates the object and returns it to the caller. At this point, the creator has nothing to do with the object anymore, so it is up to the caller to retain the returned object in order to continue using it.</p>
-<h2 id="an-example---a-ticket-class">An Example - A Ticket class</h2>
-<p>Let us work through an example to see manual memory management in action. Suppose I am writing a ticketing framework, and I have a Ticket entity. The header file for Ticket looks as:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#66d9ef">@interface</span> <span style="color:#a6e22e">Ticket</span> : <span style="color:#a6e22e">NSObject</span> {
-</span></span><span style="display:flex;"><span>  NSString <span style="color:#f92672">*</span>ticketId;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- (NSString <span style="color:#f92672">*</span>) <span style="color:#a6e22e">ticketId</span>;
-</span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">setTicketId:</span>(NSString <span style="color:#f92672">*</span>) tid;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">initWithId:</span>(NSString <span style="color:#f92672">*</span>) tid;
-</span></span><span style="display:flex;"><span>+ (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">ticketWithId:</span>(NSString <span style="color:#f92672">*</span>) tid;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@end</span>
-</span></span></code></pre></div><p>And the implementation file for Ticket looks as follows:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#75715e">#import &#34;Ticket.h&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">Ticket</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">dealloc</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  [ticketId <span style="color:#66d9ef">release</span>];
-</span></span><span style="display:flex;"><span>  [super dealloc];
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- (NSString <span style="color:#f92672">*</span>) <span style="color:#a6e22e">ticketId</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> ticketId;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">setTicketId:</span>(NSString <span style="color:#f92672">*</span>)tid
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  [tid <span style="color:#66d9ef">retain</span>];
-</span></span><span style="display:flex;"><span>  [ticketId <span style="color:#66d9ef">release</span>];
-</span></span><span style="display:flex;"><span>  ticketId <span style="color:#f92672">=</span> tid;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">initWithId:</span>(NSString <span style="color:#f92672">*</span>) tid
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (self <span style="color:#f92672">=</span> [super init])
-</span></span><span style="display:flex;"><span>  {
-</span></span><span style="display:flex;"><span>    [self setTicketId:tid];
+</span></span><span style="display:flex;"><span>    StringBuilder results <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder();
+</span></span><span style="display:flex;"><span>    SternBrocotPath.<span style="color:#a6e22e">find</span>(f, L, R, results);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> results.<span style="color:#a6e22e">toString</span>();
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> self;
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">find</span>(SternBrocotFraction f,
+</span></span><span style="display:flex;"><span>      SternBrocotFraction L,
+</span></span><span style="display:flex;"><span>      SternBrocotFraction R,
+</span></span><span style="display:flex;"><span>      StringBuilder results)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    SternBrocotFraction M <span style="color:#f92672">=</span> L.<span style="color:#a6e22e">add</span>(R);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>+ (<span style="color:#66d9ef">id</span>) <span style="color:#a6e22e">ticketWithId:</span>(NSString <span style="color:#f92672">*</span>)tid
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  Ticket <span style="color:#f92672">*</span>newTkt <span style="color:#f92672">=</span> [[Ticket alloc] initWithId:tid];
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> [newTkt autorelease];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (M.<span style="color:#a6e22e">compareTo</span>(f) <span style="color:#f92672">&lt;</span> 0) {
+</span></span><span style="display:flex;"><span>      L <span style="color:#f92672">=</span> M;
+</span></span><span style="display:flex;"><span>      results.<span style="color:#a6e22e">append</span>(RIGHT_SUB);
+</span></span><span style="display:flex;"><span>      SternBrocotPath.<span style="color:#a6e22e">find</span>(f, L, R, results);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (M.<span style="color:#a6e22e">compareTo</span>(f) <span style="color:#f92672">&gt;</span> 0) {
+</span></span><span style="display:flex;"><span>      R <span style="color:#f92672">=</span> M;
+</span></span><span style="display:flex;"><span>      results.<span style="color:#a6e22e">append</span>(LEFT_SUB);
+</span></span><span style="display:flex;"><span>      SternBrocotPath.<span style="color:#a6e22e">find</span>(f, L, R, results);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The special <code>SternBrocotFraction</code> class is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.umairsaeed.algorithm;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@end</span>
-</span></span></code></pre></div><p>There are three memory management points to note here:</p>
-<ol>
-<li>
-<p>Inside <code>dealloc</code>, an object must release all its instance variables first. Then it should go up its class hierarchy and release any instance variables of its superclass. We should never directly send the <code>dealloc</code> message to instance variables, as some other objects might still have references to those variables.</p>
-</li>
-<li>
-<p>A setter must retain the value passed in before it releases the old value, as <code>tid</code> and <code>ticketId</code> could be pointers to the same object.</p>
-</li>
-<li>
-<p>The <code>ticketWithId:</code> method creates a ticket and simply returns it to the caller. It has no use for the <code>newTkt</code>, but it owns <code>newTkt</code> by virtue of creating it. At this point, if <code>newTkt</code> were released before method exit, then the caller would get a pointer to unallocated heap. To avoid this, we put the <code>newTkt</code> on the autorelease pool. Periodically, the autorelease pool is drained and all the objects it it are sent the <code>release</code> message thus decrementing the retain count.</p>
-</li>
-</ol>
-<p>Essentially, the <code>ticketWithId:</code> method is saying that it does not want to be the owner for <code>newTkt</code> and puts that responsibility on the caller. If the caller wants to hold on to <code>newTkt</code> once it is returned, it must send it the <code>retain</code> message.</p>
-<h4 id="using-the-ticket-class">Using the Ticket class</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#75715e">// EXAMPLE-1
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  Ticket<span style="color:#f92672">*</span> tkt <span style="color:#f92672">=</span> [[Ticket alloc] initWithId:ticketId];
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Do something with tkt
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// ...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  [tkt <span style="color:#66d9ef">release</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotFraction</span> <span style="color:#66d9ef">implements</span>
+</span></span><span style="display:flex;"><span>        Comparable<span style="color:#f92672">&lt;</span>SternBrocotFraction<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> numerator;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> denominator;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SternBrocotFraction</span>(<span style="color:#66d9ef">int</span> numerator, <span style="color:#66d9ef">int</span> denominator) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (denominator <span style="color:#f92672">&lt;</span> 0) {
+</span></span><span style="display:flex;"><span>      numerator <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span>1;
+</span></span><span style="display:flex;"><span>      denominator <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span>1;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">numerator</span> <span style="color:#f92672">=</span> numerator;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">denominator</span> <span style="color:#f92672">=</span> denominator;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">doubleValue</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">denominator</span> <span style="color:#f92672">==</span> 0) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> Double.<span style="color:#a6e22e">MAX_VALUE</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">double</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">numerator</span> <span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">double</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">denominator</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> SternBrocotFraction <span style="color:#a6e22e">add</span>(SternBrocotFraction other) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">numerator</span> <span style="color:#f92672">+</span> other.<span style="color:#a6e22e">numerator</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">denominator</span> <span style="color:#f92672">+</span> other.<span style="color:#a6e22e">denominator</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compareTo</span>(SternBrocotFraction other) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">doubleValue</span>() <span style="color:#f92672">&lt;</span> other.<span style="color:#a6e22e">doubleValue</span>()) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span>1;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">doubleValue</span>() <span style="color:#f92672">&gt;</span> other.<span style="color:#a6e22e">doubleValue</span>()) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> 1;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> 0;
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>At this point, the retain count for <code>tkt</code> is 1. Moreover, since the <code>processTicketWithId:</code> method created the <code>tkt</code> object, it is now the owner and thus is responsible for cleaning it up before this method exits. Clean up is done by sending it the <code>release</code> message
-Let&rsquo;s see another example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#75715e">// EXAMPLE-2
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  Ticket<span style="color:#f92672">*</span> tkt <span style="color:#f92672">=</span> [Ticket ticketWithId:ticketId];
-</span></span><span style="display:flex;"><span>  [tkt <span style="color:#66d9ef">retain</span>];
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Do something with tkt
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// ..
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  [tkt <span style="color:#66d9ef">release</span>];
+</span></span></code></pre></div><p>Finally, some test code to exercise my class:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.umairsaeed.algorithm;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SternBrocotTester</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>    testSternBrocotPath();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSternBrocotPath</span>() {
+</span></span><span style="display:flex;"><span>    SternBrocotPath t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotPath();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    SternBrocotFraction f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(5, 7);
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(t.<span style="color:#a6e22e">findPathTo</span>(f));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(19, 101);
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(t.<span style="color:#a6e22e">findPathTo</span>(f));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(977, 331);
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(t.<span style="color:#a6e22e">findPathTo</span>(f));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SternBrocotFraction(1049, 7901);
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(t.<span style="color:#a6e22e">findPathTo</span>(f));
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>In this example, the memory for <code>tkt</code> wasn&rsquo;t allocated by <code>processTicketWithId</code> method, so it doesn&rsquo;t own the <code>tkt</code> object. However, as we&rsquo;ve seen in the implementation of the Ticket class, the <code>ticketWithId:</code> method created the Ticket object and added it to the autorelease pool. In order to continue using <code>tkt</code>, we must retain it so that even if it is drained from the autorelease pool, we can still continue to use the <code>tkt</code> object. Once done, we need to clean up and send the release message.</p>
-<h2 id="summary-of-memory-management-rules-for-objective-c">Summary of Memory Management Rules for Objective-C</h2>
-<ul>
-<li>
-<p>Rule-1: If you get/create the object from <code>new</code>, <code>alloc</code> or <code>copy</code>, you must <code>release</code> it when done.</p>
-</li>
-<li>
-<p>Rule-2: If you get the object any other way, assume that it has been autoreleased. If you want to hold on to this object, send it the <code>retain</code> message.</p>
-</li>
-<li>
-<p>Rule-3: If you <code>retain</code> an object, you must balance every <code>retain</code> with a <code>release</code>.</p>
-</li>
-<li>
-<p>Rule-4: Never send the <code>dealloc</code> message to an object directly. Others might be holding references to this object, and if deallocated, they&rsquo;ll be left with pointers to unallocated memory.</p>
-</li>
-</ul>]]></content>
+</span></span></code></pre></div>]]></content>
     
   </entry>
 </feed>

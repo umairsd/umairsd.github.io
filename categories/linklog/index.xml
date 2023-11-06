@@ -6,33 +6,28 @@
     <description>Recent content in linklog on Umair&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 03 Jul 2017 07:08:05 -0700</lastBuildDate><atom:link href="https://umairsaeed.com/categories/linklog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Jul 2017 07:08:05 -0700</lastBuildDate>
+    <atom:link href="https://umairsaeed.com/categories/linklog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Do You Need Self Discipline To Have Fun?</title>
       <link>https://umairsaeed.com/do-you-need-self-discipline-to-have-fun/</link>
       <pubDate>Mon, 03 Jul 2017 07:08:05 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/do-you-need-self-discipline-to-have-fun/</guid>
       <description>&lt;p&gt;I can relate to &lt;a href=&#34;https://www.scotthyoung.com/blog/2017/06/19/discipline-and-fun/&#34;&gt;this excellent post&lt;/a&gt; by Scott Young, where he makes the case that ease of doing an activity and its enjoyment aren&amp;rsquo;t the same. Consider:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Talking About Money</title>
       <link>https://umairsaeed.com/talking-about-money/</link>
       <pubDate>Mon, 04 May 2015 09:43:03 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/talking-about-money/</guid>
       <description>&lt;p&gt;Patrick McKenzie wrote an excellent post about compensation and salary transparency. The entire post is really informative, but for me, this passage is a true gem. Every word here is absolutely true:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Why Racket? Why Lisp?</title>
       <link>https://umairsaeed.com/why-racket-why-lisp/</link>
       <pubDate>Fri, 27 Mar 2015 10:30:53 -0700</pubDate>
-      
       <guid>https://umairsaeed.com/why-racket-why-lisp/</guid>
       <description>&lt;p&gt;A slightly older (from Aug 2014), but nonetheless &lt;a href=&#34;http://practicaltypography.com/why-racket-why-lisp.html&#34; title=&#34;Why Racket, Why Lisp&#34;&gt;great post&lt;/a&gt; by Matthew Butterick where he enumerates the benefits of learning to program in Lisp (or one of its dialects).&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
