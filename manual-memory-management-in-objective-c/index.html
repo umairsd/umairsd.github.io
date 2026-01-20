@@ -126,7 +126,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">@end</span>
 </span></span></code></pre></div><p>And the implementation file for Ticket looks as follows:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#75715e">#import &#34;Ticket.h&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">Ticket</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">Ticket</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">dealloc</span>
 </span></span><span style="display:flex;"><span>{
@@ -178,23 +178,23 @@
 <p>Essentially, the <code>ticketWithId:</code> method is saying that it does not want to be the owner for <code>newTkt</code> and puts that responsibility on the caller. If the caller wants to hold on to <code>newTkt</code> once it is returned, it must send it the <code>retain</code> message.</p>
 <h4 id="using-the-ticket-class">Using the Ticket class</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#75715e">// EXAMPLE-1
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
+</span></span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  Ticket<span style="color:#f92672">*</span> tkt <span style="color:#f92672">=</span> [[Ticket alloc] initWithId:ticketId];
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Do something with tkt
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// ...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  [tkt <span style="color:#66d9ef">release</span>];
+</span></span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span>  [tkt <span style="color:#66d9ef">release</span>];
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>At this point, the retain count for <code>tkt</code> is 1. Moreover, since the <code>processTicketWithId:</code> method created the <code>tkt</code> object, it is now the owner and thus is responsible for cleaning it up before this method exits. Clean up is done by sending it the <code>release</code> message
 Let&rsquo;s see another example:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#75715e">// EXAMPLE-2
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
+</span></span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">void</span>) <span style="color:#a6e22e">processTicketWithId:</span>(NSString <span style="color:#f92672">*</span>)ticketId
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  Ticket<span style="color:#f92672">*</span> tkt <span style="color:#f92672">=</span> [Ticket ticketWithId:ticketId];
 </span></span><span style="display:flex;"><span>  [tkt <span style="color:#66d9ef">retain</span>];
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Do something with tkt
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// ..
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  [tkt <span style="color:#66d9ef">release</span>];
+</span></span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ..
+</span></span></span><span style="display:flex;"><span>  [tkt <span style="color:#66d9ef">release</span>];
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>In this example, the memory for <code>tkt</code> wasn&rsquo;t allocated by <code>processTicketWithId</code> method, so it doesn&rsquo;t own the <code>tkt</code> object. However, as we&rsquo;ve seen in the implementation of the Ticket class, the <code>ticketWithId:</code> method created the Ticket object and added it to the autorelease pool. In order to continue using <code>tkt</code>, we must retain it so that even if it is drained from the autorelease pool, we can still continue to use the <code>tkt</code> object. Once done, we need to clean up and send the release message.</p>
 <h2 id="summary-of-memory-management-rules-for-objective-c">Summary of Memory Management Rules for Objective-C</h2>
@@ -226,7 +226,7 @@ Let&rsquo;s see another example:</p>
 
     <footer>
   <span>
-    &copy; <time datetime="2023-11-05 16:37:31.816117 -0800 PST m=&#43;0.069394126">2023</time> .
+    &copy; <time datetime="2026-01-19 20:24:53.062983 -0800 PST m=&#43;0.089514751">2026</time> .
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>

@@ -26,7 +26,7 @@
     <updated>2023-07-10T09:13:13-07:00</updated>
     
     <content type="html"><![CDATA[<p>Now that I&rsquo;ve reviewed some of the key software architectural styles, let&rsquo;s see a side-by-side comparison of various architectures in terms of the architectural quality attributes:</p>
-<figure><img src="/img/Paper-2023-Architecture-08-ArchitectureStylesSummary.png" width="90%"/>
+<figure><img src="/img/Paper-2023-Architecture-08-ArchitectureStylesSummary.png" width="90%">
 </figure>
 
 <p>This table shows that choosing the right architecture involves tradeoffs. Each of the architectures has its strengths and weaknesses, and thus the &ldquo;best&rdquo; architecture style is highly dependent on the context (goals, business needs, budget, etc.).</p>
@@ -82,7 +82,7 @@
 <p>Data storage: Ideally, each microservice has its own storage system based on the specific needs of the service.</p>
 </li>
 </ol>
-<figure><img src="/img/Paper-2023-Architecture-07-Microservices-01w.png" width="90%"/>
+<figure><img src="/img/Paper-2023-Architecture-07-Microservices-01w.png" width="90%">
 </figure>
 
 <h3 id="comparison-with-service-oriented-architecture">Comparison with Service-Oriented Architecture</h3>
@@ -157,7 +157,7 @@
 </ul>
 </blockquote>
 <p>Most web-based applications follow the same request flow: a request originates in the browser, hits the web server, the application server, and finally, the database server. As the user load increases, bottlenecks start forming, first at the web layer, then the application server, and then the database.</p>
-<figure><img src="/img/Paper-2023-Architecture-06-SpaceBased-01w.png" width="450"/>
+<figure><img src="/img/Paper-2023-Architecture-06-SpaceBased-01w.png" width="450">
 </figure>
 
 <p>The usual response is to keep scaling each layer horizontally, starting with the web server. However, once we get to the database server, scaling out becomes more difficult and expensive.</p>
@@ -165,7 +165,7 @@
 <p>The space-based architecture style is specifically designed to address problems involving high scalability, elasticity, performance, and high concurrency issues. It is often the architecture of choice for financial applications, gaming platforms, and large-scale simulations.</p>
 <h2 id="overview">Overview</h2>
 <p>The core insight of this architecture is to remove the database as a synchronous constraint in the system and instead leverage replicated in-memory data grids. The core components of Space-Based Architecture are as follows.</p>
-<figure><img src="/img/Paper-2023-Architecture-06-SpaceBased-02w.png" width="90%"/>
+<figure><img src="/img/Paper-2023-Architecture-06-SpaceBased-02w.png" width="90%">
 </figure>
 
 <h3 id="processing-units-pu">Processing Units (PU)</h3>
@@ -248,12 +248,12 @@
 <li>Other interested processors <code>B</code>, <code>C</code>, and <code>D</code> listen to the processing event, process it, and optionally generate a new processing event (3) to advertise to the system what they did.</li>
 <li>Processor <code>E</code> listens for this event and handles it.</li>
 </ul>
-<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-01w.png" width="90%"/>
+<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-01w.png" width="90%">
 </figure>
 
 <h3 id="mediator-topology">Mediator Topology</h3>
 <p>The event mediator is core to this event-driven topology, which manages and controls the workflow for initiating events. A key difference from the broker topology is that the event mediator knows the steps involved in processing the event and generates corresponding processing events in a point-to-point messaging fashion.</p>
-<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-02w.png" width="90%"/>
+<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-02w.png" width="90%">
 </figure>
 
 <p>In most implementations of the mediator topology, multiple mediators focus on a particular domain, alleviating the single point-of-failure issues associated with Event-Driven systems and increasing overall throughput and performance.</p>
@@ -268,7 +268,7 @@
 <li>Mediator <code>MB</code> processes the event and sends a <em>processing event</em> to the event channels of processors <code>B</code> and <code>C</code>. These processors listen to their respective channels and process the incoming events.</li>
 <li>Similarly, mediator <code>MC</code> processes its event and sends a <em>processing event</em> to the event channel of processor <code>D</code>.</li>
 </ul>
-<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-03w.png" width="90%"/>
+<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-03w.png" width="90%">
 </figure>
 
 <h3 id="comparison">Comparison</h3>
@@ -335,15 +335,15 @@
 </ol>
 <p>The basic topology follows a layered structure with a separately deployed user interface, separately deployed course-grained services, and a monolithic database.</p>
 <p>The example below contains four different services, each deployed separately.</p>
-<figure><img src="/img/Paper-2023-Architecture-04-SOA-01w.png" width="90%"/>
+<figure><img src="/img/Paper-2023-Architecture-04-SOA-01w.png" width="90%">
 </figure>
 
 <p>A best practice for this architecture is to add an API layer between the user interface and the services. The API layer consists of a reverse proxy or gateway and consolidates shared functionality (such as aggregating data from multiple services, metrics, service discovery, etc.).</p>
-<figure><img src="/img/Paper-2023-Architecture-04-SOA-02w.png" width="90%"/>
+<figure><img src="/img/Paper-2023-Architecture-04-SOA-02w.png" width="90%">
 </figure>
 
 <p>Many topology variants exist within the service-based architecture style, making it very flexible. For example, the example below shows a system with the user interface broken up into two deployable units, <code>X</code> and <code>Y,</code> and two databases, <code>E</code> and <code>F</code>. The database <code>E</code> is shared between services <code>A</code>, <code>B</code>, and <code>C</code>.</p>
-<figure><img src="/img/Paper-2023-Architecture-04-SOA-03w.png" width="90%"/>
+<figure><img src="/img/Paper-2023-Architecture-04-SOA-03w.png" width="90%">
 </figure>
 
 <h2 id="quality-attributes-scores">Quality attributes scores</h2>
@@ -397,7 +397,7 @@
 </blockquote>
 <h2 id="overview">Overview</h2>
 <p>There are two significant parts of this architecture: pipes and filters. As a result, this is also known as the <em>pipes and filters architecture</em>.</p>
-<figure><img src="/img/Paper-2023-Architecture-03-Pipeline-01w.png" width="450"/>
+<figure><img src="/img/Paper-2023-Architecture-03-Pipeline-01w.png" width="450">
 </figure>
 
 <p>Pipes form the communication channel between the filters. Each pipe is unidirectional and point-to-point.</p>
@@ -409,7 +409,7 @@
 <li>Consumer: The consumer is the termination point for the pipeline flow. Consumers sometimes persist the results to a database or display the final results on the user interface.</li>
 </ol>
 <p>The diagram below shows an example of a pipeline with four types of filters.</p>
-<figure><img src="/img/Paper-2023-Architecture-03-Pipeline-02w.png" width="80%"/>
+<figure><img src="/img/Paper-2023-Architecture-03-Pipeline-02w.png" width="80%">
 </figure>
 
 <h2 id="analysis-of-quality-attributes">Analysis of Quality Attributes</h2>
@@ -463,13 +463,13 @@
 <li>Database layer</li>
 </ul>
 <figure><img src="/img/Paper-2023-Architecture-02-Layered-01w.png"
-         alt="Common layers in Layered Architecture" width="300"/><figcaption>
-            <p>Common layers in Layered Architecture</p>
-        </figcaption>
+    alt="Common layers in Layered Architecture" width="300"><figcaption>
+      <p>Common layers in Layered Architecture</p>
+    </figcaption>
 </figure>
 
 <p>In terms of deployment, all the layers are commonly part of a single deployment unit. The layers can sometimes be deployed as separate units, as shown below.</p>
-<figure><img src="/img/Paper-2023-Architecture-02-Layered-02w.png" width="100%"/>
+<figure><img src="/img/Paper-2023-Architecture-02-Layered-02w.png" width="100%">
 </figure>
 
 <h2 id="analysis-of-quality-attributes">Analysis of Quality attributes</h2>
@@ -1467,7 +1467,6 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     
     <content type="html"><![CDATA[<p>There are several excellent posts about setting up the Haskell development environment. One of the best ones is Tony Lawrence&rsquo;s <a href="http://tonylawrence.com/blog/2014/01/01/configuring-your-haskell-environment/" title="Configuring Your Haskell Environment">Configuring Your Haskell Environment</a>. I encourage you to take a look at his post first.</p>
 <p>Tony&rsquo;s post is more than a year old though, and it looks like a couple of things have changed since he wrote his post, especially with the latest version of Haskell and <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">SublimeHaskell</a>. I wasted a good chunk of time trying to get around those problems, so now writing this post in case others run into similar issues when setting up the SublimeHaskell plugin.</p>
-<!-- raw HTML omitted -->
 <p>Here&rsquo;s a summary of the steps to setup the Haskell dev environment (from <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">Tony&rsquo;s blog</a>).</p>
 <ul>
 <li>Install the Haskell platform.</li>
@@ -1480,7 +1479,7 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
 <p>This last step doesn&rsquo;t work seamlessly. When I installed SublimeHaskell, I ran into the following error message in Sublime Text:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>SublimeHaskell: Failed to compile ModuleInspector
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>/Users/umair/Library/Application Support/Sublime Text 3/Packages/SublimeHaskell/ModuleInspector.hs:141:12:
+</span></span></span><span style="display:flex;"><span>/Users/umair/Library/Application Support/Sublime Text 3/Packages/SublimeHaskell/ModuleInspector.hs:141:12:
 </span></span><span style="display:flex;"><span>    Not in scope: data constructor ‘H.PNeg’
 </span></span><span style="display:flex;"><span>    Perhaps you meant ‘H.PRec’ (imported from Language.Haskell.Exts)
 </span></span></code></pre></div><p>The problem is described in more detail in <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a> on <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">SublimeHaskell&rsquo;s GitHub page</a>. The summary is that the master branch of SublimeHaskell is too slow to accomodate the removal of <code>PNeg</code> from <code>haskell-src-exts</code>. The solution is to use the <code>hsdev</code> branch of SublimeHaskell. This is done as follows (recommended by <a href="https://github.com/MoreAxes" title="GitHub user MoreAxes">MoreAxes</a> on comment thread for <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a>):</p>
@@ -1527,9 +1526,9 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     
     <content type="html"><![CDATA[<p>A couple of days ago, I finished reading Paul Graham&rsquo;s book of essays <a href="http://www.amazon.com/Hackers-Painters-Big-Ideas-Computer/dp/1449389554">Hackers and Painters: Big Ideas from the Computer Age</a>, and thoroughly enjoyed the book. I had already read a few of these essays on his <a href="http://www.paulgraham.com/articles.html">website</a>, yet I still enjoyed re-reading them. The essays are very insightful, and I plan to re-read several essays &amp; passages periodically.</p>
 <figure><img src="/img/hackers_and_painters_book.jpg"
-         alt="My bookmarked copy"/><figcaption>
-            <p>My bookmarked copy</p>
-        </figcaption>
+    alt="My bookmarked copy"><figcaption>
+      <p>My bookmarked copy</p>
+    </figcaption>
 </figure>
 
 <p>Here are some of the essays that I particularly enjoyed:</p>
@@ -1552,7 +1551,7 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
     <content type="html"><![CDATA[<p>A quine is a program that takes no input and outputs its own source code. It has been a while since I last wrote a quine, so I figured I&rsquo;ll write one in Objective-C. In general, quines follow a fairly simple formula. The program contains a string that includes all the code before the string and all the code after the string. Depending on the programming language, the string might also contain format string (for languages that use format-strings to print to <code>stdout</code>)</p>
 <p>Here is the code for the quine. I&rsquo;ve broken the code below into segments to make it simpler to understand:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#75715e">#import &lt;Foundation/Foundation.h&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> (<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> argv[]) {
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> (<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> argv[]) {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@autoreleasepool</span> {
 </span></span><span style="display:flex;"><span>    NSString <span style="color:#f92672">*</span>str<span style="color:#f92672">=</span><span style="color:#e6db74">@&#34; \
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      #import &lt;Foundation/Foundation.h&gt; %c \
@@ -1565,7 +1564,7 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Before I go on, 10, 64 and 34 are the ASCII character codes for <code>newline</code>, <code>@</code> and <code>&quot;</code>respectively. To make it clearer, I&rsquo;ve broken the string into four lines. The first two lines contain the source code before the string. The 3rd line is the format string and the last line is the source code after the string. Here&rsquo;s the code with all lines collapsed:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#75715e">#import &lt;Foundation/Foundation.h&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> (<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> argv[]) {
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> (<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> argv[]) {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@autoreleasepool</span> {
 </span></span><span style="display:flex;"><span>    NSString <span style="color:#f92672">*</span>str<span style="color:#f92672">=</span><span style="color:#e6db74">@&#34;#import &lt;Foundation/Foundation.h&gt; %c int main (int argc, const char * argv[]) { @autoreleasepool { NSString *str=%c%c%@%c; NSLog(str, 10, 64, 34, str, 34);} return 0;}&#34;</span>;
 </span></span><span style="display:flex;"><span>    NSLog(str, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">34</span>, str, <span style="color:#ae81ff">34</span>);
@@ -1574,7 +1573,7 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Finally, here&rsquo;s the output when you execute this program. As you can tell, this is the same as the original program (minus the whitespace)</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#75715e">#import &lt;Foundation/Foundation.h&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> (<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> argv[]) { <span style="color:#66d9ef">@autoreleasepool</span> { NSString <span style="color:#f92672">*</span>str<span style="color:#f92672">=</span><span style="color:#e6db74">@&#34;#import &lt;Foundation/Foundation.h&gt; %c int main (int argc, const char * argv[]) { @autoreleasepool { NSString *str=%c%c%@%c; NSLog(str, 10, 64, 34, str, 34);} return 0;}&#34;</span>; NSLog(str, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">34</span>, str, <span style="color:#ae81ff">34</span>);} <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;}
+</span></span></span><span style="display:flex;"><span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> (<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> argv[]) { <span style="color:#66d9ef">@autoreleasepool</span> { NSString <span style="color:#f92672">*</span>str<span style="color:#f92672">=</span><span style="color:#e6db74">@&#34;#import &lt;Foundation/Foundation.h&gt; %c int main (int argc, const char * argv[]) { @autoreleasepool { NSString *str=%c%c%@%c; NSLog(str, 10, 64, 34, str, 34);} return 0;}&#34;</span>; NSLog(str, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">34</span>, str, <span style="color:#ae81ff">34</span>);} <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;}
 </span></span></code></pre></div>]]></content>
     
   </entry>
@@ -1619,30 +1618,30 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
 <h2 id="circular-linked-list">Circular Linked List</h2>
 <p>Now, coming back to the linked list that contains a loop. Suppose the start of the loop is <code>m</code> (e.g. <code>m</code>=3) nodes from the start of the linked list. Both <code>S</code> and <code>F</code> start at the beginning of the linked list [Figure-1].</p>
 <figure><img src="/img/circular-loop-figure-1.jpg"
-         alt="Figure-1: Circular linked list with S and F pointers at the start"/><figcaption>
-            <p>Figure-1: Circular linked list with S and F pointers at the start</p>
-        </figcaption>
+    alt="Figure-1: Circular linked list with S and F pointers at the start"><figcaption>
+      <p>Figure-1: Circular linked list with S and F pointers at the start</p>
+    </figcaption>
 </figure>
 
 <p>By the time <code>S</code> gets to node <code>m</code> (i.e. start of loop), <code>F</code> will be at node <code>2m</code> [Figure-2]. This means that <code>S</code> will be at the start of the loop and <code>F</code> will be <code>m</code> nodes <em>into the loop</em>.</p>
 <figure><img src="/img/circular-loop-figure-2.jpg"
-         alt="Figure-2: Circular linked list, with S at the start of loop and F m nodes into the loop"/><figcaption>
-            <p>Figure-2: Circular linked list, with S at the start of loop and F m nodes into the loop</p>
-        </figcaption>
+    alt="Figure-2: Circular linked list, with S at the start of loop and F m nodes into the loop"><figcaption>
+      <p>Figure-2: Circular linked list, with S at the start of loop and F m nodes into the loop</p>
+    </figcaption>
 </figure>
 
 <p>Based on the discussion above, we already know that if <code>S</code> begins from the start of the loop and <code>F</code> starts from node <code>m</code>, they will meet <code>m</code> nodes from the end of the loop (i.e. the orange-node in [Figure-3]).</p>
 <figure><img src="/img/circular-loop-figure-3.jpg"
-         alt="Figure-3: Both F and S meet m nodes from the end of the loop"/><figcaption>
-            <p>Figure-3: Both F and S meet m nodes from the end of the loop</p>
-        </figcaption>
+    alt="Figure-3: Both F and S meet m nodes from the end of the loop"><figcaption>
+      <p>Figure-3: Both F and S meet m nodes from the end of the loop</p>
+    </figcaption>
 </figure>
 
 <p>At this point, keep the pointer <code>F</code> at the orange-node where the two pointers met (i.e. <code>m</code>-nodes from the start of the loop), and move the pointer <code>S</code> to the beginning of the linked list [Figure-4]. Now, if we increment both <code>S</code> and <code>F</code> <em>one node at a time</em>, it is obvious that they will meet at &lsquo;Node-m&rsquo; (red-node) of the list, which is the start of the loop.</p>
 <figure><img src="/img/circular-loop-figure-4.jpg"
-         alt="Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on"/><figcaption>
-            <p>Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on</p>
-        </figcaption>
+    alt="Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on"><figcaption>
+      <p>Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on</p>
+    </figcaption>
 </figure>
 
 <p>For the curious, here’s the Java code snippets for detecting a loop in a linked list and finding the starting node:</p>
@@ -1740,9 +1739,9 @@ It is natural for the direct report to wonder whether the manager also bad-mouth
 <p>Continuing on like this results in an infinite binary search tree which preserves the usual ordering of rational numbers.</p>
 <p>The figure below shows the 1st 4 levels of the Stern-Brocot tree.</p>
 <figure><img src="/img/stern-brocot.png"
-         alt="The first 4 levels of Stern-Brocot Tree"/><figcaption>
-            <p>The first 4 levels of Stern-Brocot Tree</p>
-        </figcaption>
+    alt="The first 4 levels of Stern-Brocot Tree"><figcaption>
+      <p>The first 4 levels of Stern-Brocot Tree</p>
+    </figcaption>
 </figure>
 
 <h2 id="finding-the-path-to-k-in-stern-brocot-tree">Finding the Path to k in Stern-Brocot Tree</h2>

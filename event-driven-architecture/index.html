@@ -129,12 +129,12 @@
 <li>Other interested processors <code>B</code>, <code>C</code>, and <code>D</code> listen to the processing event, process it, and optionally generate a new processing event (3) to advertise to the system what they did.</li>
 <li>Processor <code>E</code> listens for this event and handles it.</li>
 </ul>
-<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-01w.png" width="90%"/>
+<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-01w.png" width="90%">
 </figure>
 
 <h3 id="mediator-topology">Mediator Topology</h3>
 <p>The event mediator is core to this event-driven topology, which manages and controls the workflow for initiating events. A key difference from the broker topology is that the event mediator knows the steps involved in processing the event and generates corresponding processing events in a point-to-point messaging fashion.</p>
-<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-02w.png" width="90%"/>
+<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-02w.png" width="90%">
 </figure>
 
 <p>In most implementations of the mediator topology, multiple mediators focus on a particular domain, alleviating the single point-of-failure issues associated with Event-Driven systems and increasing overall throughput and performance.</p>
@@ -149,7 +149,7 @@
 <li>Mediator <code>MB</code> processes the event and sends a <em>processing event</em> to the event channels of processors <code>B</code> and <code>C</code>. These processors listen to their respective channels and process the incoming events.</li>
 <li>Similarly, mediator <code>MC</code> processes its event and sends a <em>processing event</em> to the event channel of processor <code>D</code>.</li>
 </ul>
-<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-03w.png" width="90%"/>
+<figure><img src="/img/Paper-2023-Architecture-05-EventDriven-03w.png" width="90%">
 </figure>
 
 <h3 id="comparison">Comparison</h3>
@@ -204,7 +204,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2023-11-05 16:37:31.816046 -0800 PST m=&#43;0.069323334">2023</time> .
+    &copy; <time datetime="2026-01-19 20:24:53.063364 -0800 PST m=&#43;0.089895917">2026</time> .
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>

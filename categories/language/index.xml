@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>language on Umair&#39;s Blog</title>
+    <title>Language on Umair&#39;s Blog</title>
     <link>https://umairsaeed.com/categories/language/</link>
-    <description>Recent content in language on Umair&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Language on Umair&#39;s Blog</description>
+    <generator>Hugo</generator>
     <language>en-US</language>
     <lastBuildDate>Sun, 05 Nov 2023 16:21:28 -0800</lastBuildDate>
     <atom:link href="https://umairsaeed.com/categories/language/index.xml" rel="self" type="application/rss+xml" />

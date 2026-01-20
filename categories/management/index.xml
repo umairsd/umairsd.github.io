@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>management on Umair&#39;s Blog</title>
+    <title>Management on Umair&#39;s Blog</title>
     <link>https://umairsaeed.com/categories/management/</link>
-    <description>Recent content in management on Umair&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Management on Umair&#39;s Blog</description>
+    <generator>Hugo</generator>
     <language>en-US</language>
     <lastBuildDate>Mon, 20 Mar 2023 13:46:15 -0700</lastBuildDate>
     <atom:link href="https://umairsaeed.com/categories/management/index.xml" rel="self" type="application/rss+xml" />
@@ -13,8 +13,7 @@
       <link>https://umairsaeed.com/turtles-all-the-way-down/</link>
       <pubDate>Mon, 20 Mar 2023 13:46:15 -0700</pubDate>
       <guid>https://umairsaeed.com/turtles-all-the-way-down/</guid>
-      <description>&lt;p&gt;A friend of mine shared the post &lt;a href=&#34;https://brandur.org/fragments/meta-layoffs&#34;&gt;Meta Layoffs&lt;/a&gt; by &lt;a href=&#34;https://twitter.com/brandur&#34;&gt;@Brandur&lt;/a&gt; with me. I agree everything in the post.&lt;/p&gt;
-&lt;p&gt;Here, I want to focus and expand on the point about Meta&amp;rsquo;s desire to &amp;ldquo;flatten the company&amp;rsquo;s structure.&amp;rdquo;&lt;/p&gt;</description>
+      <description>&lt;p&gt;A friend of mine shared the post &lt;a href=&#34;https://brandur.org/fragments/meta-layoffs&#34;&gt;Meta Layoffs&lt;/a&gt; by &lt;a href=&#34;https://twitter.com/brandur&#34;&gt;@Brandur&lt;/a&gt; with me. I agree everything in the post.&lt;/p&gt;&#xA;&lt;p&gt;Here, I want to focus and expand on the point about Meta&amp;rsquo;s desire to &amp;ldquo;flatten the company&amp;rsquo;s structure.&amp;rdquo;&lt;/p&gt;</description>
     </item>
     <item>
       <title>How to Lose Trust as a Manager</title>

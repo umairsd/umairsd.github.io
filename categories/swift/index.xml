@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>swift on Umair&#39;s Blog</title>
+    <title>Swift on Umair&#39;s Blog</title>
     <link>https://umairsaeed.com/categories/swift/</link>
-    <description>Recent content in swift on Umair&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Swift on Umair&#39;s Blog</description>
+    <generator>Hugo</generator>
     <language>en-US</language>
     <lastBuildDate>Sun, 05 Nov 2023 16:21:28 -0800</lastBuildDate>
     <atom:link href="https://umairsaeed.com/categories/swift/index.xml" rel="self" type="application/rss+xml" />

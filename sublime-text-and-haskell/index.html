@@ -107,7 +107,6 @@
 
     <p>There are several excellent posts about setting up the Haskell development environment. One of the best ones is Tony Lawrence&rsquo;s <a href="http://tonylawrence.com/blog/2014/01/01/configuring-your-haskell-environment/" title="Configuring Your Haskell Environment">Configuring Your Haskell Environment</a>. I encourage you to take a look at his post first.</p>
 <p>Tony&rsquo;s post is more than a year old though, and it looks like a couple of things have changed since he wrote his post, especially with the latest version of Haskell and <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">SublimeHaskell</a>. I wasted a good chunk of time trying to get around those problems, so now writing this post in case others run into similar issues when setting up the SublimeHaskell plugin.</p>
-<!-- raw HTML omitted -->
 <p>Here&rsquo;s a summary of the steps to setup the Haskell dev environment (from <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">Tony&rsquo;s blog</a>).</p>
 <ul>
 <li>Install the Haskell platform.</li>
@@ -120,7 +119,7 @@
 <p>This last step doesn&rsquo;t work seamlessly. When I installed SublimeHaskell, I ran into the following error message in Sublime Text:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>SublimeHaskell: Failed to compile ModuleInspector
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>/Users/umair/Library/Application Support/Sublime Text 3/Packages/SublimeHaskell/ModuleInspector.hs:141:12:
+</span></span></span><span style="display:flex;"><span>/Users/umair/Library/Application Support/Sublime Text 3/Packages/SublimeHaskell/ModuleInspector.hs:141:12:
 </span></span><span style="display:flex;"><span>    Not in scope: data constructor ‘H.PNeg’
 </span></span><span style="display:flex;"><span>    Perhaps you meant ‘H.PRec’ (imported from Language.Haskell.Exts)
 </span></span></code></pre></div><p>The problem is described in more detail in <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a> on <a href="https://github.com/SublimeHaskell/SublimeHaskell" title="SublimeHaskell">SublimeHaskell&rsquo;s GitHub page</a>. The summary is that the master branch of SublimeHaskell is too slow to accomodate the removal of <code>PNeg</code> from <code>haskell-src-exts</code>. The solution is to use the <code>hsdev</code> branch of SublimeHaskell. This is done as follows (recommended by <a href="https://github.com/MoreAxes" title="GitHub user MoreAxes">MoreAxes</a> on comment thread for <a href="https://github.com/SublimeHaskell/SublimeHaskell/issues/182" title="SublimeHaskell issue # 182">issue #182</a>):</p>
@@ -155,7 +154,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2023-11-05 16:37:31.814179 -0800 PST m=&#43;0.067456751">2023</time> .
+    &copy; <time datetime="2026-01-19 20:24:53.058191 -0800 PST m=&#43;0.084723042">2026</time> .
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>

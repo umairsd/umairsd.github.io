@@ -4,7 +4,7 @@
     <title>Posts on Umair&#39;s Blog</title>
     <link>https://umairsaeed.com/posts/</link>
     <description>Recent content in Posts on Umair&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-US</language>
     <lastBuildDate>Sun, 05 Nov 2023 16:21:28 -0800</lastBuildDate>
     <atom:link href="https://umairsaeed.com/posts/index.xml" rel="self" type="application/rss+xml" />
@@ -83,16 +83,14 @@
       <link>https://umairsaeed.com/mastodon/</link>
       <pubDate>Thu, 30 Mar 2023 12:45:07 -0700</pubDate>
       <guid>https://umairsaeed.com/mastodon/</guid>
-      <description>I&amp;rsquo;ve started using {{&amp;lt; custom_a title=&amp;ldquo;Mastodon&amp;rdquo; url=&amp;ldquo;&lt;a href=&#34;https://mastodon.social/@umairsd%22&#34;&gt;https://mastodon.social/@umairsd&amp;quot;&lt;/a&gt; rel=&amp;ldquo;me&amp;rdquo; &amp;gt;}}, so please feel free to follow.
-This could have been a tweet, but I need to add this post to be able to link back to my Mastodon profile. Doing so allows me to verify ownership of the link to my blog on my Mastodon profile.</description>
+      <description>I&amp;rsquo;ve started using {{&amp;lt; custom_a title=&amp;ldquo;Mastodon&amp;rdquo; url=&amp;ldquo;&lt;a href=&#34;https://mastodon.social/@umairsd%22&#34;&gt;https://mastodon.social/@umairsd&amp;quot;&lt;/a&gt; rel=&amp;ldquo;me&amp;rdquo; &amp;gt;}}, so please feel free to follow.&#xA;This could have been a tweet, but I need to add this post to be able to link back to my Mastodon profile. Doing so allows me to verify ownership of the link to my blog on my Mastodon profile.</description>
     </item>
     <item>
       <title>Turtles All the Way Down</title>
       <link>https://umairsaeed.com/turtles-all-the-way-down/</link>
       <pubDate>Mon, 20 Mar 2023 13:46:15 -0700</pubDate>
       <guid>https://umairsaeed.com/turtles-all-the-way-down/</guid>
-      <description>&lt;p&gt;A friend of mine shared the post &lt;a href=&#34;https://brandur.org/fragments/meta-layoffs&#34;&gt;Meta Layoffs&lt;/a&gt; by &lt;a href=&#34;https://twitter.com/brandur&#34;&gt;@Brandur&lt;/a&gt; with me. I agree everything in the post.&lt;/p&gt;
-&lt;p&gt;Here, I want to focus and expand on the point about Meta&amp;rsquo;s desire to &amp;ldquo;flatten the company&amp;rsquo;s structure.&amp;rdquo;&lt;/p&gt;</description>
+      <description>&lt;p&gt;A friend of mine shared the post &lt;a href=&#34;https://brandur.org/fragments/meta-layoffs&#34;&gt;Meta Layoffs&lt;/a&gt; by &lt;a href=&#34;https://twitter.com/brandur&#34;&gt;@Brandur&lt;/a&gt; with me. I agree everything in the post.&lt;/p&gt;&#xA;&lt;p&gt;Here, I want to focus and expand on the point about Meta&amp;rsquo;s desire to &amp;ldquo;flatten the company&amp;rsquo;s structure.&amp;rdquo;&lt;/p&gt;</description>
     </item>
     <item>
       <title>How to Lose Trust as a Manager</title>
@@ -120,8 +118,7 @@ This could have been a tweet, but I need to add this post to be able to link bac
       <link>https://umairsaeed.com/refresh-2022/</link>
       <pubDate>Tue, 28 Dec 2021 10:20:16 -0800</pubDate>
       <guid>https://umairsaeed.com/refresh-2022/</guid>
-      <description>After a fairly long hiatus, I am hoping to resume blogging in 2022. This is a test post to ensure that all the tooling (Hugo, my theme etc.) works as expected.
-Time to hit refresh!</description>
+      <description>&lt;p&gt;After a fairly long hiatus, I am hoping to resume blogging in 2022. This is a test post to ensure that all the tooling (Hugo, my theme etc.) works as expected.&lt;/p&gt;&#xA;&lt;p&gt;Time to hit refresh!&lt;/p&gt;</description>
     </item>
     <item>
       <title>Do You Need Self Discipline To Have Fun?</title>
@@ -149,33 +146,14 @@ Time to hit refresh!</description>
       <link>https://umairsaeed.com/applicative-laws-for-maybe-type/</link>
       <pubDate>Tue, 05 Jan 2016 00:00:00 +0000</pubDate>
       <guid>https://umairsaeed.com/applicative-laws-for-maybe-type/</guid>
-      <description>&lt;p&gt;Applicative functors come with a set of laws that apply for all Applicative instances. These laws are as follows:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Identity: &lt;code&gt;pure id &amp;lt;*&amp;gt; v = v&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Homomorphism: &lt;code&gt;pure f &amp;lt;*&amp;gt; pure x = pure (f x)&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Interchange: &lt;code&gt;u &amp;lt;*&amp;gt; pure y = pure ($y) &amp;lt;*&amp;gt; u&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Composition: &lt;code&gt;pure (.) &amp;lt;*&amp;gt; u &amp;lt;*&amp;gt; v &amp;lt;*&amp;gt; w = u &amp;lt;*&amp;gt; (v &amp;lt;*&amp;gt; w)&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>&lt;p&gt;Applicative functors come with a set of laws that apply for all Applicative instances. These laws are as follows:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Identity: &lt;code&gt;pure id &amp;lt;*&amp;gt; v = v&lt;/code&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Homomorphism: &lt;code&gt;pure f &amp;lt;*&amp;gt; pure x = pure (f x)&lt;/code&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Interchange: &lt;code&gt;u &amp;lt;*&amp;gt; pure y = pure ($y) &amp;lt;*&amp;gt; u&lt;/code&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Composition: &lt;code&gt;pure (.) &amp;lt;*&amp;gt; u &amp;lt;*&amp;gt; v &amp;lt;*&amp;gt; w = u &amp;lt;*&amp;gt; (v &amp;lt;*&amp;gt; w)&lt;/code&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>Maybe as an Applicative Functor</title>
       <link>https://umairsaeed.com/maybe-as-an-applicative-functor/</link>
       <pubDate>Fri, 21 Aug 2015 09:53:20 -0700</pubDate>
       <guid>https://umairsaeed.com/maybe-as-an-applicative-functor/</guid>
-      <description>&lt;p&gt;&lt;code&gt;Maybe&lt;/code&gt; type is made an instance of the &lt;code&gt;Applicative&lt;/code&gt; type class as follows:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;instance&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Applicative&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Maybe&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;where&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    pure &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Just&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;Nothing&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;_&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Nothing&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    (&lt;span style=&#34;color:#66d9ef&#34;&gt;Just&lt;/span&gt; f) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;*&amp;gt;&lt;/span&gt; something &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fmap f something
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <description>&lt;p&gt;&lt;code&gt;Maybe&lt;/code&gt; type is made an instance of the &lt;code&gt;Applicative&lt;/code&gt; type class as follows:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;instance&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Applicative&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Maybe&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;where&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    pure &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Just&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;Nothing&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;_&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;Nothing&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    (&lt;span style=&#34;color:#66d9ef&#34;&gt;Just&lt;/span&gt; f) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;*&amp;gt;&lt;/span&gt; something &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fmap f something&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>Pascal&#39;s Triangle</title>
@@ -238,10 +216,7 @@ Time to hit refresh!</description>
       <link>https://umairsaeed.com/stern-brocot-tree/</link>
       <pubDate>Thu, 27 Jan 2011 13:56:15 +0000</pubDate>
       <guid>https://umairsaeed.com/stern-brocot-tree/</guid>
-      <description>&lt;p&gt;Stern-Brocot tree is a tree data structure whose vertices correspond to the set of non-negative rational numbers. Thus, this tree provides a very elegant way for constructing the set of fractions &lt;code&gt;m/n&lt;/code&gt;, where &lt;code&gt;m&lt;/code&gt; and &lt;code&gt;n&lt;/code&gt; are relatively prime. To construct the tree, the basic idea is to start with two fractions (&lt;code&gt;0/1&lt;/code&gt;, &lt;code&gt;1/0&lt;/code&gt;) and then repeat the following operation:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Insert (m+m&amp;rsquo;)/(n+n&amp;rsquo;) between two adjacent fractions m/n and m&amp;rsquo;/n&#39;&lt;/p&gt;
-&lt;/blockquote&gt;</description>
+      <description>&lt;p&gt;Stern-Brocot tree is a tree data structure whose vertices correspond to the set of non-negative rational numbers. Thus, this tree provides a very elegant way for constructing the set of fractions &lt;code&gt;m/n&lt;/code&gt;, where &lt;code&gt;m&lt;/code&gt; and &lt;code&gt;n&lt;/code&gt; are relatively prime. To construct the tree, the basic idea is to start with two fractions (&lt;code&gt;0/1&lt;/code&gt;, &lt;code&gt;1/0&lt;/code&gt;) and then repeat the following operation:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Insert (m+m&amp;rsquo;)/(n+n&amp;rsquo;) between two adjacent fractions m/n and m&amp;rsquo;/n&#39;&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
   </channel>
 </rss>

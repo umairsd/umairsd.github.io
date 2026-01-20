@@ -139,30 +139,30 @@
 <h2 id="circular-linked-list">Circular Linked List</h2>
 <p>Now, coming back to the linked list that contains a loop. Suppose the start of the loop is <code>m</code> (e.g. <code>m</code>=3) nodes from the start of the linked list. Both <code>S</code> and <code>F</code> start at the beginning of the linked list [Figure-1].</p>
 <figure><img src="/img/circular-loop-figure-1.jpg"
-         alt="Figure-1: Circular linked list with S and F pointers at the start"/><figcaption>
-            <p>Figure-1: Circular linked list with S and F pointers at the start</p>
-        </figcaption>
+    alt="Figure-1: Circular linked list with S and F pointers at the start"><figcaption>
+      <p>Figure-1: Circular linked list with S and F pointers at the start</p>
+    </figcaption>
 </figure>
 
 <p>By the time <code>S</code> gets to node <code>m</code> (i.e. start of loop), <code>F</code> will be at node <code>2m</code> [Figure-2]. This means that <code>S</code> will be at the start of the loop and <code>F</code> will be <code>m</code> nodes <em>into the loop</em>.</p>
 <figure><img src="/img/circular-loop-figure-2.jpg"
-         alt="Figure-2: Circular linked list, with S at the start of loop and F m nodes into the loop"/><figcaption>
-            <p>Figure-2: Circular linked list, with S at the start of loop and F m nodes into the loop</p>
-        </figcaption>
+    alt="Figure-2: Circular linked list, with S at the start of loop and F m nodes into the loop"><figcaption>
+      <p>Figure-2: Circular linked list, with S at the start of loop and F m nodes into the loop</p>
+    </figcaption>
 </figure>
 
 <p>Based on the discussion above, we already know that if <code>S</code> begins from the start of the loop and <code>F</code> starts from node <code>m</code>, they will meet <code>m</code> nodes from the end of the loop (i.e. the orange-node in [Figure-3]).</p>
 <figure><img src="/img/circular-loop-figure-3.jpg"
-         alt="Figure-3: Both F and S meet m nodes from the end of the loop"/><figcaption>
-            <p>Figure-3: Both F and S meet m nodes from the end of the loop</p>
-        </figcaption>
+    alt="Figure-3: Both F and S meet m nodes from the end of the loop"><figcaption>
+      <p>Figure-3: Both F and S meet m nodes from the end of the loop</p>
+    </figcaption>
 </figure>
 
 <p>At this point, keep the pointer <code>F</code> at the orange-node where the two pointers met (i.e. <code>m</code>-nodes from the start of the loop), and move the pointer <code>S</code> to the beginning of the linked list [Figure-4]. Now, if we increment both <code>S</code> and <code>F</code> <em>one node at a time</em>, it is obvious that they will meet at &lsquo;Node-m&rsquo; (red-node) of the list, which is the start of the loop.</p>
 <figure><img src="/img/circular-loop-figure-4.jpg"
-         alt="Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on"/><figcaption>
-            <p>Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on</p>
-        </figcaption>
+    alt="Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on"><figcaption>
+      <p>Figure-4: S at the start of linked list, F at the point they met. Both increment one at a time from here-on</p>
+    </figcaption>
 </figure>
 
 <p>For the curious, here’s the Java code snippets for detecting a loop in a linked list and finding the starting node:</p>
@@ -258,7 +258,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2023-11-05 16:37:31.819227 -0800 PST m=&#43;0.072505001">2023</time> .
+    &copy; <time datetime="2026-01-19 20:24:53.067143 -0800 PST m=&#43;0.093675417">2026</time> .
     Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/umairsd/talespin/'>Talespin</a> theme.
   </span>
 </footer>
